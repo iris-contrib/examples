@@ -29,7 +29,7 @@ func main() {
 	iris.Get("/redirect/:namedRoute", func(ctx *iris.Context) {
 		routeName := ctx.Param("namedRoute")
 
-		println("The full uri of " + routeName + "is: " + iris.RouteByName(routeName).GetURI())
+		println("The full uri of " + routeName + "is: " + iris.RouteByName(routeName).ParseURI())
 		// if routeName == "my-page1"
 		// prints: The full uri of my-page1 is: http://0.0.0.0:8080/mypath
 		ctx.RedirectTo(routeName)

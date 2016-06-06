@@ -12,7 +12,7 @@ func main() {
 
 	// Middleware
 	iris.Use(recovery.New(os.Stderr))
-	iris.UseFunc(logger.Default())
+	iris.Use(logger.New(iris.Logger()))
 
 	// Get theme
 	iris.StaticServe("./resources", "/assets")
