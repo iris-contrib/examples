@@ -1,4 +1,5 @@
 // Package main register static subdomains, simple as parties, check ./hosts if you use windows
+// this example shows you how to set subdomains at a real domain for example: 'localhost.com'
 package main
 
 import (
@@ -9,26 +10,26 @@ func main() {
 	api := iris.New()
 
 	// first the subdomains.
-	admin := api.Party("admin.127.0.0.1")
+	admin := api.Party("admin.localhost.com")
 	{
-		// admin.127.0.0.1
+		// admin.localhost.com
 		admin.Get("/", func(c *iris.Context) {
-			c.Write("HEY FROM admin.127.0.0.1")
+			c.Write("HEY FROM admin.localhost.com")
 		})
-		// admin.127.0.0.1/hey
+		// admin.localhost.com/hey
 		admin.Get("/hey", func(c *iris.Context) {
-			c.Write("HEY FROM admin.127.0.0.1/hey")
+			c.Write("HEY FROM admin.localhost.com/hey")
 		})
-		// admin.127.0.0.1/hey2
+		// admin.localhost.com/hey2
 		admin.Get("/hey2", func(c *iris.Context) {
-			c.Write("HEY SECOND FROM admin.127.0.0.1/hey")
+			c.Write("HEY SECOND FROM admin.localhost.com/hey")
 		})
 	}
 
-	// 127.0.0.1/hey
+	// localhost/hey
 	api.Get("/hey", func(c *iris.Context) {
 		c.Write("HEY FROM no-subdomain hey")
 	})
 
-	api.Listen("127.0.0.1:80")
+	api.Listen("localhost:80")
 }
