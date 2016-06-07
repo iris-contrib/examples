@@ -33,10 +33,10 @@ func main() {
 		// if routeName == "my-page1"
 		// prints: The full uri of my-page1 is: http://0.0.0.0:8080/mypath
 		ctx.RedirectTo(routeName)
-		// http://0.0.0.0:8080/redirect/my-page1 will redirect to -> http://0.0.0.0:8080/mypath
+		// http://my.dev:8080/redirect/my-page1 will redirect to -> http://my.dev:8080/mypath
 	})
 
-	iris.Listen(":8080")
+	iris.Listen("my.dev:8080")
 }
 
 func emptyHandler(ctx *iris.Context) {

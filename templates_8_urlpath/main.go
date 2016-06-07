@@ -29,14 +29,14 @@ func main() {
 	iris.Get("/redirect/:namedRoute", func(ctx *iris.Context) {
 		routeName := ctx.Param("namedRoute")
 
-		println("The full uri of " + routeName + "is: " + iris.RouteByName(routeName).ParseURI())
+		println("The path uri of " + routeName + "is: " + iris.RouteByName(routeName).ParsePath())
 		// if routeName == "my-page1"
 		// prints: The full uri of my-page1 is: http://0.0.0.0:8080/mypath
 		ctx.RedirectTo(routeName)
-		// http://0.0.0.0:8080/redirect/my-page1 will redirect to -> http://0.0.0.0:8080/mypath
+		// http://localhost:8080/redirect/my-page1 will redirect to -> http://localhost:8080/mypath
 	})
 
-	iris.Listen(":8080")
+	iris.Listen("localhost:8080")
 }
 
 func emptyHandler(ctx *iris.Context) {
