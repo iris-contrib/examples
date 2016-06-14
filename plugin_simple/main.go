@@ -52,4 +52,7 @@ func (pl myPlugin) PostListen(s *iris.Framework) {
 	PostListen(*iris.Framework)
 	PreClose(*iris.Framework)
 	PreDownload(thePlugin iris.Plugin, downloadUrl string)
+	// for custom events
+	On(string,...func())
+	Call(string)
 */

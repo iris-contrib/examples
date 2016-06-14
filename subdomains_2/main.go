@@ -1,6 +1,6 @@
 // Package main an example on how to catch dynamic subdomains - wildcard.
 // On the first example (subdomains_1) we saw how to create routes for static subdomains, subdomains you know that you will have.
-// Here we will see an example how to catch unknown subdomains, dynamic subdomains, like username.mysite.com.
+// Here we will see an example how to catch unknown subdomains, dynamic subdomains, like username.mydomain.com:8080.
 
 package main
 
