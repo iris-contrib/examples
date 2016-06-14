@@ -1,6 +1,0 @@
-[submodule "AIO_examples/iris-command-assets"]
-	path = AIO_examples/iris-command-assets
-	url = https://github.com/iris-contrib/iris-command-assets
-[submodule "AIO_examples"]
-	path = AIO_examples
-	url = https://github.com/iris-contrib/iris-command-assets

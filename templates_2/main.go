@@ -13,5 +13,23 @@ func main() {
 		}
 	})
 
+	// remove the layout for a specific route
+	iris.Get("/nolayout", func(ctx *iris.Context) {
+		if err := ctx.Render("page1.html", nil, iris.NoLayout); err != nil {
+			println(err.Error())
+		}
+	})
+
+	// set or remove a layout for a party
+	my := iris.Party("/my").Layout("layouts/mylayout.html")
+	{
+		my.Get("/", func(ctx *iris.Context) {
+			ctx.MustRender("page1.html", nil)
+		})
+		my.Get("/other", func(ctx *iris.Context) {
+			ctx.MustRender("page1.html", nil)
+		})
+	}
+
 	iris.Listen(":8080")
 }
