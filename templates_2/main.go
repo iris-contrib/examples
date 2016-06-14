@@ -20,7 +20,7 @@ func main() {
 		}
 	})
 
-	// set or remove a layout for a party
+	// set a layout for a party, .Layout should be BEFORE any Get or other Handle party's method
 	my := iris.Party("/my").Layout("layouts/mylayout.html")
 	{
 		my.Get("/", func(ctx *iris.Context) {
