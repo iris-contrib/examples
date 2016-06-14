@@ -9,16 +9,17 @@ import (
 func main() {
 	// first way:
 	// simple way for simple things
-	// PreHandle before a route is registed ( iris.Get/Post...)
-	iris.Plugins().PreHandle(func(route iris.IRoute) {
-		fmt.Printf("Func: Route Method: %s and Path: %s is going to be registed with %d handler(s). \n", route.GetMethod(), route.GetPath(), len(route.GetMiddleware()))
-
+	// PreListen before a station is listening ( iris.Listen/TLS...)
+	iris.Plugins.PreListen(func(s *iris.Framework) {
+		for _, route := range s.Lookups() {
+			fmt.Printf("Func: Route Method: %s | Subdomain %s | Path: %s is going to be registed with %d handler(s). \n", route.Method(), route.Subdomain(), route.Path(), len(route.Middleware()))
+		}
 	})
 
 	// second way:
 	// structured way for more things
 	plugin := myPlugin{}
-	iris.Plugins().Add(plugin)
+	iris.Plugins.Add(plugin)
 
 	iris.Get("/first_route", aHandler)
 
@@ -37,12 +38,18 @@ func aHandler(ctx *iris.Context) {
 
 type myPlugin struct{}
 
-// PostHandle after a route is registed ( iris.Get/Post...)
-func (pl myPlugin) PostHandle(route iris.IRoute) {
-	fmt.Printf("myPlugin: Route Method: %s and Path: %s registed with %d handler(s). \n", route.GetMethod(), route.GetPath(), len(route.GetMiddleware()))
+// PostListen after a station is listening ( iris.Listen/TLS...)
+func (pl myPlugin) PostListen(s *iris.Framework) {
+	fmt.Printf("myPlugin: server is listening on host: %s", s.HTTPServer.Host())
 }
 
-// after iris.Listen
-func (pl myPlugin) PostListen(station *iris.Iris) {
-	fmt.Printf("myPlugin: Server is succesfuly running on address: %s. \n ", station.Server().Config.ListeningAddr)
-}
+//list:
+/*
+	Activate(iris.PluginContainer)
+	GetName() string
+	GetDescription() string
+	PreListen(*iris.Framework)
+	PostListen(*iris.Framework)
+	PreClose(*iris.Framework)
+	PreDownload(thePlugin iris.Plugin, downloadUrl string)
+*/

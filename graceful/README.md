@@ -40,7 +40,7 @@ package main
 import (
 	"time"
 
-	"github.com/kataras/graceful"
+	"github.com/kataras/iris/graceful"
 	"github.com/kataras/iris"
 )
 

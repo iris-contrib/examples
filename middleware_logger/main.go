@@ -5,9 +5,30 @@ import (
 	"github.com/kataras/iris/middleware/logger"
 )
 
+/*
+With options:
+
+errorLogger := logger.New(iris.Logger, logger.Options{
+		EnableColors: false, //enable it to enable colors for all, disable colors by iris.Logger.ResetColors(), defaults to false
+		// Status displays status code
+		Status: true,
+		// IP displays request's remote address
+		IP: true,
+		// Method displays the http method
+		Method: true,
+		// Path displays the request path
+		Path: true,
+})
+
+iris.Use(errorLogger)
+
+With default options:
+
+iris.Use(logger.New(iris.Logger))
+*/
 func main() {
 
-	iris.Use(logger.New(iris.Logger()))
+	iris.Use(logger.New(iris.Logger))
 
 	iris.Get("/", func(ctx *iris.Context) {
 		ctx.Write("hello")
@@ -17,12 +38,13 @@ func main() {
 		ctx.Write("hello")
 	})
 
-	iris.Get("/3", func(ctx *iris.Context) {
+	iris.Get("/2", func(ctx *iris.Context) {
 		ctx.Write("hello")
 	})
 
 	// log http errors
-	errorLogger := logger.New(iris.Logger(), logger.Options{Latency: false}) //here we just disable to log the latency, no need for error pages
+	errorLogger := logger.New(iris.Logger)
+
 	// yes we have options look at the logger.Options inside kataras/iris/middleware/logger.go
 	iris.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
 		errorLogger.Serve(ctx)

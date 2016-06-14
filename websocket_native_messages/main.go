@@ -25,9 +25,9 @@ func main() {
 	})
 
 	// the path which the websocket client should listen/registed to ->
-	iris.Config().Websocket.Endpoint = "/my_endpoint"
+	iris.Config.Websocket.Endpoint = "/my_endpoint"
 
-	ws := iris.Websocket() // get the websocket server
+	ws := iris.Websocket // get the websocket server
 
 	ws.OnConnection(func(c websocket.Connection) {
 

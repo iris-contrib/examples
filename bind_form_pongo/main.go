@@ -1,4 +1,3 @@
-// package main contains an example on how to use the ReadForm, but with the same way you can do the ReadJSON & ReadJSON
 package main
 
 import (
@@ -14,10 +13,12 @@ type Visitor struct {
 }
 
 func main() {
+	// Yes you see right, only one line change and ou'ready to go
+	iris.Config.Render.Template.Engine = iris.PongoEngine
 
 	iris.Get("/", func(ctx *iris.Context) {
 		if err := ctx.Render("form.html", nil); err != nil {
-			iris.Logger.Printf(err.Error())
+			iris.Logger.Panic(err.Error())
 		}
 	})
 
@@ -32,4 +33,5 @@ func main() {
 	})
 
 	iris.Listen(":8080")
+
 }

@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	iris.Config().Sessions.Provider = "redis"
+	iris.Config.Sessions.Provider = "redis"
 
 	iris.Get("/set", func(c *iris.Context) {
 
@@ -43,6 +43,5 @@ func main() {
 		c.SessionDestroy()
 	})
 
-	println("Server is listening at :8080")
-	iris.Listen("8080")
+	iris.Listen(":8080")
 }

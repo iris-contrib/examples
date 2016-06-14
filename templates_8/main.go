@@ -12,8 +12,8 @@ func main() {
 	iris.Get("/mypath3/:param1/statichere/:param2", emptyHandler)("my-page3")
 	iris.Get("/mypath4/:param1/statichere/:param2/:otherparam/*something", emptyHandler)("my-page4")
 
-	// same with Handle/Func ( consider this as the 'low-level' register )
-	iris.HandleFunc("GET", "/mypath5/:param1/statichere/:param2/:otherparam/anything/*anything", emptyHandler).Name("my-page5")
+	// same with Handle/Func
+	iris.HandleFunc("GET", "/mypath5/:param1/statichere/:param2/:otherparam/anything/*anything", emptyHandler)("my-page5")
 
 	iris.Get("/mypath6/:param1/:param2/staticParam/:param3AfterStatic", emptyHandler)("my-page6")
 
@@ -29,11 +29,11 @@ func main() {
 	iris.Get("/redirect/:namedRoute", func(ctx *iris.Context) {
 		routeName := ctx.Param("namedRoute")
 
-		println("The full uri of " + routeName + "is: " + iris.RouteByName(routeName).ParseURI())
+		println("The full uri of " + routeName + "is: " + iris.URL(routeName))
 		// if routeName == "my-page1"
-		// prints: The full uri of my-page1 is: http://0.0.0.0:8080/mypath
+		// prints: The full uri of my-page1 is: http://127.0.0.1:8080/mypath
 		ctx.RedirectTo(routeName)
-		// http://0.0.0.0:8080/redirect/my-page1 will redirect to -> http://0.0.0.0:8080/mypath
+		// http://127.0.0.1:8080/redirect/my-page1 will redirect to -> http://127.0.0.1:8080/mypath
 	})
 
 	iris.Listen(":8080")

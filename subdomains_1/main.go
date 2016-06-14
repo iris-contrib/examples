@@ -9,26 +9,31 @@ func main() {
 	api := iris.New()
 
 	// first the subdomains.
-	admin := api.Party("admin.127.0.0.1")
+	admin := api.Party("admin.")
 	{
-		// admin.127.0.0.1
+		// admin.mydomain.com
 		admin.Get("/", func(c *iris.Context) {
-			c.Write("HEY FROM admin.127.0.0.1")
+			c.Write("INDEX FROM admin.mydomain.com")
 		})
-		// admin.127.0.0.1/hey
+		// admin.mydomain.com/hey
 		admin.Get("/hey", func(c *iris.Context) {
-			c.Write("HEY FROM admin.127.0.0.1/hey")
+			c.Write("HEY FROM admin.mydomain.com/hey")
 		})
-		// admin.127.0.0.1/hey2
+		// admin.mydomain.com/hey2
 		admin.Get("/hey2", func(c *iris.Context) {
-			c.Write("HEY SECOND FROM admin.127.0.0.1/hey")
+			c.Write("HEY SECOND FROM admin.mydomain.com/hey")
 		})
 	}
 
-	// 127.0.0.1/hey
+	// mydomain.com/
+	api.Get("/", func(c *iris.Context) {
+		c.Write("INDEX FROM no-subdomain hey")
+	})
+
+	// mydomain.com/hey
 	api.Get("/hey", func(c *iris.Context) {
 		c.Write("HEY FROM no-subdomain hey")
 	})
 
-	api.Listen("127.0.0.1:80")
+	api.Listen("mydomain.com:80")
 }

@@ -12,14 +12,14 @@ func main() {
 
 	// Middleware
 	iris.Use(recovery.New(os.Stderr))
-	iris.Use(logger.New(iris.Logger()))
+	iris.Use(logger.New(iris.Logger))
 
 	// Get theme
 	iris.StaticServe("./resources", "/assets")
 
 	// Router
-	iris.Get("/", func(response *iris.Context) {
-		response.Write("Test")
+	iris.Get("/", func(ctx *iris.Context) {
+		ctx.Write("Append one of these to browser's address bar:\n/assets/js/jquery-2.1.1.js\n/assets/css/bootstrap.min.css")
 	})
 
 	iris.Listen(":8080")

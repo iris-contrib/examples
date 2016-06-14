@@ -68,8 +68,7 @@ func main() {
 		sess.Destroy(c)
 	})
 
-	println("Server is listening at :8080")
-	iris.Listen("8080")
+	iris.Listen(":8080")
 
 }
 

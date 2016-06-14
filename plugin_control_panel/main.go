@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	iris.Plugins().Add(iriscontrol.Web(9090, map[string]string{
+	iris.Plugins.Add(iriscontrol.Web(9090, map[string]string{
 		"irisusername1": "irispassword1",
 		"irisusername2": "irispassowrd2",
 	}))

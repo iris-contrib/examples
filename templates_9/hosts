@@ -26,6 +26,5 @@
 127.0.0.1		username3.127.0.0.1
 127.0.0.1		username4.127.0.0.1
 127.0.0.1		username5.127.0.0.1
-127.0.0.1		admin.127.0.0.1
-
+# note that you can always use custom subdomains
 #-END IRIS-

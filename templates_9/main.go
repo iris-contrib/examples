@@ -29,7 +29,7 @@ func main() {
 	iris.Get("/redirect/:namedRoute/:subdomain", func(ctx *iris.Context) {
 		routeName := ctx.Param("namedRoute")
 		subdomain := ctx.Param("subdomain")
-		println("The full uri of " + routeName + "is: " + iris.RouteByName(routeName).ParseURI(subdomain))
+		println("The full uri of " + routeName + "is: " + iris.URL(routeName, subdomain))
 		// if routeName == "dynamic-subdomain1" && subdomain == "username1"
 		// prints: The full uri ofd ynamic-subdomain1 is: http://username1.127.0.0.1:8080/mypath
 		ctx.RedirectTo(routeName, subdomain) // the second parameter is the arguments, the first argument for dynamic subdomains is the subdomain part, after this, the named parameters

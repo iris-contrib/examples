@@ -26,7 +26,7 @@ func main() {
 		if err != nil {
 			// Do something with the error
 		}
-		c.WriteHTML(iris.StatusOK, "<b> Hello </b>"+fullname+"<b> with friends ID </b>"+strconv.Itoa(friendID))
+		c.HTML(iris.StatusOK, "<b> Hello </b>"+fullname+"<b> with friends ID </b>"+strconv.Itoa(friendID))
 	})
 
 	/* Example: /posts/:id and /posts/new (dynamic value conficts with the static 'new') for performance reasons and simplicity
@@ -36,7 +36,9 @@ func main() {
 		action := ctx.Param("action")
 		if action == "new" {
 			// it's posts/new page
+			ctx.Write("POSTS NEW")
 		} else {
+			ctx.Write("OTHER POSTS")
 			// it's posts/:id page
 			//doSomething with the action which is the id
 		}

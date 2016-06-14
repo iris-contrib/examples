@@ -29,7 +29,7 @@ func main() {
 		c.Write("Hello from /home")
 	})
 
-	iris.Listen("8080")
+	iris.Listen(":8080")
 }
 
 // a silly example
@@ -41,6 +41,6 @@ var _ iris.Handler = &MyGlobalMiddlewareStructed{}
 
 //Important staff, iris middleware must implement the iris.Handler interface which is:
 func (m MyGlobalMiddlewareStructed) Serve(c *iris.Context) {
-	fmt.Println("Hello from logger with id: ", m.loggerId)
+	fmt.Println("Hello from the MyGlobalMiddlewareStructed")
 	c.Next()
 }

@@ -40,5 +40,5 @@ func main() {
 		c.SessionDestroy()
 	})
 
-	iris.Listen("8080")
+	iris.Listen(":8080")
 }

@@ -19,6 +19,6 @@ func main() {
 	//, so it's blocking, you have to run it in go routine
 	// when ever you want your code below that to be executed
 	go server1.Listen(":8080")
-	server2.Listen(":80")
+	server2.Listen(":1993")
 
 }

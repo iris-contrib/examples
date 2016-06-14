@@ -21,11 +21,7 @@
 ::1             localhost
 #-IRIS-For development machine, you have to configure your dns also for online, search google how to do it if you don't know
 
-127.0.0.1		username1.127.0.0.1
-127.0.0.1		username2.127.0.0.1
-127.0.0.1		username3.127.0.0.1
-127.0.0.1		username4.127.0.0.1
-127.0.0.1		username5.127.0.0.1
-127.0.0.1		admin.127.0.0.1
+127.0.0.1		mydomain.com
+127.0.0.1		admin.mydomain.com
 
 #-END IRIS-

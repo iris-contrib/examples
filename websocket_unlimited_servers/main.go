@@ -25,7 +25,8 @@ func main() {
 	// important staff
 	websocketConfig := config.DefaultWebsocket()
 	websocketConfig.Endpoint = "/my_endpoint" // the path which the websocket client should listen/registed to
-	w := websocket.New(api, websocketConfig)
+	w := websocket.New(api, websocketConfig, api.Logger)
+	// you created a new websocket server, you can create more than one... I leave that to you: w2:= websocket.New...; w2.OnConnection(...)
 	// for default 'iris.' station use that: w := websocket.New(iris.DefaultIris, "/my_endpoint")
 	var myChatRoom = "room1"
 	w.OnConnection(func(c websocket.Connection) {
@@ -33,11 +34,14 @@ func main() {
 		c.Join(myChatRoom)
 
 		c.On("chat", func(message string) {
+			// to all except this connection ->
+			//c.To(websocket.Broadcast).Emit("chat", "Message from: "+c.ID()+"-> "+message)
 
-			//c.To(websocket.Broadcast).Emit("chat", "Message from: "+c.ID()+"-> "+message) // to all except this connection
+			// to the client ->
 			//c.Emit("chat", "Message from myself: "+message)
 
-			//send the message to the whole room, all connections are inside this room will receive this message
+			//send the message to the whole room,
+			//all connections are inside this room will receive this message
 			c.To(myChatRoom).Emit("chat", "From: "+c.ID()+": "+message)
 		})
 

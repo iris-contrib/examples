@@ -7,11 +7,27 @@ package main
 import "github.com/kataras/iris"
 
 // register a dynamic-wildcard subdomain to your server machine(dns/...) first, check ./hosts if you use windows.
-// run this file and try to redirect: http://x.127.0.0.1:8080/ , http://x.127.0.0.1:8080/something, http://x.127.0.0.1:8080/something/sadsadsa
-
-// instead of x.127.0.0.1 at production you will use something like: x.yourhost.com
+// run this file and try to redirect: http://username1.mydomain.com:8080/ , http://username2.mydomain.com:8080/ , http://username1.mydomain.com/something, http://username1.mydomain.com/something/sadsadsa
 
 func main() {
+	/* Keep note that you can use both of domains now (after 3.0.0-rc.1)
+	   admin.mydomain.com,  and for other the Party(*.) but this is not this example's purpose
+
+	admin := iris.Party("admin.")
+	{
+		// admin.mydomain.com
+		admin.Get("/", func(c *iris.Context) {
+			c.Write("INDEX FROM admin.mydomain.com")
+		})
+		// admin.mydomain.com/hey
+		admin.Get("/hey", func(c *iris.Context) {
+			c.Write("HEY FROM admin.mydomain.com/hey")
+		})
+		// admin.mydomain.com/hey2
+		admin.Get("/hey2", func(c *iris.Context) {
+			c.Write("HEY SECOND FROM admin.mydomain.com/hey")
+		})
+	}*/
 
 	dynamicSubdomains := iris.Party("*.")
 	{
@@ -22,27 +38,22 @@ func main() {
 		dynamicSubdomains.Get("/something/:param1", dynamicSubdomainHandlerWithParam)
 	}
 
-	// without party:
-	// iris.Wildcard("GET", "/", dynamicSubdomainHandler)
-	// iris.Wildcard("GET", "/something", dynamicSubdomainHandler)
-	// iris.Wildcard("GET", "/something/:param1", dynamicSubdomainHandlerWithParam)
-
 	iris.Get("/", func(ctx *iris.Context) {
-		ctx.Write("Hello from localhost path: %s", ctx.PathString())
+		ctx.Write("Hello from mydomain.com path: %s", ctx.PathString())
 	})
 
 	iris.Get("/hello", func(ctx *iris.Context) {
-		ctx.Write("Hello from localhost path: %s", ctx.PathString())
+		ctx.Write("Hello from mydomain.com path: %s", ctx.PathString())
 	})
 
-	iris.Listen("127.0.0.1:8080")
+	iris.Listen("mydomain.com:8080")
 }
 
 func dynamicSubdomainHandler(ctx *iris.Context) {
 	username := ctx.Subdomain()
 	ctx.Write("Hello from dynamic subdomain path: %s, here you can handle the route for dynamic subdomains, handle the user: %s", ctx.PathString(), username)
-	// if  http://admin.127.0.0.1:8080/ prints:
-	// Hello from dynamic subdomain path: /, here you can handle the route for dynamic subdomains, handle the user: admin
+	// if  http://username4.mydomain.com:8080/ prints:
+	// Hello from dynamic subdomain path: /, here you can handle the route for dynamic subdomains, handle the user: username4
 }
 
 func dynamicSubdomainHandlerWithParam(ctx *iris.Context) {

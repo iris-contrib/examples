@@ -19,9 +19,9 @@ type Job struct {
 }
 
 func main() {
-	iris.Config().Render.Template.Extensions = []string{".jade"} // this is optionally, you can keep .html extension
-	iris.Config().Render.Template.Engine = iris.JadeEngine
-	iris.Config().Render.Template.Jade.Funcs = map[string]interface{}{"bold": func(content string) (template.HTML, error) {
+	iris.Config.Render.Template.Extensions = []string{".jade"} // this is optionally, you can keep .html extension
+	iris.Config.Render.Template.Engine = iris.JadeEngine
+	iris.Config.Render.Template.Jade.Funcs = map[string]interface{}{"bold": func(content string) (template.HTML, error) {
 		return template.HTML("<b>" + content + "</b>"), nil
 	}}
 
@@ -36,10 +36,8 @@ func main() {
 			Emails: []string{"email1@something.gr", "email2.anything@gmail.com"},
 			Jobs:   []*Job{&job1, &job2},
 		}
+		ctx.MustRender("page.jade", person)
 
-		if err := ctx.Render("page.jade", person); err != nil {
-			println(err.Error())
-		}
 	})
 
 	iris.Listen(":8080")

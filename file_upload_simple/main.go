@@ -17,7 +17,7 @@ func main() {
 	// The server rejects requests with bodies exceeding this limit.
 	//
 	// By default request body size is unlimited.
-	iris.Config().MaxRequestBodySize = 32 << 20 //32MB max upload filesize
+	iris.Config.MaxRequestBodySize = 32 << 20 //32MB max upload filesize
 
 	// Serve the form.html to the user
 	iris.Get("/upload", func(ctx *iris.Context) {

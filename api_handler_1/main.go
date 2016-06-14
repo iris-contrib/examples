@@ -44,6 +44,7 @@ func (u UserAPI) DeleteBy(id string) {
 }
 
 func main() {
+
 	iris.API("/users", UserAPI{})
 	iris.Listen(":8080")
 }

@@ -7,16 +7,17 @@ import (
 func main() {
 
 	iris.OnError(iris.StatusInternalServerError, func(ctx *iris.Context) {
-		ctx.Write(iris.StatusText(iris.StatusInternalServerError)) // Outputs: Not Found
-		ctx.SetStatusCode(iris.StatusInternalServerError)          // 404
-		iris.Logger().Printf("http status: 500 happened!")
+		ctx.Write(iris.StatusText(iris.StatusInternalServerError)) // Outputs: Internal Server Error
+		ctx.SetStatusCode(iris.StatusInternalServerError)          // 500
+
+		iris.Logger.Dangerf("http status: 500 happened!\n")
 	})
 
 	iris.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
-		ctx.Write(iris.StatusText(iris.StatusNotFound)) // Outputs: Internal Server Error
-		ctx.SetStatusCode(iris.StatusNotFound)          // 500
+		ctx.Write(iris.StatusText(iris.StatusNotFound)) // Outputs: Not Found
+		ctx.SetStatusCode(iris.StatusNotFound)          // 404
 
-		iris.Logger().Printf("http status: 404 happened!")
+		iris.Logger.Infof("http status: 404 happened!\n")
 	})
 
 	// emit the errors to test them
@@ -28,6 +29,6 @@ func main() {
 		ctx.EmitError(iris.StatusNotFound) // ctx.NotFound()
 	})
 
-	iris.Listen(":80")
+	iris.Listen(":8080")
 
 }
