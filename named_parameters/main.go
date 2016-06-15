@@ -34,7 +34,7 @@ func main() {
 
 	iris.Get("/posts/*action", func(ctx *iris.Context) {
 		action := ctx.Param("action")
-		if action == "new" {
+		if action == "/new" {
 			// it's posts/new page
 			ctx.Write("POSTS NEW")
 		} else {
