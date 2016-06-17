@@ -7,15 +7,17 @@ import (
 
 func main() {
 
-	iris.Plugins.Add(iriscontrol.Web(9090, map[string]string{
-		"irisusername1": "irispassword1",
+	iris.Plugins.Add(iriscontrol.New(9090, map[string]string{
+		"1":             "1",
 		"irisusername2": "irispassowrd2",
 	}))
 
 	iris.Get("/", func(ctx *iris.Context) {
+		ctx.Write("Root path from  server")
 	})
 
-	iris.Post("/something", func(ctx *iris.Context) {
+	iris.Get("/something", func(ctx *iris.Context) {
+		ctx.Write("Something path from server")
 	})
 
 	iris.Listen(":8080")
