@@ -8,7 +8,7 @@ import (
 func main() {
 	api := iris.New()
 
-	// first the subdomains.
+	// no order, you can register subdomains at the end also.
 	admin := api.Party("admin.")
 	{
 		// admin.mydomain.com

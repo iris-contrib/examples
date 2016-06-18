@@ -29,6 +29,7 @@ func main() {
 		})
 	}*/
 
+	// no order, you can register subdomains at the end also.
 	dynamicSubdomains := iris.Party("*.")
 	{
 		dynamicSubdomains.Get("/", dynamicSubdomainHandler)
