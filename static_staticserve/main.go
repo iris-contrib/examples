@@ -3,9 +3,9 @@ package main
 import (
 	"os"
 
+	"github.com/iris-contrib/middleware/logger"
+	"github.com/iris-contrib/middleware/recovery"
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/middleware/logger"
-	"github.com/kataras/iris/middleware/recovery"
 )
 
 func main() {

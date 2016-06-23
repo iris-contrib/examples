@@ -4,8 +4,8 @@ import (
 	"github.com/iris-contrib/iris-command-assets/basic/backend/api"
 	"github.com/iris-contrib/iris-command-assets/basic/backend/routes"
 
+	"github.com/iris-contrib/middleware/logger"
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/middleware/logger"
 )
 
 func main() {

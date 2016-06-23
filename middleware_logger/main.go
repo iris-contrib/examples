@@ -1,14 +1,14 @@
 package main
 
 import (
+	"github.com/iris-contrib/middleware/logger"
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/middleware/logger"
 )
 
 /*
 With options:
 
-errorLogger := logger.New(iris.Logger, logger.Options{
+errorLogger := logger.New(iris.Logger, logger.Config{
 		EnableColors: false, //enable it to enable colors for all, disable colors by iris.Logger.ResetColors(), defaults to false
 		// Status displays status code
 		Status: true,

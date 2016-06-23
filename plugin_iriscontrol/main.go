@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/iris-contrib/plugin/iriscontrol"
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/plugin/iriscontrol"
 )
 
 func main() {

@@ -3,8 +3,8 @@ package main
 import (
 	"time"
 
+	"github.com/iris-contrib/graceful"
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/graceful"
 )
 
 func main() {
@@ -13,5 +13,5 @@ func main() {
 		c.Write("Welcome to the home page!")
 	})
 
-	graceful.Run(":3001", time.Duration(10)*time.Second, api)
+	graceful.Run(":3001", time.Duration(20)*time.Second, api)
 }

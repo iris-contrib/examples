@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/iris-contrib/middleware/basicauth"
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/middleware/basicauth"
 )
 
 func main() {

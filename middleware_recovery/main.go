@@ -1,13 +1,13 @@
 package main
 
 import (
+	"github.com/iris-contrib/middleware/recovery"
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/middleware/recovery"
 )
 
 func main() {
-	//iris.Use(recovery.Recovery(os.Stdout)) // this is an optional parameter, you can skip it, the default is os.Stderr
-	iris.Use(recovery.Recovery())
+	//iris.Use(recovery.New(os.Stdout)) // this is an optional parameter, you can skip it, the default is os.Stderr
+	iris.Use(recovery.New())
 	i := 0
 	iris.Get("/", func(ctx *iris.Context) {
 		i++

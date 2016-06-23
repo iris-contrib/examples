@@ -19,6 +19,7 @@ func main() {
 
 		})
 		admin.Get("/", func(c *iris.Context) {
+			c.Write("Hello World")
 			c.Write("from /admin/ or /admin if you pathcorrection on")
 		})
 		admin.Get("/dashboard", func(c *iris.Context) {
