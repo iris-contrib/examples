@@ -16,6 +16,7 @@ func main() {
 	})
 
 	iris.Get("/ping", PingHandler)
+
 	iris.Get("/secured/ping", myJwtMiddleware.Serve, SecuredPingHandler)
 	iris.Listen(":8080")
 
@@ -32,5 +33,7 @@ func PingHandler(ctx *iris.Context) {
 
 func SecuredPingHandler(ctx *iris.Context) {
 	response := Response{"All good. You only get this message if you're authenticated"}
+	// get the *jwt.Token which contains user information using:
+	// user:= myJwtMiddleware.Get(ctx) or context.Get("jwt").(*jwt.Token)
 	ctx.JSON(iris.StatusOK, response)
 }
