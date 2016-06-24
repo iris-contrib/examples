@@ -10,7 +10,7 @@ import (
 
 // register your auth via configs, providers with non-empty values will be registered to goth automatically by Iris
 var configs = oauth.Config{
-	Path: "/auth", //defaults to /auth
+	Path: "/auth", //defaults to /oauth
 
 	GithubKey:    "YOUR_GITHUB_KEY",
 	GithubSecret: "YOUR_GITHUB_SECRET",
