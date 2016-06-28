@@ -1,10 +1,12 @@
-<html>
-  <head>
-    <title>My Home page</title>
+<div style="background-color:black;color:white">
 
-  </head>
-  <body>
-	Name: {{boldme Name}} <br/>
-	Type: {{boldme Type}}
-  </body>
-</html>
+Name: {{boldme Name}} <br/>
+Type: {{boldme Type}} <br/>
+Path: {{boldme Path}} <br/>
+<hr/>
+
+The partial is:
+
+{{ render "partials/home_partial.html"}}
+
+</div>
