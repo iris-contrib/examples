@@ -9,20 +9,20 @@ import (
 NOTES:
 This is useful only when you need something like that: https://github.com/kataras/iris/issues/235
 
-all Listen functions are blocking the execution so run all in goroutine except the last server instance you want to listen to
-
+the main server should always defined last.
 */
 func main() {
 	iris.Get("/", func(ctx *iris.Context) {
 		ctx.Write("Hello from the server")
 	})
 
-	// start the first server (HTTP) on port 8080 which will be the main server
-	go iris.Listen(":8080")
-	// start a second server (HTTP) on port 9090
-	go iris.ListenToServer(config.Server{ListeningAddr: ":9090"})
+	// start a secondary server (HTTP) on port 9090, this is a non-blocking func
+	iris.SecondaryListen(config.Server{ListeningAddr: ":9090"})
 
-	// start a third server (HTTPS) on port 443
-	mylastServer, err := iris.ListenToServer(config.Server{ListeningAddr: ":443", CertFile: "mycert.cert", KeyFile: "mykey.key"})
-	// you can close this server with mylastServer.Close()
+	// start a secondary server (HTTPS) on port 443, this is a non-blocking func
+	iris.SecondaryListen(config.Server{ListeningAddr: ":443", CertFile: "mycert.cert", KeyFile: "mykey.key"}) // you can close this server with .Close()
+
+	// start the MAIN server (HTTP) on port 8080, this is a blocking func
+	iris.Listen(":8080")
+
 }
