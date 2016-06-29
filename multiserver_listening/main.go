@@ -25,4 +25,6 @@ func main() {
 	// start the MAIN server (HTTP) on port 8080, this is a blocking func
 	iris.Listen(":8080")
 
+	// go to the second example 'multiserver_listening2' if you want to see how you can easly redirect from http to https with a second serve
+
 }
