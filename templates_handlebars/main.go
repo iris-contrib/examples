@@ -11,6 +11,8 @@ import (
 func main() {
 	// set the template engine
 	iris.Config.Render.Template.Engine = iris.HandlebarsEngine
+	//iris.Config.Render.Template.Extensions = []string{".hbs"} // If you want to use the .hbs extension uncomment this line
+
 	iris.Config.Render.Template.Layout = "layouts/layout.html" // default ""
 
 	// NOTE:
