@@ -8,7 +8,7 @@ func main() {
 	domain := "localhost.com"
 
 	// TO DISABLE SUBDOMAIN PERSISTANCE USE THAT:
-	// iris.Config.Sessions.DisableSubdomainPersistance = true
+	// iris.Config.Sessions.DisableSubdomainPersistence = true
 
 	// set the subdomain from anywhere, here we do from domain
 	iris.Get("/", func(ctx *iris.Context) {
