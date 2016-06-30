@@ -38,6 +38,12 @@ func main() {
 	iris.Get("/destroy", func(c *iris.Context) {
 		//destroy, removes the entire session and cookie
 		c.SessionDestroy()
+		c.Log("You have to refresh the page to completely remove the session (on browsers), so the name should NOT be empty NOW, is it?\n Name: %s", c.Session().GetString("name"))
+		c.Redirect("/destroyed")
+	})
+
+	iris.Get("/destroyed", func(c *iris.Context) {
+		c.Write("The name should be empty, is it?\n Name: %s", c.Session().GetString("name"))
 	})
 
 	iris.Listen(":8080")
