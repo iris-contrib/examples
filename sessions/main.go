@@ -43,7 +43,7 @@ func main() {
 	})
 
 	iris.Get("/destroyed", func(c *iris.Context) {
-		c.Write("The name should be empty, is it?\n Name: %s", c.Session().GetString("name"))
+		c.Write("The name should be empty, is it?\n Name: %s\n Also check your cookies in your browser's cookies, should be no field for localhost/127.0.0.1 (or what ever you use)", c.Session().GetString("name"))
 	})
 
 	iris.Listen(":8080")
