@@ -14,7 +14,7 @@ func (u UserAPI) Get() {
 	// u.JSON(iris.StatusOK,myDb.AllUsers())
 }
 
-// GET /:param1 which its value passed to the id argument
+// GET /users/:param1 which its value passed to the id argument
 func (u UserAPI) GetBy(id string) { // id equals to u.Param("param1")
 	u.Write("Get from /users/%s", id)
 	// u.JSON(iris.StatusOK, myDb.GetUserById(id))
