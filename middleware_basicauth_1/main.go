@@ -8,22 +8,22 @@ import (
 func main() {
 	authentication := basicauth.Default(map[string]string{"myusername": "mypassword", "mySecondusername": "mySecondpassword"})
 
-	// to global iris.UseFunc(authentication)
+	// to global iris.Use(authentication)
 	// to party: iris.Party("/secret", authentication) { ... }
 
 	// to routes
 	iris.Get("/secret", authentication, func(ctx *iris.Context) {
-		username := ctx.GetString("auth") // this can be changed, you will see at the middleware_basic_auth_2 folder
+		username := ctx.GetString("user") // this can be changed, you will see at the middleware_basic_auth_2 folder
 		ctx.Write("Hello authenticated user: %s ", username)
 	})
 
 	iris.Get("/secret/profile", authentication, func(ctx *iris.Context) {
-		username := ctx.GetString("auth")
+		username := ctx.GetString("user")
 		ctx.Write("Hello authenticated user: %s from localhost:8080/secret/profile ", username)
 	})
 
 	iris.Get("/othersecret", authentication, func(ctx *iris.Context) {
-		username := ctx.GetString("auth")
+		username := ctx.GetString("user")
 		ctx.Write("Hello authenticated user: %s from localhost:8080/othersecret ", username)
 	})
 

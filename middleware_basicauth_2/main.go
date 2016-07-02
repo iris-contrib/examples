@@ -11,17 +11,17 @@ func main() {
 	authConfig := basicauth.Config{
 		Users:      map[string]string{"myusername": "mypassword", "mySecondusername": "mySecondpassword"},
 		Realm:      "Authorization Required", // if you don't set it it's "Authorization Required"
-		ContextKey: "user",                   // if you don't set it it's "auth"
+		ContextKey: "mycustomkey",            // if you don't set it it's "user"
 		Expires:    time.Duration(30) * time.Minute,
 	}
 
 	authentication := basicauth.New(authConfig)
 
-	// to global iris.UseFunc(authentication)
+	// to global iris.Use(authentication)
 	// to routes
 	/*
 		iris.Get("/mysecret", authentication, func(ctx *iris.Context) {
-			username := ctx.GetString("user") //  the Contextkey from the authConfig
+			username := ctx.GetString("mycustomkey") //  the Contextkey from the authConfig
 			ctx.Write("Hello authenticated user: %s ", username)
 		})
 	*/
@@ -31,17 +31,17 @@ func main() {
 	needAuth := iris.Party("/secret", authentication)
 	{
 		needAuth.Get("/", func(ctx *iris.Context) {
-			username := ctx.GetString("user") //  the Contextkey from the authConfig
+			username := ctx.GetString("mycustomkey") //  the Contextkey from the authConfig
 			ctx.Write("Hello authenticated user: %s from localhost:8080/secret ", username)
 		})
 
 		needAuth.Get("/profile", func(ctx *iris.Context) {
-			username := ctx.GetString("user") //  the Contextkey from the authConfig
+			username := ctx.GetString("mycustomkey") //  the Contextkey from the authConfig
 			ctx.Write("Hello authenticated user: %s from localhost:8080/secret/profile ", username)
 		})
 
 		needAuth.Get("/settings", func(ctx *iris.Context) {
-			username := ctx.GetString("user") //  the Contextkey from the authConfig
+			username := authConfig.User(ctx) // same thing as ctx.GetString("mycustomkey")
 			ctx.Write("Hello authenticated user: %s from localhost:8080/secret/settings ", username)
 		})
 	}
