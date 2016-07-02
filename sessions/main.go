@@ -23,10 +23,7 @@ func main() {
 	})
 
 	iris.Get("/delete", func(c *iris.Context) {
-		//get the session for this context
-
 		c.Session().Delete("name")
-
 	})
 
 	iris.Get("/clear", func(c *iris.Context) {
