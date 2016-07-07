@@ -3,21 +3,15 @@ package main
 import (
 	"crypto/md5"
 	"fmt"
+	"github.com/kataras/iris"
+	"github.com/kataras/iris/config"
 	"io"
 	"os"
 	"strconv"
 	"time"
-
-	"github.com/kataras/iris"
 )
 
 func main() {
-	// Maximum request body size.
-	//
-	// The server rejects requests with bodies exceeding this limit.
-	//
-	// By default request body size is unlimited.
-	iris.Config.MaxRequestBodySize = 32 << 20 //32MB max upload filesize
 
 	// Serve the form.html to the user
 	iris.Get("/upload", func(ctx *iris.Context) {
@@ -52,7 +46,9 @@ func main() {
 		io.Copy(out, file)
 
 	})
-
-	iris.Listen(":8080")
+	// 32MB max upload filesize)
+	// By default request body size is 4MB.
+	// we use the ListenTo instead of simple Listen because we want to configure the max request body size of the server
+	iris.ListenTo(config.Server{ListeningAddr: ":8080", MaxRequestBodySize: 32 << 20})
 
 }

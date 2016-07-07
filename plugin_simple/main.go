@@ -40,7 +40,7 @@ type myPlugin struct{}
 
 // PostListen after a station is listening ( iris.Listen/TLS...)
 func (pl myPlugin) PostListen(s *iris.Framework) {
-	fmt.Printf("myPlugin: server is listening on host: %s", s.HTTPServer.Host())
+	fmt.Printf("myPlugin: server is listening on host: %s", s.Servers.Main().Host())
 }
 
 //list:
