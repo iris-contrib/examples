@@ -21,20 +21,20 @@ func (u UserAPI) GetBy(id string) { // id equals to u.Param("param1")
 
 }
 
-// PUT /users
-func (u UserAPI) Put() {
+// POST /users
+func (u UserAPI) Post() {
 	name := u.FormValue("name")
 	// myDb.InsertUser(...)
 	println(string(name))
-	println("Put from /users")
+	println("Post from /users")
 }
 
-// POST /users/:param1
-func (u UserAPI) PostBy(id string) {
+// PUT /users/:param1
+func (u UserAPI) PutBy(id string) {
 	name := u.FormValue("name") // you can still use the whole Context's features!
 	// myDb.UpdateUser(...)
 	println(string(name))
-	println("Post from /users/" + id)
+	println("Put from /users/" + id)
 }
 
 // DELETE /users/:param1
