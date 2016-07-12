@@ -9,7 +9,7 @@ $(function () {
 
 	w = new Ws("ws://" + HOST + "/my_endpoint");
 	w.OnConnect(function () {
-		console.log("Websocket connection enstablished");
+		console.log("Websocket connection established");
 	});
 
 	w.OnDisconnect(function () {
