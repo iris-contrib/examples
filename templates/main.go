@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/iris-contrib/template/html"
 	"github.com/kataras/iris"
 )
 
@@ -11,18 +12,10 @@ type mypage struct {
 
 func main() {
 
-	//optionally - before the load.
-	//iris.Config.Render.Template.HTMLTemplate.Left = "${"  // Default is "{{"
-	//iris.Config.Render.Template.HTMLTemplate.Right = "}" // Default is "}}"
-	//iris.Config.Render.Template.HTMLTemplate.Funcs = template.FuncMap(...)
-
-	//iris.Config.Render.Template.Directory = "templates" // Default is "templates"
-	iris.Config.Render.Template.IsDevelopment = true // rebuild the templates on each refresh. Default is false
-	//api.Config.Render.Template.Layout = "layout.html" // means: ./templates/layout.html.  Default is ""
-	iris.Config.Render.Template.Gzip = true // Default is false
+	iris.UseEngine(html.New()).Directory("./templates", ".html")
 
 	iris.Get("/", func(ctx *iris.Context) {
-		ctx.Render("mypage.html", mypage{"My Page title", "Hello world!"}) //, "otherLayout" <- to override the layout
+		ctx.Render("mypage.html", mypage{"My Page title", "Hello world!"}, iris.Map{"gzip": true})
 	})
 
 	iris.Get("/hi_json", func(c *iris.Context) {
