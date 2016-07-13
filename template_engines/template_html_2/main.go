@@ -1,11 +1,14 @@
 package main
 
 import (
+	"github.com/iris-contrib/template"
+	"github.com/iris-contrib/template/html"
 	"github.com/kataras/iris"
 )
 
 func main() {
-	iris.Config.Render.Template.Layout = "layouts/layout.html" // default ""
+	// directory and extensions defaults to ./templates, .html for all template engines
+	iris.UseTemplate(html.New(html.Config{Layout: "layouts/layout.html"}))
 	//iris.Config.Render.Template.Gzip = true
 	iris.Get("/", func(ctx *iris.Context) {
 		if err := ctx.Render("page1.html", nil); err != nil {
@@ -15,7 +18,7 @@ func main() {
 
 	// remove the layout for a specific route
 	iris.Get("/nolayout", func(ctx *iris.Context) {
-		if err := ctx.Render("page1.html", nil, iris.NoLayout); err != nil {
+		if err := ctx.Render("page1.html", nil, template.RenderOptions{"layout": template.NoLayout}); err != nil {
 			println(err.Error())
 		}
 	})

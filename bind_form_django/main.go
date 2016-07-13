@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/iris-contrib/template/django"
 	"github.com/kataras/iris"
 )
 
@@ -13,8 +14,8 @@ type Visitor struct {
 }
 
 func main() {
-	// Yes you see right, only one line change and ou'ready to go
-	iris.Config.Render.Template.Engine = iris.PongoEngine
+	// Yes you see right, only one line change and ou'ready to go, defaults to ./templates as directory and .html as file extensions
+	iris.UseTemplate(django.New())
 
 	iris.Get("/", func(ctx *iris.Context) {
 		if err := ctx.Render("form.html", nil); err != nil {

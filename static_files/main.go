@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/iris-contrib/template/html"
 	"github.com/kataras/iris"
 )
 
@@ -9,8 +10,7 @@ type page struct {
 }
 
 func main() {
-	iris.Config.Render.Template.Directory = "templates\\web\\default"
-
+	iris.UseTemplate(html.New()).Directory("./templates/web/default", ".html")
 	iris.OnError(iris.StatusForbidden, func(ctx *iris.Context) {
 		ctx.HTML(iris.StatusForbidden, "<h1> You are not allowed here </h1>")
 	})

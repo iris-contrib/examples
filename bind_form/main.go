@@ -14,6 +14,7 @@ type Visitor struct {
 }
 
 func main() {
+	// no need to set a template engine here, because the default is the html with ./templates as directory and .html as files extension
 
 	iris.Get("/", func(ctx *iris.Context) {
 		if err := ctx.Render("form.html", nil); err != nil {
