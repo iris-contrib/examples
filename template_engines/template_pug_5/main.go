@@ -1,13 +1,13 @@
-// Package main same example as templates_8 but with wildcard subdomains
+// Package main same example as template_html_5 but for pug/jade
 package main
 
 import (
+	"github.com/iris-contrib/template/pug"
 	"github.com/kataras/iris"
 )
 
 func main() {
-	iris.Config.Render.Template.Engine = iris.JadeEngine
-	iris.Config.Render.Template.Extensions = []string{".jade"}
+	iris.UseTemplate(pug.New()).Directory("./templates", ".jade")
 
 	wildcard := iris.Party("*.")
 	{

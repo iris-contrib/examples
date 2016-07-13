@@ -1,4 +1,4 @@
-// Package main same example as templates_8 but with wildcard subdomains
+// Package main same example as template_html_4 but with wildcard subdomains
 package main
 
 import (

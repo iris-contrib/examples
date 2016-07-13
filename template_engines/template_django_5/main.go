@@ -1,13 +1,13 @@
-// Package main same example as templates_8 but with wildcard subdomains
+// Package main same example as template_html_5 but for django/pongo2
 package main
 
 import (
+	"github.com/iris-contrib/template/django"
 	"github.com/kataras/iris"
 )
 
 func main() {
-
-	iris.Config.Render.Template.Engine = iris.PongoEngine
+	iris.UseTemplate(django.New())
 
 	wildcard := iris.Party("*.")
 	{
