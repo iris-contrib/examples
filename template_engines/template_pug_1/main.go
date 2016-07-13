@@ -26,7 +26,7 @@ func main() {
 		return template.HTML("<b>" + content + "</b>"), nil
 	}
 
-	iris.UseEngine(pug.New(cfg)).
+	iris.UseTemplate(pug.New(cfg)).
 		Directory("./templates", ".jade")
 
 	iris.Get("/", func(ctx *iris.Context) {

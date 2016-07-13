@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	iris.UseEngine(django.New()).Directory("./templates", ".html")
+	iris.UseTemplate(django.New()).Directory("./templates", ".html")
 
 	iris.Get("/", func(ctx *iris.Context) {
 		ctx.Render("mypage.html", map[string]interface{}{"username": "iris", "is_admin": true}, iris.RenderOptions{"gzip": true})

@@ -20,7 +20,7 @@ func main() {
 	}
 
 	// set the template engine
-	iris.UseEngine(handlebars.New(config)).Directory("./templates", ".html") // or .hbs , whatever you want
+	iris.UseTemplate(handlebars.New(config)).Directory("./templates", ".html") // or .hbs , whatever you want
 
 	iris.Get("/", func(ctx *iris.Context) {
 		// optionally, set a context  for the template

@@ -12,7 +12,7 @@ type mypage struct {
 
 func main() {
 
-	iris.UseEngine(html.New(html.Config{
+	iris.UseTemplate(html.New(html.Config{
 		Layout: "layout.html",
 	})).Directory("./templates", ".html") // the .Directory() is optional also, defaults to ./templates, .html
 	// Note for html: this is the default iris' templaet engine, if zero engines added, then the template/html will be used automatically

@@ -12,7 +12,7 @@ type mypage struct {
 
 func main() {
 
-	iris.UseEngine(markdown.New()).Directory("./templates", ".md")
+	iris.UseTemplate(markdown.New()).Directory("./templates", ".md")
 
 	iris.Get("/", func(ctx *iris.Context) {
 		ctx.MustRender("index.md", nil)

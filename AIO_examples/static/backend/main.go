@@ -2,13 +2,15 @@ package main
 
 import (
 	"github.com/iris-contrib/middleware/logger"
+	"github.com/iris-contrib/template/html"
 	"github.com/kataras/iris"
 )
 
 func main() {
-	// set the configuration
+
 	// we need this only to set the custom 404 page, otherwise we can skip that:
-	iris.Config.Render.Template.Directory = "../frontend/templates"
+	// set the template engine
+	iris.UseTemplate(html.New()).Directory("../frontend/templates", ".html")
 	// set the custom error(s)
 	iris.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
 		ctx.MustRender("404.html", nil)
@@ -22,5 +24,5 @@ func main() {
 	iris.StaticWeb("/", "../frontend/webstatic", 0)
 
 	// start the server
-	iris.Listen("127.0.0.1:80")
+	iris.Listen("127.0.0.1:8080")
 }

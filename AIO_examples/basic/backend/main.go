@@ -5,14 +5,13 @@ import (
 	"github.com/iris-contrib/iris-command-assets/basic/backend/routes"
 
 	"github.com/iris-contrib/middleware/logger"
+	"github.com/iris-contrib/template/html"
 	"github.com/kataras/iris"
 )
 
 func main() {
-	// set the configs
-	iris.Config.Render.Template.Directory = "../frontend/templates"
-	iris.Config.Render.Template.Layout = "layout.html"
-
+	// set the template engine
+	iris.UseTemplate(html.New(html.Config{Layout: "layout.html"})).Directory("../frontend/templates", ".html")
 	// set the favicon
 	iris.Favicon("../frontend/public/images/favicon.ico")
 
@@ -28,7 +27,7 @@ func main() {
 	})
 
 	iris.OnError(iris.StatusInternalServerError, func(ctx *iris.Context) {
-		ctx.Render("errors/500.html", nil, iris.NoLayout)
+		ctx.Render("errors/500.html", nil, iris.RenderOptions{"layout": iris.NoLayout})
 	})
 
 	// register the routes & the public API
@@ -36,7 +35,7 @@ func main() {
 	registerAPI()
 
 	// start the server
-	iris.Listen("127.0.0.1:80")
+	iris.Listen("127.0.0.1:8080")
 }
 
 func registerRoutes() {
