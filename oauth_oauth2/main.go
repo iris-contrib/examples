@@ -41,10 +41,6 @@ import (
 	"github.com/markbates/goth/providers/yammer"
 )
 
-func init() {
-	iris.Config.Sessions.Provider = "memory" // or "redis" and configure the Redis Provider
-}
-
 func main() {
 	goth.UseProviders(
 		twitter.New(os.Getenv("TWITTER_KEY"), os.Getenv("TWITTER_SECRET"), "http://localhost:3000/auth/twitter/callback"),

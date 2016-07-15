@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/iris-contrib/template"
 	"github.com/iris-contrib/template/html"
 	"github.com/kataras/iris"
 )
@@ -18,7 +17,7 @@ func main() {
 
 	// remove the layout for a specific route
 	iris.Get("/nolayout", func(ctx *iris.Context) {
-		if err := ctx.Render("page1.html", nil, template.RenderOptions{"layout": template.NoLayout}); err != nil {
+		if err := ctx.Render("page1.html", nil, iris.RenderOptions{"layout": iris.NoLayout}); err != nil {
 			println(err.Error())
 		}
 	})

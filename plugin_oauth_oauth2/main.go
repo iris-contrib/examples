@@ -21,10 +21,6 @@ var configs = oauth.Config{
 	FacebookName:   "facebook", // defaults to facebook
 }
 
-func init() {
-	iris.Config.Sessions.Provider = "memory"
-}
-
 // ProviderIndex ...
 type ProviderIndex struct {
 	Providers    []string

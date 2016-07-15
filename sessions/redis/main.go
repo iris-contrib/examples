@@ -1,10 +1,23 @@
 package main
 
 import (
+	"github.com/iris-contrib/sessiondb/redis"
+	"github.com/iris-contrib/sessiondb/redis/service"
 	"github.com/kataras/iris"
 )
 
 func main() {
+	db := redis.New(service.Config{Network: service.DefaultRedisNetwork,
+		Addr:          service.DefaultRedisAddr,
+		Password:      "",
+		Database:      "",
+		MaxIdle:       0,
+		MaxActive:     0,
+		IdleTimeout:   service.DefaultRedisIdleTimeout,
+		Prefix:        "",
+		MaxAgeSeconds: service.DefaultRedisMaxAgeSeconds}) // optionally configure the bridge between your redis server
+
+	iris.UseSessionDB(db)
 
 	iris.Get("/set", func(c *iris.Context) {
 
@@ -37,8 +50,8 @@ func main() {
 		c.SessionDestroy()
 		c.Log("You have to refresh the page to completely remove the session (on browsers), so the name should NOT be empty NOW, is it?\n ame: %s\n\nAlso check your cookies in your browser's cookies, should be no field for localhost/127.0.0.1 (or what ever you use)", c.Session().GetString("name"))
 		c.Write("You have to refresh the page to completely remove the session (on browsers), so the name should NOT be empty NOW, is it?\nName: %s\n\nAlso check your cookies in your browser's cookies, should be no field for localhost/127.0.0.1 (or what ever you use)", c.Session().GetString("name"))
+
 	})
 
 	iris.Listen(":8080")
-	//iris.ListenTLS("0.0.0.0:443", "mycert.cert", "mykey.key")
 }
