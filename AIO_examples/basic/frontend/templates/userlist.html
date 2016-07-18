@@ -1,6 +1,4 @@
 {{ range $index, $user := .Users }}
-   <li>
-		<strong>{{ $index }}</strong>:
-		 <a href={{url "user-profile" $user.Username}}> {{ $user.Username }} </a>
-   </li>
+<li><strong>{{ $index }}</strong>: <a href={{url"user-profile" $user.Username}}>
+		{{ $user.Username }} </a></li>
 {{ end }}

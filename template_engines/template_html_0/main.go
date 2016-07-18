@@ -10,5 +10,5 @@ func main() {
 }
 
 func hi(ctx *iris.Context) {
-	ctx.Render("hi.html", struct{ Name string }{Name: "iris"})
+	ctx.MustRender("hi.html", struct{ Name string }{Name: "iris"})
 }

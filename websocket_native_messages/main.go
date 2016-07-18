@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/websocket"
 )
 
 /* Native messages no need to import the iris-ws.js to the ./templates.client.html
@@ -29,11 +28,11 @@ func main() {
 
 	ws := iris.Websocket // get the websocket server
 
-	ws.OnConnection(func(c websocket.Connection) {
+	ws.OnConnection(func(c iris.WebsocketConnection) {
 
 		c.OnMessage(func(data []byte) {
 			message := string(data)
-			c.To(websocket.Broadcast).EmitMessage([]byte("Message from: " + c.ID() + "-> " + message))
+			c.To(iris.Broadcast).EmitMessage([]byte("Message from: " + c.ID() + "-> " + message))
 			c.EmitMessage([]byte("Me: " + message))
 		})
 

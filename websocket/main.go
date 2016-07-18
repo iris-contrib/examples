@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/websocket"
 )
 
 type clientPage struct {
@@ -25,7 +24,7 @@ func main() {
 	//iris.Config().Websocket.Headers["Access-Control-Allow-Origin"] = "*"
 
 	var myChatRoom = "room1"
-	iris.Websocket.OnConnection(func(c websocket.Connection) {
+	iris.Websocket.OnConnection(func(c iris.WebsocketConnection) {
 
 		c.Join(myChatRoom)
 
