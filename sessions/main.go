@@ -1,10 +1,33 @@
 package main
 
 import (
+	"time"
+
 	"github.com/kataras/iris"
 )
 
 func main() {
+
+	/*  These are the optionally fields to configurate the sessions, using the station's Config field (iris.Config.Sessions)
+
+	// Cookie string, the session's client cookie name, for example: "irissessionid"
+	Cookie string
+	// DecodeCookie set it to true to decode the cookie key with base64 URLEncoding
+	// Defaults to false
+	DecodeCookie bool
+	//Expires the date which the cookie must expires. Default infinitive/unlimited life
+	Expires time.Time
+	// GcDuration every how much duration(GcDuration) the memory should be clear for unused cookies (GcDuration)
+	// for example: time.Duration(2)*time.Hour. it will check every 2 hours if cookie hasn't be used for 2 hours,
+	// deletes it from memory until the user comes back, then the session continue to work as it was
+	//
+	// Default 2 hours
+	GcDuration time.Duration
+
+	// DisableSubdomainPersistence set it to true in order dissallow your iris subdomains to have access to the session cookie
+	// defaults to false
+	DisableSubdomainPersistence bool
+	*/
 
 	iris.Get("/set", func(c *iris.Context) {
 
