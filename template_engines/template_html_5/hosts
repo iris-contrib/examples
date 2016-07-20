@@ -28,3 +28,5 @@
 127.0.0.1		username5.127.0.0.1
 # note that you can always use custom subdomains
 #-END IRIS-
+
+# Windows: Drive:/Windows/system32/drivers/etc/hosts, on Linux: /etc/hosts

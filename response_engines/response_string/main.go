@@ -5,7 +5,9 @@ import "github.com/kataras/iris"
 func main() {
 
 	// ResponseString gives you the result of the response engine's work, it doesn't renders to the client but you can use
-	// this function to collect the end result and send it via e-mail to the user, or anything
+	// this function to collect the end result and send it via e-mail to the user, or anything you can imagine.
+
+	// Note that: iris.ResponseString can be called outside of the context also
 
 	markdownContents := `## Hello Markdown from Iris
 

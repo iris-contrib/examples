@@ -3,7 +3,7 @@ package main
 import "github.com/kataras/iris"
 
 func main() {
-	iris.Config.Charset = "UTF-8" // this is the default anyway
+	iris.Config.Charset = "UTF-8" // this is the default, you don't have to set it manually
 
 	myString := "this is just a simple string which you can already render with ctx.Write"
 

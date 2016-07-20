@@ -49,3 +49,5 @@ func main() {
 
 	iris.Listen(":8080")
 }
+
+// Note than you can see more handlebars examples syntax by navigating to https://github.com/aymerick/raymond

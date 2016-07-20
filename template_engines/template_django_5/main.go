@@ -42,3 +42,5 @@ func main() {
 func emptyHandler(ctx *iris.Context) {
 	ctx.Write("[SUBDOMAIN: %s]Hello from Path: %s.", ctx.Subdomain(), ctx.PathString())
 }
+
+//Note that, you can see more django examples syntax by navigating to https://github.com/flosch/pongo2

@@ -22,7 +22,7 @@ func main() {
 	})
 
 	iris.Get("/json", func(ctx *iris.Context) {
-		ctx.JSON(iris.StatusOK, map[string]string{"hello": "json"})
+		ctx.JSON(iris.StatusOK, map[string]string{"hello": "json"}) // or myjsonStruct{hello:"json}
 	})
 
 	iris.Get("/jsonp", func(ctx *iris.Context) {
@@ -30,7 +30,7 @@ func main() {
 	})
 
 	iris.Get("/xml", func(ctx *iris.Context) {
-		ctx.XML(iris.StatusOK, ExampleXml{One: "hello", Two: "xml"})
+		ctx.XML(iris.StatusOK, ExampleXml{One: "hello", Two: "xml"}) // or iris.Map{"One":"hello"...}
 	})
 
 	iris.Get("/markdown", func(ctx *iris.Context) {
