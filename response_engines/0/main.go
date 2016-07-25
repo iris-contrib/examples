@@ -13,6 +13,7 @@ type ExampleXml struct {
 }
 
 func main() {
+
 	iris.Get("/data", func(ctx *iris.Context) {
 		ctx.Data(iris.StatusOK, []byte("Some binary data here."))
 	})

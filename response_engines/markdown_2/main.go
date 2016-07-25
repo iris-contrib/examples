@@ -59,11 +59,9 @@ All features of Sundown are supported, including:
 			MarkdownSanitize bool
 		}
 	*/
-	iris.UseResponse(jsonp.New(jsonp.Config{
-		Indent: true,
-	}), jsonp.ContentType)
+	iris.UseResponse(markdown.New(), markdown.ContentType)
 	// you can use anything as the second parameter,
-	// the jsonp.ContentType is the string "text/markdown",
+	// the markdown.ContentType is the string "text/markdown",
 	// the context.Markdown renders with this engine's key.
 
 	handlerWithRender := func(ctx *iris.Context) {
@@ -76,7 +74,7 @@ All features of Sundown are supported, including:
 	iris.UseResponse(markdown.New(markdown.Config{MarkdownSanitize: true}), "markdown2")("text/markdown")
 	// yes the UseResponse returns a function which you can map the content type if it's not declared on the key
 	handlerMarkdown2 := func(ctx *iris.Context) {
-		ctx.Render("markdown2", markdownContents)
+		ctx.Render("markdown2", markdownContents, iris.RenderOptions{"gzip": true})
 	}
 
 	iris.Get("/", handlerWithRender)
