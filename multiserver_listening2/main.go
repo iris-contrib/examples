@@ -27,4 +27,6 @@ func main() {
 	iris.ListenTLS(host, "mycert.cert", "mykey.key")
 
 	// now if you navigate to http://127.0.0.1/mypath it will send you back to https://127.0.0.1:443/mypath (https://127.0.0.1/mypath)
+	//
+	// go to the letsencrypt example to view how you can integrade your server to get automatic certification and key from the letsencrypt.org 's servers.
 }

@@ -32,7 +32,8 @@ func (u UserAPI) Put() {
 
 // POST /users/:param1
 func (u UserAPI) PostBy(id string) {
-	name := u.FormValue("name") // you can still use the whole Context's features!
+
+	name := u.PostValue("name") // you can still use the whole Context's features!
 	// myDb.UpdateUser(...)
 	println(string(name))
 	println("Post from /users/" + id)
