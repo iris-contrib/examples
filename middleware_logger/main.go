@@ -5,10 +5,9 @@ import (
 	"github.com/kataras/iris"
 )
 
-/*
-With options:
+func main() {
 
-errorLogger := logger.New(iris.Logger, logger.Config{
+	customLogger := logger.New(iris.Logger, logger.Config{
 		EnableColors: false, //enable it to enable colors for all, disable colors by iris.Logger.ResetColors(), defaults to false
 		// Status displays status code
 		Status: true,
@@ -18,17 +17,9 @@ errorLogger := logger.New(iris.Logger, logger.Config{
 		Method: true,
 		// Path displays the request path
 		Path: true,
-})
+	})
 
-iris.Use(errorLogger)
-
-With default options:
-
-iris.Use(logger.New(iris.Logger))
-*/
-func main() {
-
-	iris.Use(logger.New(iris.Logger))
+	iris.Use(customLogger)
 
 	iris.Get("/", func(ctx *iris.Context) {
 		ctx.Write("hello")

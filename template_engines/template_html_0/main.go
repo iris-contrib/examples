@@ -6,7 +6,7 @@ import "github.com/kataras/iris"
 // if anything else has been registered
 func main() {
 	iris.Config.IsDevelopment = true // this will reload the templates on each request, defaults to false
-
+	//iris.Config.Gzip = true          // this serves the templates with gzip compression, defaults to false
 	iris.Get("/hi", hi)
 	iris.Listen(":8080")
 }
