@@ -56,7 +56,7 @@ package main
 
 import (
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/middleware/secure"
+	"github.com/iris-contrib/middleware/secure"
 )
 
 func main() {
