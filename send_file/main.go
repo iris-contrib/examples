@@ -6,11 +6,7 @@ func main() {
 
 	iris.Get("/servezip", func(c *iris.Context) {
 		file := "./files/first.zip"
-		// to support resume use the c.RequestCtx.SendFile
-		err := c.SendFile(file, "first.zip")
-		if err != nil {
-			println("error: " + err.Error())
-		}
+		c.SendFile(file, "first.zip")
 	})
 
 	iris.Listen(":8080")

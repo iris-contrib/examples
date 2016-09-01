@@ -7,7 +7,7 @@ func main() {
 
 	iris.Get("/", func(ctx *iris.Context) {
 		//ctx.Log(string(ctx.RequestCtx.URI().FullURI()))
-		ctx.Redirect("/redirected"))
+		ctx.Redirect("/redirected")
 	})
 
 	iris.Get("/redirected", func(ctx *iris.Context) {

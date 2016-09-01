@@ -1,6 +1,9 @@
 package main
 
-import "github.com/kataras/iris"
+import (
+	"encoding/xml"
+	"github.com/kataras/iris"
+)
 
 type myxml struct {
 	XMLName xml.Name `xml:"xml_example"`

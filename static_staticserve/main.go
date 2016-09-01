@@ -1,8 +1,6 @@
 package main
 
 import (
-	"os"
-
 	"github.com/iris-contrib/middleware/logger"
 	"github.com/iris-contrib/middleware/recovery"
 	"github.com/kataras/iris"
@@ -11,7 +9,7 @@ import (
 func main() {
 
 	// Middleware
-	iris.Use(recovery.New(os.Stderr))
+	iris.Use(recovery.New(iris.Logger))
 	iris.Use(logger.New(iris.Logger))
 
 	// Get theme
