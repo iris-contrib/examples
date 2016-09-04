@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/iris-contrib/sessiondb/redis"
-	"github.com/iris-contrib/sessiondb/redis/service"
+	"github.com/kataras/go-sessions/sessiondb/redis"
+	"github.com/kataras/go-sessions/sessiondb/redis/service"
 	"github.com/kataras/iris"
 )
 
