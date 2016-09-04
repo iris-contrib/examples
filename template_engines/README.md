@@ -10,3 +10,12 @@ Most examples are only written for the `template/html` engine but exists for oth
 - **Q: Can I use more than one template engine for the same app?**
 A: Yes you can, each template engine has its own file extension, so you can regiser html template engine with .html and pug/jade for .jade extension, the context.Render will find the correct template engine to render the template.
 
+
+## Install 
+
+[go-template](https://github.com/kataras/go-template) is the main repository for the cross-framework template engines, star, share and contribute if you have time!
+
+
+```sh
+go get -u github.com/kataras/go-template
+```

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/iris-contrib/template/django"
+	"github.com/kataras/go-template/django"
 	"github.com/kataras/iris"
 )
 

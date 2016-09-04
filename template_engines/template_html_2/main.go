@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/iris-contrib/template/html"
+	"github.com/kataras/go-template/html"
 	"github.com/kataras/iris"
 )
 

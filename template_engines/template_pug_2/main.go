@@ -3,7 +3,7 @@ package main
 import (
 	"html/template"
 
-	"github.com/iris-contrib/template/pug"
+	"github.com/kataras/go-template/pug"
 	"github.com/kataras/iris"
 )
 

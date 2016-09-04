@@ -1,5 +1,5 @@
 // Package main an example on how to naming your routes & use the custom 'url' HTML Template Engine, same for other template engines
-// we don't need to import the iris-contrib/template/html because iris uses this as the default engine if no other template engine has been registered.
+// we don't need to import the kataras/go-template/html because iris uses this as the default engine if no other template engine has been registered.
 package main
 
 import (

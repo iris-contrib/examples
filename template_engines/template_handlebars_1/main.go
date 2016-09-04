@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/aymerick/raymond"
-	"github.com/iris-contrib/template/handlebars"
+	"github.com/kataras/go-template/handlebars"
 	"github.com/kataras/iris"
 )
 

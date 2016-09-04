@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/iris-contrib/template/amber"
+	"github.com/kataras/go-template/amber"
 	"github.com/kataras/iris"
 )
 

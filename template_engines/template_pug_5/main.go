@@ -2,7 +2,7 @@
 package main
 
 import (
-	"github.com/iris-contrib/template/pug"
+	"github.com/kataras/go-template/pug"
 	"github.com/kataras/iris"
 )
 
