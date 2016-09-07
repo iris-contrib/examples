@@ -10,14 +10,14 @@ func main() {
 		ctx.Write(iris.StatusText(iris.StatusInternalServerError)) // Outputs: Internal Server Error
 		ctx.SetStatusCode(iris.StatusInternalServerError)          // 500
 
-		iris.Logger.Dangerf("http status: 500 happened!\n")
+		ctx.Log("http status: 500 happened!\n")
 	})
 
 	iris.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
 		ctx.Write(iris.StatusText(iris.StatusNotFound)) // Outputs: Not Found
 		ctx.SetStatusCode(iris.StatusNotFound)          // 404
 
-		iris.Logger.Infof("http status: 404 happened!\n")
+		ctx.Log("http status: 404 happened!\n")
 	})
 
 	// emit the errors to test them

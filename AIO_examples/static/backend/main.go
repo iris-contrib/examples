@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/iris-contrib/middleware/logger"
-	"github.com/iris-contrib/template/html"
+	"github.com/kataras/go-template/html"
 	"github.com/kataras/iris"
 )
 
@@ -17,7 +17,7 @@ func main() {
 	})
 
 	// set the middleware(s)
-	iris.Use(logger.New(iris.Logger))
+	iris.Use(logger.New())
 
 	// if you want to publish just a static website you don't have to set any routes
 	// Iris has one-line method to do that:

@@ -9,8 +9,8 @@ import (
 func main() {
 
 	// Middleware
-	iris.Use(recovery.New(iris.Logger))
-	iris.Use(logger.New(iris.Logger))
+	iris.Use(recovery.New())
+	iris.Use(logger.New())
 
 	// Get theme
 	iris.StaticServe("./resources", "/assets")

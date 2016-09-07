@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/iris-contrib/middleware/logger"
-	"github.com/iris-contrib/template/html"
+	"github.com/kataras/go-template/html"
 	"github.com/kataras/iris"
 
 	"github.com/iris-contrib/examples/AIO_examples_mgo/basic/backend/api"
@@ -20,7 +20,7 @@ func main() {
 	iris.Static("/public", "../frontend/public", 1)
 
 	// set the global middlewares
-	iris.Use(logger.New(iris.Logger))
+	iris.Use(logger.New())
 
 	// set the custom errors
 	iris.OnError(iris.StatusNotFound, func(ctx *iris.Context) {

@@ -7,8 +7,7 @@ import (
 
 func main() {
 
-	customLogger := logger.New(iris.Logger, logger.Config{
-		EnableColors: false, //enable it to enable colors for all, disable colors by iris.Logger.ResetColors(), defaults to false
+	customLogger := logger.New(logger.Config{
 		// Status displays status code
 		Status: true,
 		// IP displays request's remote address
@@ -34,7 +33,7 @@ func main() {
 	})
 
 	// log http errors
-	errorLogger := logger.New(iris.Logger)
+	errorLogger := logger.New()
 
 	// yes we have options look at the logger.Options inside kataras/iris/middleware/logger.go
 	iris.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
