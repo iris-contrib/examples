@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/config"
 )
 
 /*
@@ -17,10 +16,10 @@ func main() {
 	})
 
 	// start a secondary server (HTTP) on port 9090, this is a non-blocking func
-	iris.AddServer(config.Server{ListeningAddr: ":9090"})
+	iris.AddServer(iris.ServerConfiguration{ListeningAddr: ":9090"})
 
 	// start a secondary server (HTTPS) on port 443, this is a non-blocking func
-	iris.AddServer(config.Server{ListeningAddr: ":443", CertFile: "mycert.cert", KeyFile: "mykey.key"}) // you can close this server with .Close()
+	iris.AddServer(iris.ServerConfiguration{ListeningAddr: ":443", CertFile: "mycert.cert", KeyFile: "mykey.key"}) // you can close this server with .Close()
 
 	// start the MAIN server (HTTP) on port 8080, this is a blocking func
 	iris.Listen(":8080")

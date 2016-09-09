@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/config"
 )
 
 /*
@@ -21,7 +20,7 @@ func main() {
 	// start a secondary server (HTTP) on port 80, this is a non-blocking func
 	// redirects all http to the main server which is tls/ssl on port :443
 
-	iris.AddServer(config.Server{ListeningAddr: ":80", RedirectTo: "https://" + host})
+	iris.AddServer(iris.ServerConfiguration{ListeningAddr: ":80", RedirectTo: "https://" + host})
 
 	// start the MAIN server (HTTPS) on port 443, this is a blocking func
 	iris.ListenTLS(host, "mycert.cert", "mykey.key")

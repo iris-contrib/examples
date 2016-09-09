@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/config"
 )
 
 type clientPage struct {
@@ -22,14 +21,15 @@ func main() {
 	})
 
 	// important staff
-	websocketConfig := config.DefaultWebsocket()
-	websocketConfig.Endpoint = "/my_endpoint" // the path which the websocket client should listen/registed to
-	w := iris.NewWebsocketServer(websocketConfig)
-	iris.RegisterWebsocketServer(api, w, api.Logger)
+	ws := iris.NewWebsocketServer()
+	ws.RegisterTo(api, iris.WebsocketConfiguration{Endpoint: "/my_endpoint"}) // the path which the websocket client should listen/registed to
+	// ws2 := iris.NewWebsocketServer() // entirely new websocket server with its own connections
+	// ws2.RegisterTo(api, iris.WebsocketConfiguration{Endpoint: "/my_second_endpoint"}) // the path which the websocket client should listen/registed to
+
 	// you created a new websocket server, you can create more than one... I leave that to you: w2:= websocket.New...; w2.OnConnection(...)
 	// for default 'iris.' station use that: w := websocket.New(iris.DefaultIris, "/my_endpoint")
 	var myChatRoom = "room1"
-	w.OnConnection(func(c iris.WebsocketConnection) {
+	ws.OnConnection(func(c iris.WebsocketConnection) {
 
 		c.Join(myChatRoom)
 

@@ -4,7 +4,6 @@ import (
 	"crypto/md5"
 	"fmt"
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/config"
 	"io"
 	"os"
 	"strconv"
@@ -49,6 +48,6 @@ func main() {
 	// 32MB max upload filesize)
 	// By default request body size is 4MB.
 	// we use the ListenTo instead of simple Listen because we want to configure the max request body size of the server
-	iris.ListenTo(config.Server{ListeningAddr: ":8080", MaxRequestBodySize: 32 << 20})
+	iris.ListenTo(iris.ServerConfiguration{ListeningAddr: ":8080", MaxRequestBodySize: 32 << 20})
 
 }
