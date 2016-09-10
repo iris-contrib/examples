@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/iris-contrib/response/markdown"
+	"github.com/kataras/go-serializer/markdown"
 	"github.com/kataras/iris"
 )
 
@@ -53,13 +53,13 @@ All features of Sundown are supported, including:
 	[this is a link](https://github.com/kataras/iris) `
 
 	//first example
-	// this is one of the reasons you need to import a default engine,(template engine or response engine)
+	// this is one of the reasons you need to import a default engine,(template engine or serialize engine(serializer))
 	/*
 		type Config struct {
 			MarkdownSanitize bool
 		}
 	*/
-	iris.UseResponse(markdown.New(), markdown.ContentType)
+	iris.UseSerializer(markdown.ContentType, markdown.New())
 	// you can use anything as the second parameter,
 	// the markdown.ContentType is the string "text/markdown",
 	// the context.Markdown renders with this engine's key.
@@ -70,11 +70,11 @@ All features of Sundown are supported, including:
 	}
 
 	//second example,
-	// but we also want a different renderer, but again "text/markdown" as 'content type' (this is converted to text/html behind the scenes), with MarkdownSanitize option setted to true:
-	iris.UseResponse(markdown.New(markdown.Config{MarkdownSanitize: true}), "markdown2")("text/markdown")
-	// yes the UseResponse returns a function which you can map the content type if it's not declared on the key
+	// but we also want a different renderer, but again "text/html" as 'content type' (this is the real content type we want to render with, at the first ctx.Render the text/markdown key is converted automatically to text/html without need to call SetContentType), with MarkdownSanitize option setted to true:
+	iris.UseSerializer("markdown2", markdown.New(markdown.Config{MarkdownSanitize: true}))
 	handlerMarkdown2 := func(ctx *iris.Context) {
 		ctx.Render("markdown2", markdownContents, iris.RenderOptions{"gzip": true})
+		ctx.SetContentType("text/html")
 	}
 
 	iris.Get("/", handlerWithRender)

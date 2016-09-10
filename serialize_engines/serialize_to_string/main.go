@@ -4,10 +4,10 @@ import "github.com/kataras/iris"
 
 func main() {
 
-	// ResponseString gives you the result of the response engine's work, it doesn't renders to the client but you can use
+	// SerializeToString gives you the result of the serialize engine(serializer)'s work, it doesn't renders to the client but you can use
 	// this function to collect the end result and send it via e-mail to the user, or anything you can imagine.
 
-	// Note that: iris.ResponseString can be called outside of the context also
+	// Note that: iris.SerializeToString is called outside of the context, using your iris $instance (iris. is the default)
 
 	markdownContents := `## Hello Markdown from Iris
 
@@ -58,8 +58,8 @@ All features of Sundown are supported, including:
 	iris.Get("/", func(ctx *iris.Context) {
 		// let's see
 		// convert markdown string to html and print it to the logger
-		// THIS WORKS WITH ALL RESPONSE ENGINES, but I am not doing the same example for all engines again :) (the same you can do with templates using the iris.TemplateString)
-		htmlContents := iris.ResponseString("text/markdown", markdownContents, iris.RenderOptions{"charset": "8859-1"}) // default is the iris.Config.Charset, which is UTF-8
+		// THIS WORKS WITH ALL serialize engine(serializer)S, but I am not doing the same example for all engines again :) (the same you can do with templates using the iris.TemplateString)
+		htmlContents := iris.SerializeToString("text/markdown", markdownContents, iris.RenderOptions{"charset": "8859-1"}) // default is the iris.Config.Charset, which is UTF-8
 
 		ctx.Log(htmlContents)
 		ctx.Write("The Raw HTML is:\n%s", htmlContents)

@@ -16,7 +16,7 @@ func main() {
 	iris.UseTemplate(django.New()).Directory("./templates", ".html")
 
 	iris.Get("/", func(ctx *iris.Context) {
-		// THIS WORKS WITH ALL TEMPLATE ENGINES, but I am not doing the same example for all engines again :) (the same you can do with templates using the iris.ResponseString)
+		// the same you can do with serializers using the iris.SerializeToString)
 
 		rawHtmlContents := iris.TemplateString("mypage.html", map[string]interface{}{"username": "iris", "is_admin": true}, iris.RenderOptions{"charset": "UTF-8"}) // defaults to UTF-8 already
 		ctx.Log(rawHtmlContents)

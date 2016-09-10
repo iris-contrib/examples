@@ -3,7 +3,7 @@ package main
 import (
 	encodingXML "encoding/xml"
 
-	"github.com/iris-contrib/response/xml"
+	"github.com/kataras/go-serializer/xml"
 	"github.com/kataras/iris"
 )
 
@@ -17,16 +17,16 @@ func main() {
 	iris.Config.Charset = "UTF-8" // this is the default, which you can change
 
 	//first example
-	// this is one of the reasons you need to import a default engine,(template engine or response engine)
+	// this is one of the reasons you need to import a default engine,(template engine or serialize engine(serializer))
 	/*
 		type Config struct {
 			Indent bool
 			Prefix []byte
 		}
 	*/
-	iris.UseResponse(xml.New(xml.Config{
+	iris.UseSerializer(xml.ContentType, xml.New(xml.Config{
 		Indent: true,
-	}), xml.ContentType)
+	}))
 	// you can use anything as the second parameter,
 	// the jsonp.ContentType is the string "text/xml",
 	// the context.XML renders with this engine's key.
@@ -42,10 +42,10 @@ func main() {
 
 	//second example,
 	// but we also want a different renderer, but again "text/xml" as content type, with prefix option setted by configuration:
-	iris.UseResponse(xml.New(xml.Config{Prefix: []byte("")}), "xml2")("text/xml") // if you really use a PREFIX it will be not valid xml, use it only for special cases
-	// yes the UseResponse returns a function which you can map the content type if it's not declared on the key
+	iris.UseSerializer("xml2", xml.New(xml.Config{Prefix: []byte("")})) // if you really use a PREFIX it will be not valid xml, use it only for special cases
 	handlerXML2 := func(ctx *iris.Context) {
 		ctx.Render("xml2", myxml{First: "first attr", Second: "second attr"})
+		ctx.SetContentType("text/xml; charset=" + iris.Config.Charset)
 	}
 
 	iris.Get("/", handlerSimple)

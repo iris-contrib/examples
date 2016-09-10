@@ -62,7 +62,7 @@ All features of Sundown are supported, including:
 		ctx.HTML(iris.StatusOK, htmlContents)
 	})
 
-	// text/markdown is just the key which the markdown response engine and ctx.Markdown communicate,
+	// text/markdown is just the key which the markdown serialize engine(serializer) and ctx.Markdown communicate,
 	// it's real content type is text/html
 	iris.Get("/alternative_2", func(ctx *iris.Context) {
 		ctx.Render("text/markdown", markdownContents)
