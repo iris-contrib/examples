@@ -17,6 +17,8 @@ func main() {
 		Prefix:        "",
 		MaxAgeSeconds: service.DefaultRedisMaxAgeSeconds}) // optionally configure the bridge between your redis server
 
+	//iris.Set(iris.OptionSessionsCookie("myiriscookieid"))
+
 	iris.UseSessionDB(db)
 
 	iris.Get("/set", func(c *iris.Context) {

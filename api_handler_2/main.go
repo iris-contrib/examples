@@ -1,4 +1,6 @@
 // Package main same as api_handler_1 but with a common middleware
+// NOTE, as listed on the book, .API is not a method I like to discuss, I coded this only for newcomers, it's slow and not recomemnded to use
+// Use .Get/.Post/.Put/.Delete/.Head/.Connect/.Options/.Any instead.
 package main
 
 import (
@@ -58,3 +60,6 @@ func myUsersMiddleware2(ctx *iris.Context) {
 	println("From users middleware 2 ")
 	ctx.Next()
 }
+
+// NOTE, as listed on the book, .API is not a method I like to discuss, I coded this only for newcomers, it's slow and not recomemnded to use
+// Use .Get/.Post/.Put/.Delete/.Head/.Connect/.Options/.Any instead.

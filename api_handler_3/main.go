@@ -47,7 +47,13 @@ func (u UserAPI) DeleteBy(id string) {
 
 func main() {
 
-	iris.API("/users", UserAPI{})
+	admin := iris.Party("/om/corp", func(ctx *iris.Context) { println("middleware here"); ctx.Next() })
+	{
+
+		admin.Get("/roles", func(ctx *iris.Context) { ctx.HTML(iris.StatusOK, "<h1>/roles</h1>") })
+		admin.API("/users", UserAPI{})
+
+	}
 	iris.Listen(":8080")
 }
 
