@@ -20,7 +20,7 @@ func main() {
 
 	api := iris.New()
 
-	api.Handler = func(ctx *fasthttp.RequestCtx) {
+	api.Router = func(ctx *fasthttp.RequestCtx) {
 		if bytes.Equal(ctx.Method(), iris.MethodGetBytes) {
 			if bytes.Equal(ctx.Path(), helloPath) {
 				ctx.Write(message)

@@ -9,7 +9,7 @@ import (
 func main() {
 	// first way:
 	// simple way for simple things
-	// PreListen before a station is listening ( iris.Listen/TLS...)
+	// PreListen before a station is listening ( iris.Listen/ListenTLS/ListenLETSENCRYPT/ListenUNIX/Serve...)
 	iris.Plugins.PreListen(func(s *iris.Framework) {
 		for _, route := range s.Lookups() {
 			fmt.Printf("Func: Route Method: %s | Subdomain %s | Path: %s is going to be registed with %d handler(s). \n", route.Method(), route.Subdomain(), route.Path(), len(route.Middleware()))
@@ -38,9 +38,9 @@ func aHandler(ctx *iris.Context) {
 
 type myPlugin struct{}
 
-// PostListen after a station is listening ( iris.Listen/TLS...)
+// PostListen after a station is listening ( iris.Listen/ListenTLS/ListenLETSENCRYPT/ListenUNIX/Serve...)
 func (pl myPlugin) PostListen(s *iris.Framework) {
-	fmt.Printf("myPlugin: server is listening on host: %s", s.Servers.Main().Host())
+	fmt.Printf("myPlugin: server is listening on host: %s", s.Config.VHost)
 }
 
 //list:

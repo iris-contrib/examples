@@ -45,9 +45,11 @@ func main() {
 		io.Copy(out, file)
 
 	})
+	// set the max request body size of the server, used to be able to send big files to the server
 	// 32MB max upload filesize)
 	// By default request body size is 4MB.
-	// we use the ListenTo instead of simple Listen because we want to configure the max request body size of the server
-	iris.ListenTo(iris.ServerConfiguration{ListeningAddr: ":8080", MaxRequestBodySize: 32 << 20})
+	iris.Set(iris.OptionMaxRequestBodySize(32 << 20))
+
+	iris.Listen(":8080")
 
 }

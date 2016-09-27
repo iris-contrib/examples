@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+
 	// Match to /hello/iris,  (if PathCorrection:true match also /hello/iris/)
 	// Not match to /hello or /hello/ or /hello/iris/something
 	iris.Get("/hello/:name", func(c *iris.Context) {
