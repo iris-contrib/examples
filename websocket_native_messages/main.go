@@ -26,6 +26,9 @@ func main() {
 	// the path which the websocket client should listen/registed to ->
 	iris.Config.Websocket.Endpoint = "/my_endpoint"
 
+	// IF you work with something like proto, enable BinaryMessages:
+	// iris.Config.Websocket.BinaryMessages = true
+
 	ws := iris.Websocket // get the websocket server
 
 	ws.OnConnection(func(c iris.WebsocketConnection) {

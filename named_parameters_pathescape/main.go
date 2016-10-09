@@ -3,7 +3,7 @@ package main
 import "github.com/kataras/iris"
 
 func main() {
-	iris.Config.DisablePathEscape = true
+	iris.Set(iris.OptionDisablePathEscape(true))
 	// accepts parameters with slash '/'
 	// Request: http://localhost:8080/details/Project%2FDelta
 	// ctx.Param("project") returns the raw named parameter: Project%2FDelta
