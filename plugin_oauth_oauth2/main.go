@@ -30,8 +30,6 @@ type ProviderIndex struct {
 func main() {
 	// create the plugin with our configs
 	authentication := oauth.New(configs)
-	// register the plugin to iris
-	iris.Plugins.Add(authentication)
 
 	m := make(map[string]string)
 	m[configs.GithubName] = "Github" // same as authentication.Config.GithubName
@@ -59,9 +57,13 @@ func main() {
 
 	// customize the error page using: authentication.Fail(func(ctx *iris.Context){....})
 
+	// register the plugin to iris
+	iris.Plugins.Add(authentication)
+
+	iris.Config.IsDevelopment = true // in order to get errors on console via MustRender
 	iris.Get("/", func(ctx *iris.Context) {
-		ctx.Render("index.html", providerIndex)
+		ctx.MustRender("index.html", providerIndex)
 	})
 
-	iris.Listen(":3000")
+	iris.Listen("127.0.0.1:3000")
 }

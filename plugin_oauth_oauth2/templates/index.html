@@ -1,6 +1,11 @@
-{{range $key,$value:=.Providers}}
+<html>
+<head><title>Oauth2</title></head>
+<body>
+{{ range $key,$value:=.Providers }}
 <p>
-	<a href="{{ url "oauth" $value}}">Log in with {{index
-		$.ProvidersMap $value}}</a>
+<a href="{{ url "oauth" $value }}">Log in with {{ $value }}</a>
 </p>
-{{end}}
+{{ end }}
+
+</body>
+</html>
