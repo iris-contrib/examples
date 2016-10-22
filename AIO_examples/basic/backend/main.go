@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/iris-contrib/iris-command-assets/basic/backend/api"
-	"github.com/iris-contrib/iris-command-assets/basic/backend/routes"
+	"github.com/iris-contrib/examples/AIO_examples/basic/backend/api"
+	"github.com/iris-contrib/examples/AIO_examples/basic/backend/routes"
 
 	"github.com/iris-contrib/middleware/logger"
 	"github.com/kataras/go-template/html"

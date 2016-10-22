@@ -18,7 +18,11 @@ var configs = oauth.Config{
 
 	FacebookKey:    "YOUR_FACEBOOK_KEY",
 	FacebookSecret: "YOUR_FACEBOOK_KEY",
-	FacebookName:   "facebook", // defaults to facebook
+	FacebookName:   "facebook", // defaults to facebook,
+
+	GplusKey:    "YOUR_GPLUS_KEY",
+	GplusSecret: "YOUR_GPLUS_SECRET",
+	GplusName:   "gplus",
 }
 
 // ProviderIndex ...
@@ -34,6 +38,7 @@ func main() {
 	m := make(map[string]string)
 	m[configs.GithubName] = "Github" // same as authentication.Config.GithubName
 	m[configs.FacebookName] = "Facebook"
+	m[configs.GplusName] = "Gplus"
 
 	var keys []string
 	for k := range m {
@@ -45,7 +50,7 @@ func main() {
 
 	// set a  login success handler( you can use more than one handler)
 	// if user succeed to logged in
-	// client comes here from: localhost:3000/config.RouteName/lowercase_provider_name/callback 's first handler, but the  previous url is the localhost:3000/config.RouteName/lowercase_provider_name
+	// client comes here from: localhost:8080/config.RouteName/lowercase_provider_name/callback 's first handler, but the  previous url is the localhost:8080/config.RouteName/lowercase_provider_name
 	authentication.Success(func(ctx *iris.Context) {
 		// if user couldn't validate then server sends StatusUnauthorized, which you can handle by:  authentication.Fail OR iris.OnError(iris.StatusUnauthorized, func(ctx *iris.Context){})
 		user := authentication.User(ctx)
@@ -65,5 +70,5 @@ func main() {
 		ctx.MustRender("index.html", providerIndex)
 	})
 
-	iris.Listen("127.0.0.1:3000")
+	iris.Listen("localhost:8080")
 }

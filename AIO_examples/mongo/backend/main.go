@@ -5,9 +5,9 @@ import (
 	"github.com/kataras/go-template/html"
 	"github.com/kataras/iris"
 
-	"github.com/iris-contrib/examples/AIO_examples_mgo/basic/backend/api"
-	"github.com/iris-contrib/examples/AIO_examples_mgo/basic/backend/db"
-	"github.com/iris-contrib/examples/AIO_examples_mgo/basic/backend/routes"
+	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/api"
+	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/db"
+	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/routes"
 )
 
 func main() {

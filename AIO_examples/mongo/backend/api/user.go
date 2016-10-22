@@ -4,8 +4,8 @@ import (
 	"github.com/kataras/iris"
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/iris-contrib/examples/AIO_examples_mgo/basic/backend/db"
-	"github.com/iris-contrib/examples/AIO_examples_mgo/basic/backend/models"
+	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/db"
+	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/models"
 )
 
 type UserAPI struct {

@@ -1,6 +1,6 @@
-## Repository information
+## Folder information
 
-This repository is an example integration of Iris with MongoDb using the mgo driver, based on the [Iris commanad line tool](https://github.com/kataras/iris/tree/master/iris).
+This folder contains an example integration of Iris with MongoDb using the mgo driver, based on the [Iris commanad line tool](https://github.com/kataras/iris/tree/master/iris).
 
 ### Additionally
 
@@ -16,7 +16,7 @@ Elements on this example:
 ## Notes
 If you want to start manually the server, you should run the server from the backend folder, no outside. or use iris-cli
 ```sh
-$cd basic/backend
+$cd mongo/backend
 
 $go run main.go
 ```
