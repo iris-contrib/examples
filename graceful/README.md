@@ -40,6 +40,7 @@ package main
 import (
 	"time"
 
+	"gopkg.in/iris-contrib/middleware.v4/graceful"
 	"gopkg.in/kataras/iris.v4"
 )
 
