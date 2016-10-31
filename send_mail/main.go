@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/iris-contrib/mail"
 	"github.com/kataras/iris"
+	"github.com/kataras/go-mailer"
 )
 
 func main() {
 	// change these to your settings
 
-	cfg := mail.Config{
+	cfg := mailer.Config{
 		Host:     "smtp.mailgun.org",
 		Username: "postmaster@sandbox661c307650f04e909150b37c0f3b2f09.mailgun.org",
 		Password: "38304272b8ee5c176d5961dc155b2417",
@@ -17,7 +17,7 @@ func main() {
 	// change these to your e-mail to check if that works
 
 	// create the service
-	mailService := mail.New(cfg)
+	mailService := mailer.New(cfg)
 
 	var to = []string{"kataras2006@hotmail.com", "social@ideopod.com"}
 
