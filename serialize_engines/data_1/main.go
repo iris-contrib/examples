@@ -1,6 +1,6 @@
 package main
 
-import "github.com/kataras/iris"
+import "gopkg.in/kataras/iris.v4"
 
 func main() {
 	myData := []byte("some binary data or a program here which will not be a simple string at the production")

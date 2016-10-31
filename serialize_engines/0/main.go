@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/xml"
 
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v4"
 )
 
 type ExampleXml struct {

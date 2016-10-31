@@ -1,6 +1,6 @@
 package main
 
-import "github.com/kataras/iris"
+import "gopkg.in/kataras/iris.v4"
 
 func main() {
 	iris.Set(iris.OptionDisablePathEscape(true))

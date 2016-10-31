@@ -11,8 +11,8 @@ iris.Plugins.Add(iriscontrol.New(PORT, AUTHENTICATED_USERS))
 package main
 
 import (
-	"github.com/kataras/iris"
-	"github.com/kataras/iris/plugin/iriscontrol"
+	"gopkg.in/kataras/iris.v4"
+	"gopkg.in/iris-contrib/plugin.v4/iriscontrol"
 )
 
 func main() {

@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/iris-contrib/middleware/logger"
-	"github.com/iris-contrib/middleware/recovery"
-	"github.com/kataras/iris"
+	"gopkg.in/iris-contrib/middleware.v4/logger"
+	"gopkg.in/iris-contrib/middleware.v4/recovery"
+	"gopkg.in/kataras/iris.v4"
 )
 
 func main() {

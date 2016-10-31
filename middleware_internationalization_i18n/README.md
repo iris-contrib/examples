@@ -30,8 +30,8 @@ hi = Гейб, %s
 
 	import (
 		"fmt"
-		"github.com/kataras/iris"
-		"github.com/kataras/iris/middleware/i18n"
+		"gopkg.in/kataras/iris.v4"
+		"gopkg.in/kataras/iris.v4/middleware/i18n"
 	)
 
 	func main() {

@@ -9,7 +9,7 @@ package main
 import (
 	"bytes"
 
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v4"
 	"github.com/valyala/fasthttp"
 )
 

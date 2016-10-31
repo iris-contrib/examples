@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/aymerick/raymond"
-	"github.com/kataras/go-template/handlebars"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/go-template.v0/handlebars"
+	"gopkg.in/kataras/iris.v4"
 )
 
 type mypage struct {

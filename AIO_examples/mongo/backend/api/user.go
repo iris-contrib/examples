@@ -1,11 +1,11 @@
 package api
 
 import (
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v4"
 	"gopkg.in/mgo.v2/bson"
 
-	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/db"
-	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/models"
+	"gopkg.in/iris-contrib/examples.v4/AIO_examples/mongo/backend/db"
+	"gopkg.in/iris-contrib/examples.v4/AIO_examples/mongo/backend/models"
 )
 
 type UserAPI struct {

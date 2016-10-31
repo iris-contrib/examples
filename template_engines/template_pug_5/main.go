@@ -2,8 +2,8 @@
 package main
 
 import (
-	"github.com/kataras/go-template/pug"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/go-template.v0/pug"
+	"gopkg.in/kataras/iris.v4"
 )
 
 func main() {

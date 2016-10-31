@@ -40,8 +40,7 @@ package main
 import (
 	"time"
 
-	"github.com/kataras/iris/graceful"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v4"
 )
 
 func main() {

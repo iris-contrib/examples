@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/iris-contrib/graceful"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v4"
 )
 
 func main() {

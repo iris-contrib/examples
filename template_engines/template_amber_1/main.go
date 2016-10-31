@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/kataras/go-template/amber"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/go-template.v0/amber"
+	"gopkg.in/kataras/iris.v4"
 )
 
 type mypage struct {

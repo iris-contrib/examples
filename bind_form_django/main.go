@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/kataras/go-template/django"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/go-template.v0/django"
+	"gopkg.in/kataras/iris.v4"
 )
 
 type Visitor struct {

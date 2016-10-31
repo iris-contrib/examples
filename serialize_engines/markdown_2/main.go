@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/kataras/go-serializer/markdown"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v4"
 )
 
 func main() {

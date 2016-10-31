@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/kataras/go-sessions/sessiondb/redis"
-	"github.com/kataras/go-sessions/sessiondb/redis/service"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/go-sessions.v0/sessiondb/redis"
+	"gopkg.in/kataras/go-sessions.v0/sessiondb/redis/service"
+	"gopkg.in/kataras/iris.v4"
 )
 
 func main() {

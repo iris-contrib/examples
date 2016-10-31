@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/iris-contrib/examples/AIO_examples/basic/backend/api"
-	"github.com/iris-contrib/examples/AIO_examples/basic/backend/routes"
+	"gopkg.in/iris-contrib/examples.v4/AIO_examples/basic/backend/api"
+	"gopkg.in/iris-contrib/examples.v4/AIO_examples/basic/backend/routes"
 
-	"github.com/iris-contrib/middleware/logger"
-	"github.com/kataras/go-template/html"
-	"github.com/kataras/iris"
+	"gopkg.in/iris-contrib/middleware.v4/logger"
+	"gopkg.in/kataras/go-template.v0/html"
+	"gopkg.in/kataras/iris.v4"
 )
 
 func main() {

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/kataras/iris"
-	"github.com/kataras/go-mailer"
+	"gopkg.in/kataras/iris.v4"
+	"gopkg.in/kataras/go-mailer.v0"
 )
 
 func main() {

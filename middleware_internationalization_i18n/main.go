@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/iris-contrib/middleware/i18n"
-	"github.com/kataras/iris"
+	"gopkg.in/iris-contrib/middleware.v4/i18n"
+	"gopkg.in/kataras/iris.v4"
 )
 
 func main() {

@@ -1,6 +1,6 @@
 package api
 
-import "github.com/kataras/iris"
+import "gopkg.in/kataras/iris.v4"
 
 type UserAPI struct {
 	*iris.Context

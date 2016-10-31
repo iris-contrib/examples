@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/dgrijalva/jwt-go"
-	jwtmiddleware "github.com/iris-contrib/middleware/jwt"
-	"github.com/kataras/iris"
+	jwtmiddleware "gopkg.in/iris-contrib/middleware.v4/jwt"
+	"gopkg.in/kataras/iris.v4"
 )
 
 func main() {

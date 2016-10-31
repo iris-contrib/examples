@@ -1,7 +1,7 @@
 // Package main, simple example for context.Redirect, to use Redirect via {{ url }} use the context.RedirectTo, look at the template_engines examples.
 package main
 
-import "github.com/kataras/iris"
+import "gopkg.in/kataras/iris.v4"
 
 func main() {
 
