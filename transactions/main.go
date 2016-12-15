@@ -7,7 +7,10 @@ import (
 func main() {
 
 	iris.Get("/", func(ctx *iris.Context) {
-		ctx.BeginTransaction(func(scope *iris.RequestTransactionScope) {
+		ctx.BeginTransaction(func(scope *iris.TransactionScope) {
+			// OPTIONAl STEP: , if true then the next transictions will not be executed if this transiction fails
+			// scope.RequestScoped(true)
+
 			// OPTIONAL STEP:
 			// create a new custom type of error here to keep track of the status code and reason message
 			err := iris.NewErrWithStatus()
@@ -41,7 +44,7 @@ func main() {
 			scope.Complete(err)
 		})
 
-		ctx.BeginTransaction(func(scope *iris.RequestTransactionScope) {
+		ctx.BeginTransaction(func(scope *iris.TransactionScope) {
 			scope.Context.HTML(iris.StatusOK,
 				"<h1>This will sent at all cases because it lives on different transaction and it doesn't fails</h1>")
 			// * if we don't have any 'throw error' logic then no need of scope.Complete()
