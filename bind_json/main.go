@@ -1,12 +1,15 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/kataras/iris"
 )
 
 type Company struct {
-	Name string
-	City string
+	Name  string
+	City  string
+	Other string
 }
 
 func MyHandler(ctx *iris.Context) {
@@ -14,7 +17,8 @@ func MyHandler(ctx *iris.Context) {
 	if err := ctx.ReadJSON(c); err != nil {
 		panic(err.Error())
 	} else {
-		ctx.Write("Company: %#v", c)
+		fmt.Printf("Company: %#v\n", c)
+		ctx.Write("Company: %#v\n", c)
 	}
 }
 
