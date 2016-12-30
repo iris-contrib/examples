@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/kataras/go-template/django"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v5"
 )
 
 type Visitor struct {

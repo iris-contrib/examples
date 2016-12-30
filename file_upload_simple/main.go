@@ -3,7 +3,7 @@ package main
 import (
 	"crypto/md5"
 	"fmt"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v5"
 	"io"
 	"os"
 	"strconv"

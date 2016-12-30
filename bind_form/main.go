@@ -4,7 +4,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v5"
 )
 
 type Visitor struct {

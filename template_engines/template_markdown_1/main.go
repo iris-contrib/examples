@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/kataras/go-template/markdown"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v5"
 )
 
 type mypage struct {

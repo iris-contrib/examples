@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v5"
 )
 
 type index struct {

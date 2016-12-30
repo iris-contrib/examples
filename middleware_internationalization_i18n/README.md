@@ -30,7 +30,7 @@ hi = Гейб, %s
 
 	import (
 		"fmt"
-		"github.com/kataras/iris"
+		"gopkg.in/kataras/iris.v5"
 		"github.com/kataras/iris/middleware/i18n"
 	)
 

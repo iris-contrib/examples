@@ -1,6 +1,6 @@
 package routes
 
-import "github.com/kataras/iris"
+import "gopkg.in/kataras/iris.v5"
 
 // About the handler func, we don't use struct here
 // this is the simplest method to declare a route

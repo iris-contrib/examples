@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/iris-contrib/middleware/basicauth"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v5"
 )
 
 func main() {

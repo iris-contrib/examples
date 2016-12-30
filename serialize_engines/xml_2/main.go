@@ -4,7 +4,7 @@ import (
 	encodingXML "encoding/xml"
 
 	"github.com/kataras/go-serializer/xml"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v5"
 )
 
 type myxml struct {

@@ -1,6 +1,6 @@
 package main
 
-import "github.com/kataras/iris"
+import "gopkg.in/kataras/iris.v5"
 
 func main() {
 	iris.Favicon("./static/favicons/iris_favicon_32_32.ico")

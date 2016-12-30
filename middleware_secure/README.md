@@ -55,7 +55,7 @@ l := secure.New(secure.Options{
 package main
 
 import (
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v5"
 	"github.com/iris-contrib/middleware/secure"
 )
 

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v5"
 )
 
 /* Native messages no need to import the iris-ws.js to the ./templates.client.html

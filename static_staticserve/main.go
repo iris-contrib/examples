@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/iris-contrib/middleware/logger"
 	"github.com/iris-contrib/middleware/recovery"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v5"
 )
 
 func main() {

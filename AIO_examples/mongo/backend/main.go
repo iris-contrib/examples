@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/iris-contrib/middleware/logger"
 	"github.com/kataras/go-template/html"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v5"
 
 	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/api"
 	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/db"

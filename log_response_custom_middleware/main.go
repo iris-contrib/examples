@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v5"
 )
 
 func main() {

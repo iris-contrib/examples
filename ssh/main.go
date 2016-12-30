@@ -1,7 +1,7 @@
 // Basic remote control of your Iris station via SSH
 package main
 
-import "github.com/kataras/iris"
+import "gopkg.in/kataras/iris.v5"
 
 func main() {
 	iris.Config.IsDevelopment = true // some logs for ssh if you enabled it.

@@ -4,7 +4,7 @@
 
 package main
 
-import "github.com/kataras/iris"
+import "gopkg.in/kataras/iris.v5"
 
 // register a dynamic-wildcard subdomain to your server machine(dns/...) first, check ./hosts if you use windows.
 // run this file and try to redirect: http://username1.mydomain.com:8080/ , http://username2.mydomain.com:8080/ , http://username1.mydomain.com/something, http://username1.mydomain.com/something/sadsadsa
