@@ -33,7 +33,7 @@ func main() {
 }
 
 func aHandler(ctx *iris.Context) {
-	ctx.Write("Hello from: %s", ctx.PathString())
+	ctx.Writef("Hello from: %s", ctx.Path())
 }
 
 type myPlugin struct{}

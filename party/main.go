@@ -9,29 +9,29 @@ func main() {
 		// add a silly middleware
 		admin.UseFunc(func(c *iris.Context) {
 			//your authentication logic here...
-			println("from ", c.PathString())
+			println("from ", c.Path())
 			authorized := true
 			if authorized {
 				c.Next()
 			} else {
-				c.Text(401, c.PathString()+" is not authorized for you")
+				c.Text(401, c.Path()+" is not authorized for you")
 			}
 
 		})
 		admin.Get("/", func(c *iris.Context) {
-			c.Write("Hello World")
-			c.Write("from /admin/ or /admin if you pathcorrection on")
+			c.Writef("Hello World")
+			c.Writef("from /admin/ or /admin if you pathcorrection on")
 		})
 		admin.Get("/dashboard", func(c *iris.Context) {
-			c.Write("/admin/dashboard")
+			c.Writef("/admin/dashboard")
 		})
 		admin.Delete("/delete/:userId", func(c *iris.Context) {
-			c.Write("admin/delete/%s", c.Param("userId"))
+			c.Writef("admin/delete/%s", c.Param("userId"))
 		})
 	}
 
 	beta := admin.Party("/beta")
-	beta.Get("/hey", func(c *iris.Context) { c.Write("hey from /admin/beta/hey") })
+	beta.Get("/hey", func(c *iris.Context) { c.Writef("hey from /admin/beta/hey") })
 
 	//for subdomains goto: ../subdomains_1/main.go
 

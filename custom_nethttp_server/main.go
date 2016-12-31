@@ -2,17 +2,17 @@ package main
 
 import (
 	"github.com/kataras/iris"
-	"github.com/valyala/fasthttp"
+	"net/http"
 )
 
 func main() {
 	api := iris.New()
 	api.Get("/", func(ctx *iris.Context) {
-		ctx.Write("Hello from the server")
+		ctx.Writef("Hello from the server")
 	})
 
 	api.Get("/mypath", func(ctx *iris.Context) {
-		ctx.Write("Hello from the server on path /mypath")
+		ctx.Writef("Hello from %s", ctx.Path())
 	})
 	// to use a custom server you have to call .Build after route, sessions, templates, websockets,ssh... before server's listen
 	api.Build()
@@ -21,8 +21,8 @@ func main() {
 	// and api.Plugins.DoPostListen(api) after he ListenAndServe
 
 	// create our custom fasthttp server and assign the Handler/Router
-	fsrv := &fasthttp.Server{Handler: api.Router}
-	fsrv.ListenAndServe(":8080")
+	fsrv := &http.Server{Handler: api.Router, Addr: ":8080"}
+	fsrv.ListenAndServe()
 
 	// now if you navigate to http://127.0.0.1:8080/mypath
 }

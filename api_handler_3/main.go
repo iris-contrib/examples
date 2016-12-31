@@ -12,13 +12,13 @@ type UserAPI struct {
 
 // GET /users
 func (u UserAPI) Get() {
-	u.Write("Get from /users")
+	u.WriteString("Get from /users")
 	// u.JSON(iris.StatusOK,myDb.AllUsers())
 }
 
 // GET /users/:param1 which its value passed to the id argument
 func (u UserAPI) GetBy(id string) { // id equals to u.Param("param1")
-	u.Write("Get from /users/%s", id)
+	u.Writef("Get from /users/%s", id)
 	// u.JSON(iris.StatusOK, myDb.GetUserById(id))
 
 }

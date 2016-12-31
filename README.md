@@ -8,6 +8,6 @@ Examples are tested using Windows 7, Ubuntu 16.04 and LiteIDE as editor.
 
 We have three branches
 
-- [Iris current http/2](https://github.com/kataras/iris), master branch.
+- [Iris http/2](https://github.com/kataras/iris), master branch -- not yet fully completed.
 - [Iris version 5/fasthttp](https://github.com/kataras/iris/tree/5.0.0) examples, click [here](https://github.com/iris-contrib/examples/tree/5.0.0).
 - [Iris version 4/fasthttp](https://github.com/kataras/iris/tree/4.0.0) examples, click [here](https://github.com/iris-contrib/examples/tree/4.0.0).

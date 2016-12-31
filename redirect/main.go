@@ -6,12 +6,12 @@ import "github.com/kataras/iris"
 func main() {
 
 	iris.Get("/", func(ctx *iris.Context) {
-		//ctx.Log(string(ctx.RequestCtx.URI().FullURI()))
+		//ctx.Log(string(ctx.Request.URI.String())
 		ctx.Redirect("/redirected")
 	})
 
 	iris.Get("/redirected", func(ctx *iris.Context) {
-		ctx.Write("Hello, you have been redirected!")
+		ctx.Writef("Hello, you have been redirected!")
 	})
 
 	iris.Listen(":8080")

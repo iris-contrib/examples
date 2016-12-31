@@ -8,7 +8,7 @@ type UserAPI struct {
 
 // GET /users
 func (u UserAPI) Get() {
-	u.Write("a list of all users")
+	u.WriteString("a list of all users")
 }
 
 // GET /users/:param1

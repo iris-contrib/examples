@@ -7,52 +7,44 @@ import (
 func main() {
 
 	iris.Get("/", func(ctx *iris.Context) {
-		ctx.BeginTransaction(func(scope *iris.TransactionScope) {
+		ctx.BeginTransaction(func(t *iris.Transaction) {
 			// OPTIONAl STEP: , if true then the next transictions will not be executed if this transiction fails
-			// scope.RequestScoped(true)
+			// scope.SetScope(iris.RequestTransactionScope)
 
 			// OPTIONAL STEP:
 			// create a new custom type of error here to keep track of the status code and reason message
-			err := iris.NewErrWithStatus()
+			err := iris.NewTransactionErrResult()
 
-			// we should use scope.Context if we want to rollback on any errors lives inside this function clojure.
-			// if you want persistence then use the 'ctx'.
-			scope.Context.Text(iris.StatusOK, "Blablabla this should not be sent to the client because we will fill the err with a message and status")
-
-			//	var firstErr error  = do this()   // your code here
-			//	var secondErr error = try_do_this() // your code here
-			//	var thirdErr error  = try_do_this() // your code here
-			//	var fail bool = false
-
-			//	if firstErr != nil || secondErr != nil || thirdErr != nil {
-			//			fail = true
-			//	}
-			// or err.AppendReason(firstErr.Error()) // ... err.Reason(dbErr.Error()).Status(500)
+			// we should use t.Context if we want to rollback on any errors lives inside this function clojure.
+			t.Context.Text(iris.StatusOK, "Blablabla this should not be sent to the client because we will fill the err with a message and status")
 
 			// virtualize a fake error here, for the shake of the example
 			fail := true
 			if fail {
-				err.Status(iris.StatusInternalServerError).
-					// if status given but no reason then the default or the custom http error will be fired (like ctx.EmitError)
-					Reason("Error: Virtual failure!!")
+				err.StatusCode = iris.StatusInternalServerError
+				// NOTE: if empty reason then the default or the custom http error will be fired (like ctx.EmitError)
+				err.Reason = "Error: Virtual failure!!"
 			}
 
 			// OPTIONAl STEP:
 			// but useful if we want to post back an error message to the client if the transaction failed.
 			// if the reason is empty then the transaction completed succesfuly,
-			// otherwise we rollback the whole response body and cookies and everything lives inside the scope.Request.
-			scope.Complete(err)
+			// otherwise we rollback the whole response writer's body,
+			// headers and cookies, status code and everything lives inside this transaction
+			t.Complete(err)
 		})
 
-		ctx.BeginTransaction(func(scope *iris.TransactionScope) {
-			scope.Context.HTML(iris.StatusOK,
+		ctx.BeginTransaction(func(t *iris.Transaction) {
+			t.Context.HTML(iris.StatusOK,
 				"<h1>This will sent at all cases because it lives on different transaction and it doesn't fails</h1>")
 			// * if we don't have any 'throw error' logic then no need of scope.Complete()
 		})
 
 		// OPTIONAL, depends on the usage:
 		// at any case, what ever happens inside the context's transactions send this to the client
-		ctx.HTML(iris.StatusOK, "<h1>I persist show this message to the client whatever happens!</h1>")
+		ctx.HTML(iris.StatusOK, "<h1>Let's add a second html message to the response,"+
+			"if the transaction was failed and it was request scoped then this message would"+
+			"not been shown but because it is not failed and it has a transient scope(default) it is executing as expected!</h1>")
 	})
 
 	iris.Listen(":8080")

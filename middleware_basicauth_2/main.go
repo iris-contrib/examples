@@ -32,17 +32,17 @@ func main() {
 	{
 		needAuth.Get("/", func(ctx *iris.Context) {
 			username := ctx.GetString("mycustomkey") //  the Contextkey from the authConfig
-			ctx.Write("Hello authenticated user: %s from localhost:8080/secret ", username)
+			ctx.Writef("Hello authenticated user: %s from localhost:8080/secret ", username)
 		})
 
 		needAuth.Get("/profile", func(ctx *iris.Context) {
 			username := ctx.GetString("mycustomkey") //  the Contextkey from the authConfig
-			ctx.Write("Hello authenticated user: %s from localhost:8080/secret/profile ", username)
+			ctx.Writef("Hello authenticated user: %s from localhost:8080/secret/profile ", username)
 		})
 
 		needAuth.Get("/settings", func(ctx *iris.Context) {
 			username := authConfig.User(ctx) // same thing as ctx.GetString("mycustomkey")
-			ctx.Write("Hello authenticated user: %s from localhost:8080/secret/settings ", username)
+			ctx.Writef("Hello authenticated user: %s from localhost:8080/secret/settings ", username)
 		})
 	}
 

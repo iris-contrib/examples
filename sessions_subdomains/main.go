@@ -15,13 +15,13 @@ func main() {
 		//set the session
 		myusername := "iris"
 		ctx.Session().Set("username", myusername)
-		ctx.Write("Username setted to %s, go to /user or mysubdomain.%s:8080/user to view the session's username's value", myusername, domain)
+		ctx.Writef("Username setted to %s, go to /user or mysubdomain.%s:8080/user to view the session's username's value", myusername, domain)
 	})
 
 	iris.Get("/user", func(ctx *iris.Context) {
 		// get the session
 		myusername := ctx.Session().GetString("username")
-		ctx.Write("Hello, your username is %s", myusername)
+		ctx.Writef("Hello, your username is %s", myusername)
 	})
 
 	subdomain := iris.Party("mysubdomain.")
@@ -31,13 +31,13 @@ func main() {
 			//set the session
 			myusername := "iris"
 			ctx.Session().Set("username", myusername)
-			ctx.Write("Username setted FROM THE SUBDOMAIN to %s, go to /user or mysubdomain.%s/user to view the session's username's value", myusername, domain)
+			ctx.Writef("Username setted FROM THE SUBDOMAIN to %s, go to /user or mysubdomain.%s/user to view the session's username's value", myusername, domain)
 		})
 
 		subdomain.Get("/user", func(ctx *iris.Context) {
 			// get the session
 			myusername := ctx.Session().GetString("username")
-			ctx.Write("Hello from subdomain, your username is %s", myusername)
+			ctx.Writef("Hello from subdomain, your username is %s", myusername)
 		})
 	}
 

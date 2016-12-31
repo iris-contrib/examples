@@ -13,7 +13,7 @@ func main() {
 	iris.Get("/hello/:name", func(c *iris.Context) {
 		// Retrieve the parameter name
 		name := c.Param("name")
-		c.Write("Hello %s", name)
+		c.Writef("Hello %s", name)
 	})
 
 	// Match to /profile/iris/friends/1, (if PathCorrection:true match also /profile/iris/friends/1/)
@@ -37,9 +37,9 @@ func main() {
 		action := ctx.Param("action")
 		if action == "/new" {
 			// it's posts/new page
-			ctx.Write("POSTS NEW")
+			ctx.Writef("POSTS NEW")
 		} else {
-			ctx.Write("OTHER POSTS")
+			ctx.Writef("OTHER POSTS")
 			// it's posts/:id page
 			//doSomething with the action which is the id
 		}

@@ -25,7 +25,7 @@ func main() {
 	DisableSubdomainPersistence bool
 	*/
 	iris.Get("/", func(c *iris.Context) {
-		c.Write("You should navigate to the /set, /get, /delete, /clear,/destroy instead")
+		c.Writef("You should navigate to the /set, /get, /delete, /clear,/destroy instead")
 	})
 	iris.Get("/set", func(c *iris.Context) {
 
@@ -33,14 +33,14 @@ func main() {
 		c.Session().Set("name", "iris")
 
 		//test if setted here
-		c.Write("All ok session setted to: %s", c.Session().GetString("name"))
+		c.Writef("All ok session setted to: %s", c.Session().GetString("name"))
 	})
 
 	iris.Get("/get", func(c *iris.Context) {
 		// get a specific key, as string, if no found returns just an empty string
 		name := c.Session().GetString("name")
 
-		c.Write("The name on the /set was: %s", name)
+		c.Writef("The name on the /set was: %s", name)
 	})
 
 	iris.Get("/delete", func(c *iris.Context) {
@@ -57,7 +57,7 @@ func main() {
 		//destroy, removes the entire session and cookie
 		c.SessionDestroy()
 		c.Log("You have to refresh the page to completely remove the session (on browsers), so the name should NOT be empty NOW, is it?\n ame: %s\n\nAlso check your cookies in your browser's cookies, should be no field for localhost/127.0.0.1 (or what ever you use)", c.Session().GetString("name"))
-		c.Write("You have to refresh the page to completely remove the session (on browsers), so the name should NOT be empty NOW, is it?\nName: %s\n\nAlso check your cookies in your browser's cookies, should be no field for localhost/127.0.0.1 (or what ever you use)", c.Session().GetString("name"))
+		c.Writef("You have to refresh the page to completely remove the session (on browsers), so the name should NOT be empty NOW, is it?\nName: %s\n\nAlso check your cookies in your browser's cookies, should be no field for localhost/127.0.0.1 (or what ever you use)", c.Session().GetString("name"))
 	})
 
 	iris.Listen(":8080")

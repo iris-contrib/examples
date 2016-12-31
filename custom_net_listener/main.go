@@ -8,11 +8,11 @@ import (
 
 func main() {
 	iris.Get("/", func(ctx *iris.Context) {
-		ctx.Write("Hello from the server")
+		ctx.Writef("Hello from the server")
 	})
 
 	iris.Get("/mypath", func(ctx *iris.Context) {
-		ctx.Write("Hello from the server on path /mypath")
+		ctx.Writef("Hello from %s", ctx.Path())
 	})
 
 	// create our custom listener

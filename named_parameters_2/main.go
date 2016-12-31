@@ -5,7 +5,7 @@ import "github.com/kataras/iris"
 func main() {
 
 	iris.UseFunc(func(ctx *iris.Context) {
-		ctx.Log(ctx.MethodString() + ": " + ctx.PathString() + "\n")
+		ctx.Log(ctx.Method() + ": " + ctx.Path() + "\n")
 		ctx.Next()
 	})
 
@@ -62,5 +62,5 @@ func main() {
 }
 
 func h(ctx *iris.Context) {
-	ctx.Write(ctx.PathString())
+	ctx.HTML(iris.StatusOK, "<h1>Path<h1/>"+ctx.Path())
 }

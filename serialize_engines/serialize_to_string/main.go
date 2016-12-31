@@ -62,7 +62,7 @@ All features of Sundown are supported, including:
 		htmlContents := iris.SerializeToString("text/markdown", markdownContents, iris.RenderOptions{"charset": "8859-1"}) // default is the iris.Config.Charset, which is UTF-8
 
 		ctx.Log(htmlContents)
-		ctx.Write("The Raw HTML is:\n%s", htmlContents)
+		ctx.Writef("The Raw HTML is:\n%s", htmlContents)
 	})
 
 	iris.Listen(":8080")

@@ -18,7 +18,7 @@ func MyHandler(ctx *iris.Context) {
 		panic(err.Error())
 	} else {
 		fmt.Printf("Company: %#v\n", c)
-		ctx.Write("Company: %#v\n", c)
+		ctx.Writef("Company: %#v\n", c)
 	}
 }
 

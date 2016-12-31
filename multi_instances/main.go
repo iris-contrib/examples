@@ -7,12 +7,12 @@ import (
 func main() {
 	server1 := iris.New()
 	server1.Get("/", func(c *iris.Context) {
-		c.Write("Hello from the server1 on :8080")
+		c.Writef("Hello from the server1 on :8080")
 	})
 
 	server2 := iris.New()
 	server2.Get("/", func(c *iris.Context) {
-		c.Write("Hello from the server2 on :80")
+		c.Writef("Hello from the server2 on :80")
 	})
 
 	// remember that .Listen on Iris is a block function

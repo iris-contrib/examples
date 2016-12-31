@@ -17,17 +17,19 @@ func main() {
 	api.Static("/js", "./static/js", 1)
 
 	api.Get("/", func(ctx *iris.Context) {
-		ctx.Render("client.html", clientPage{"Client Page", ctx.HostString()})
+		ctx.Render("client.html", clientPage{"Client Page", ctx.Host()})
 	})
 
 	// important staff
-	ws := iris.NewWebsocketServer()
-	ws.RegisterTo(api, iris.WebsocketConfiguration{Endpoint: "/my_endpoint"}) // the path which the websocket client should listen/registed to
-	// ws2 := iris.NewWebsocketServer() // entirely new websocket server with its own connections
-	// ws2.RegisterTo(api, iris.WebsocketConfiguration{Endpoint: "/my_second_endpoint"}) // the path which the websocket client should listen/registed to
+	ws := iris.NewWebsocketServer(api)
+	// the path which the websocket client should listen/registed to
+	ws.Config = iris.WebsocketConfiguration{Endpoint: "/my_endpoint"}
 
-	// you created a new websocket server, you can create more than one... I leave that to you: w2:= websocket.New...; w2.OnConnection(...)
-	// for default 'iris.' station use that: w := websocket.New(iris.DefaultIris, "/my_endpoint")
+	// more than one custom websocket  server in the same iris instance:
+	// entirely new websocket server with its own connections:
+	// ws2 := iris.NewWebsocketServer(api)
+	// ws2.Config = iris.WebsocketConfiguration{Endpoint: "/my_second_endpoint"}
+
 	var myChatRoom = "room1"
 	ws.OnConnection(func(c iris.WebsocketConnection) {
 

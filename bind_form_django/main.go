@@ -30,7 +30,7 @@ func main() {
 			fmt.Println("Error when reading form: " + err.Error())
 		}
 		fmt.Printf("\n Visitor: %#v", visitor)
-		ctx.Write("%#v", visitor)
+		ctx.Writef("%#v", visitor)
 	})
 
 	iris.Listen(":8080")

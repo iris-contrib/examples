@@ -31,7 +31,7 @@ func main() {
 	// remove the layout for a specific route using iris.NoLayout
 	iris.Get("/nolayout", func(ctx *iris.Context) {
 		if err := ctx.Render("home.html", nil, iris.RenderOptions{"layout": iris.NoLayout}); err != nil {
-			ctx.Write(err.Error())
+			ctx.Writef(err.Error())
 		}
 	})
 

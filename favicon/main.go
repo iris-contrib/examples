@@ -2,6 +2,8 @@ package main
 
 import "github.com/kataras/iris"
 
+// if your ide cannot find the ./static folder try to build that program and after execute it
+// or try to download & run this example via LiteIDE.
 func main() {
 	iris.Favicon("./static/favicons/iris_favicon_32_32.ico")
 	// This will serve the ./static/favicons/iris_favicon_32_32.ico to: localhost:8080/favicon.ico

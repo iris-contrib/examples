@@ -20,7 +20,7 @@ func main() {
 		ctx.Next()
 
 	}, func(ctx *iris.Context) {
-		ctx.Write("Hello, refresh one time more to get panic!")
+		ctx.Writef("Hello, refresh one time more to get panic!")
 	})
 
 	iris.Listen(":8080")

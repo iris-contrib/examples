@@ -42,7 +42,7 @@ func main() {
 }
 
 func emptyHandler(ctx *iris.Context) {
-	ctx.Write("[SUBDOMAIN: %s]Hello from Path: %s.", ctx.Subdomain(), ctx.PathString())
+	ctx.Writef("[SUBDOMAIN: %s]Hello from Path: %s.", ctx.Subdomain(), ctx.Path())
 }
 
 // Note than you can see more Pug/Jade syntax examples by navigating to https://github.com/Joker/jade

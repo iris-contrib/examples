@@ -7,29 +7,28 @@ import (
 func main() {
 
 	iris.Get("/set", func(c *iris.Context) {
-		c.SetFlash("name", "iris")
-		c.Write("Message setted, is available for the next request")
+		c.Session().SetFlash("name", "iris")
+		c.Writef("Message setted, is available for the next request")
 	})
 
 	iris.Get("/get", func(c *iris.Context) {
-		name, err := c.GetFlash("name")
-		if err != nil {
-			c.Write(err.Error())
+		name := c.Session().GetFlashString("name")
+		if name != "" {
+			c.Writef("Empty name!!")
 			return
 		}
-		c.Write("Hello %s", name)
+		c.Writef("Hello %s", name)
 	})
 
 	iris.Get("/test", func(c *iris.Context) {
-
-		name, err := c.GetFlash("name")
-		if err != nil {
-			c.Write(err.Error())
+		name := c.Session().GetFlashString("name")
+		if name != "" {
+			c.Writef("Empty name!!")
 			return
 		}
 
-		c.Write("Ok you are comming from /set ,the value of the name is %s", name)
-		c.Write(", and again from the same context: %s", name)
+		c.Writef("Ok you are comming from /set ,the value of the name is %s", name)
+		c.Writef(", and again from the same context: %s", name)
 
 	})
 

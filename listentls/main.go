@@ -7,11 +7,11 @@ import (
 func main() {
 	host := "127.0.0.1:443"
 	iris.Get("/", func(ctx *iris.Context) {
-		ctx.Write("Hello from the SECURE server")
+		ctx.Writef("Hello from the SECURE server")
 	})
 
 	iris.Get("/mypath", func(ctx *iris.Context) {
-		ctx.Write("Hello from the SECURE server on path /mypath")
+		ctx.Writef("Hello from the SECURE server on path /mypath")
 	})
 
 	// start a secondary server (HTTP) on port 80, this is a non-blocking func

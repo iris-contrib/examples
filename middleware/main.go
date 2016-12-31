@@ -10,7 +10,7 @@ func main() {
 
 	// register global middleware, you can pass more than one handler comma separated
 	iris.UseFunc(func(c *iris.Context) {
-		fmt.Printf("(1)Global logger: %s\n", c.PathString())
+		fmt.Printf("(1)Global logger: %s\n", c.Path())
 		c.Next()
 	})
 
@@ -26,7 +26,7 @@ func main() {
 		fmt.Println("(2)HOME logger for /home")
 		c.Next()
 	}, func(c *iris.Context) {
-		c.Write("Hello from /home")
+		c.Writef("Hello from /home")
 	})
 
 	iris.Listen(":8080")

@@ -28,8 +28,8 @@ func main() {
 	iris.Post("/upload", func(ctx *iris.Context) {
 
 		// Get the file from the request
-		info, err := ctx.FormFile("uploadfile")
-		file, err := info.Open()
+		file, info, err := ctx.FormFile("uploadfile")
+
 		defer file.Close()
 		fname := info.Filename
 
@@ -45,10 +45,6 @@ func main() {
 		io.Copy(out, file)
 
 	})
-	// set the max request body size of the server, used to be able to send big files to the server
-	// 32MB max upload filesize)
-	// By default request body size is 4MB.
-	iris.Set(iris.OptionMaxRequestBodySize(32 << 20))
 
 	iris.Listen(":8080")
 

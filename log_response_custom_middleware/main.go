@@ -26,5 +26,5 @@ func responseLogger(c *iris.Context) {
 	c.Next() // process the request first, we don't want to have delays
 
 	date := time.Now().Format("01/02 - 15:04:05")
-	fmt.Printf("%s\n%s", date, c.Response.String())
+	fmt.Printf("%s\n%s", date, c.ResponseWriter.Body())
 }

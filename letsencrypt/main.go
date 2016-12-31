@@ -5,11 +5,11 @@ import "github.com/kataras/iris"
 
 func main() {
 	iris.Get("/", func(ctx *iris.Context) {
-		ctx.Write("Hello from SECURE SERVER!")
+		ctx.Writef("Hello from SECURE SERVER!")
 	})
 
 	iris.Get("/test2", func(ctx *iris.Context) {
-		ctx.Write("Welcome to secure server from /test2!")
+		ctx.Writef("Welcome to secure server from /test2!")
 	})
 
 	iris.Get("/redirect", func(ctx *iris.Context) {

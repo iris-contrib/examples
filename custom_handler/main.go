@@ -17,9 +17,9 @@ type MyHandler struct {
 func (m *MyHandler) Serve(ctx *iris.Context) {
 	data := &m.data
 	data.UserAgent = ctx.RequestHeader("User-Agent")
-	ctx.Write("Path: %s", ctx.PathString())
-	ctx.Write("\nUser agent: %s", data.UserAgent)
-	ctx.Write("\nData always same: data.Sysname: %s and data.Version: %d", data.Sysname, data.Version)
+	ctx.Writef("Path: %s", ctx.Path())
+	ctx.Writef("\nUser agent: %s", data.UserAgent)
+	ctx.Writef("\nData always same: data.Sysname: %s and data.Version: %d", data.Sysname, data.Version)
 }
 
 func main() {

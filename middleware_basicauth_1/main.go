@@ -14,17 +14,17 @@ func main() {
 	// to routes
 	iris.Get("/secret", authentication, func(ctx *iris.Context) {
 		username := ctx.GetString("user") // this can be changed, you will see at the middleware_basic_auth_2 folder
-		ctx.Write("Hello authenticated user: %s ", username)
+		ctx.Writef("Hello authenticated user: %s ", username)
 	})
 
 	iris.Get("/secret/profile", authentication, func(ctx *iris.Context) {
 		username := ctx.GetString("user")
-		ctx.Write("Hello authenticated user: %s from localhost:8080/secret/profile ", username)
+		ctx.Writef("Hello authenticated user: %s from localhost:8080/secret/profile ", username)
 	})
 
 	iris.Get("/othersecret", authentication, func(ctx *iris.Context) {
 		username := ctx.GetString("user")
-		ctx.Write("Hello authenticated user: %s from localhost:8080/othersecret ", username)
+		ctx.Writef("Hello authenticated user: %s from localhost:8080/othersecret ", username)
 	})
 
 	iris.Listen(":8080")

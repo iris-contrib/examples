@@ -20,7 +20,7 @@ func main() {
 
 		rawHtmlContents := iris.TemplateString("mypage.html", map[string]interface{}{"username": "iris", "is_admin": true}, iris.RenderOptions{"charset": "UTF-8"}) // defaults to UTF-8 already
 		ctx.Log(rawHtmlContents)
-		ctx.Write("The Raw HTML is:\n%s", rawHtmlContents)
+		ctx.Writef("The Raw HTML is:\n%s", rawHtmlContents)
 	})
 
 	iris.Listen(":8080")

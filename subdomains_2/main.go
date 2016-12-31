@@ -40,11 +40,11 @@ func main() {
 	}
 
 	iris.Get("/", func(ctx *iris.Context) {
-		ctx.Write("Hello from mydomain.com path: %s", ctx.PathString())
+		ctx.Writef("Hello from mydomain.com path: %s", ctx.PathString())
 	})
 
 	iris.Get("/hello", func(ctx *iris.Context) {
-		ctx.Write("Hello from mydomain.com path: %s", ctx.PathString())
+		ctx.Writef("Hello from mydomain.com path: %s", ctx.PathString())
 	})
 
 	iris.Listen("mydomain.com:8080")
@@ -52,13 +52,13 @@ func main() {
 
 func dynamicSubdomainHandler(ctx *iris.Context) {
 	username := ctx.Subdomain()
-	ctx.Write("Hello from dynamic subdomain path: %s, here you can handle the route for dynamic subdomains, handle the user: %s", ctx.PathString(), username)
+	ctx.Writef("Hello from dynamic subdomain path: %s, here you can handle the route for dynamic subdomains, handle the user: %s", ctx.PathString(), username)
 	// if  http://username4.mydomain.com:8080/ prints:
 	// Hello from dynamic subdomain path: /, here you can handle the route for dynamic subdomains, handle the user: username4
 }
 
 func dynamicSubdomainHandlerWithParam(ctx *iris.Context) {
 	username := ctx.Subdomain()
-	ctx.Write("Hello from dynamic subdomain path: %s, here you can handle the route for dynamic subdomains, handle the user: %s", ctx.PathString(), username)
-	ctx.Write("THE PARAM1 is: %s", ctx.Param("param1"))
+	ctx.Writef("Hello from dynamic subdomain path: %s, here you can handle the route for dynamic subdomains, handle the user: %s", ctx.PathString(), username)
+	ctx.Writef("THE PARAM1 is: %s", ctx.Param("param1"))
 }

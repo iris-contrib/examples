@@ -17,7 +17,7 @@ func main() {
 		hi := ctx.GetFmt("translate")("hi", "maki") // hi is the key, 'maki' is the %s, the second parameter is optional
 		language := ctx.Get("language")             // language is the language key, example 'en-US'
 
-		ctx.Write("From the language %s translated output: %s", language, hi)
+		ctx.Writef("From the language %s translated output: %s", language, hi)
 	})
 
 	iris.Listen(":8080")

@@ -11,7 +11,7 @@ func main() {
 
 	iris.Get("/", func(ctx *iris.Context) {
 		s := iris.TemplateString("page1.html", nil)
-		ctx.Write("The plain content of the template is: %s", s)
+		ctx.Writef("The plain content of the template is: %s", s)
 	})
 
 	iris.Listen(":8080")

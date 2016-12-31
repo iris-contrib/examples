@@ -7,15 +7,15 @@ import (
 func main() {
 
 	iris.OnError(iris.StatusInternalServerError, func(ctx *iris.Context) {
-		ctx.Write(iris.StatusText(iris.StatusInternalServerError)) // Outputs: Internal Server Error
-		ctx.SetStatusCode(iris.StatusInternalServerError)          // 500
+		ctx.Writef(iris.StatusText(iris.StatusInternalServerError)) // Outputs: Internal Server Error
+		ctx.SetStatusCode(iris.StatusInternalServerError)           // 500
 
 		ctx.Log("http status: 500 happened!\n")
 	})
 
 	iris.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
-		ctx.Write(iris.StatusText(iris.StatusNotFound)) // Outputs: Not Found
-		ctx.SetStatusCode(iris.StatusNotFound)          // 404
+		ctx.Writef(iris.StatusText(iris.StatusNotFound)) // Outputs: Not Found
+		ctx.SetStatusCode(iris.StatusNotFound)           // 404
 
 		ctx.Log("http status: 404 happened!\n")
 	})
@@ -46,7 +46,7 @@ func main() {
 		})
 
 		users.Get("/profile/:id", func(ctx *iris.Context) {
-			ctx.Write("Hello from Profile with ID: %s", ctx.Param("id"))
+			ctx.Writef("Hello from Profile with ID: %s", ctx.Param("id"))
 		})
 	}
 
