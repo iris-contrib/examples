@@ -13,11 +13,11 @@ func main() {
 	}))
 
 	iris.Get("/", func(ctx *iris.Context) {
-		ctx.Write("Root path from  server")
+		ctx.Writef("Root path from  server")
 	})
 
 	iris.Get("/something", func(ctx *iris.Context) {
-		ctx.Write("Something path from server")
+		ctx.Writef("Something path from server")
 	})
 
 	iris.Listen(":8080")

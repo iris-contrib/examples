@@ -14,8 +14,8 @@ func main() {
 	iris.OnError(iris.StatusForbidden, func(ctx *iris.Context) {
 		ctx.HTML(iris.StatusForbidden, "<h1> You are not allowed here </h1>")
 	})
-	iris.Static("/css", "./resources/css", 1)
-	iris.Static("/js", "./resources/js", 1)
+	iris.StaticWeb("/css", "./resources/css")
+	iris.StaticWeb("/js", "./resources/js")
 
 	iris.Get("/", func(ctx *iris.Context) {
 		ctx.MustRender("something.html", page{Title: "Home"})

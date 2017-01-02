@@ -18,7 +18,7 @@ func main() {
 	api.Build()
 
 	// optionally, if you use plugins call:	api.Plugins.DoPreListen(api) before ListenAndServe
-	// and api.Plugins.DoPostListen(api) after he ListenAndServe
+	// and api.Plugins.DoPostListen(api) after the ListenAndServe
 
 	// create our custom fasthttp server and assign the Handler/Router
 	fsrv := &http.Server{Handler: api.Router, Addr: ":8080"}

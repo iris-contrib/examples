@@ -3,8 +3,14 @@ package main
 import "github.com/kataras/iris"
 
 func main() {
-	iris.StaticWeb("/static", "./static", 1)
+	iris.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
+		ctx.HTML(iris.StatusNotFound, "<h1> Custom Not Found Message </h1>")
+	})
+
+	iris.Get("/howto", func(ctx *iris.Context) { ctx.Writef("Go to /static to view your static index.html") })
+
+	iris.StaticWeb("/static", "./static")
 	// or
-	//iris.StaticWeb("/", "./static", 0)
+	// iris.Get("/static/*file", iris.StaticHandler("/", "./static", false, false))
 	iris.Listen(":8080")
 }

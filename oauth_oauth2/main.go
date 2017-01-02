@@ -122,12 +122,12 @@ func main() {
 		user, err := gothic.CompleteUserAuth(ctx)
 		if err != nil {
 			ctx.SetStatusCode(iris.StatusUnauthorized)
-			ctx.Write(err.Error())
+			ctx.Writef(err.Error())
 			return
 		}
 
 		t, _ := template.New("foo").Parse(userTemplate)
-		t.Execute(ctx.Response.BodyWriter(), user)
+		t.Execute(ctx.ResponseWriter, user)
 	})
 
 	iris.Get("/auth/:provider", func(ctx *iris.Context) {
@@ -139,7 +139,7 @@ func main() {
 
 	iris.Get("/", func(ctx *iris.Context) {
 		t, _ := template.New("foo").Parse(indexTemplate)
-		t.Execute(ctx.Response.BodyWriter(), providerIndex)
+		t.Execute(ctx.ResponseWriter, providerIndex)
 	})
 	iris.Listen(":3000")
 }

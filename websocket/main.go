@@ -12,7 +12,7 @@ type clientPage struct {
 }
 
 func main() {
-	iris.Static("/js", "./static/js", 1)
+	iris.StaticWeb("/js", "./static/js")
 
 	iris.Get("/", func(ctx *iris.Context) {
 		ctx.Render("client.html", clientPage{"Client Page", ctx.Host()})

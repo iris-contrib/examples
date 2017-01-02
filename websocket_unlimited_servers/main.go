@@ -14,7 +14,7 @@ type clientPage struct {
 func main() {
 	api := iris.New()
 
-	api.Static("/js", "./static/js", 1)
+	api.StaticWeb("/js", "./static/js")
 
 	api.Get("/", func(ctx *iris.Context) {
 		ctx.Render("client.html", clientPage{"Client Page", ctx.Host()})
