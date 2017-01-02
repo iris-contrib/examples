@@ -10,10 +10,10 @@ func main() {
 	app.Use(cors.Default())
 
 	app.Post("/user/create", func(ctx *iris.Context) {
-		ctx.Write("POST CREATE")
+		ctx.Writef("POST CREATE")
 	}) //db.insert...}
 	app.Put("/user/edit/:email", func(ctx *iris.Context) {
-		ctx.Write("PUT EDIT EMAIL: %s", ctx.Param("email"))
+		ctx.Writef("PUT EDIT EMAIL: %s", ctx.Param("email"))
 	}) //db.update...}
 
 	app.Listen(":3333")

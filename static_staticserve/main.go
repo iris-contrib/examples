@@ -17,7 +17,7 @@ func main() {
 
 	// Router
 	iris.Get("/", func(ctx *iris.Context) {
-		ctx.Write("Append one of these to browser's address bar:\n/assets/js/jquery-2.1.1.js\n/assets/css/bootstrap.min.css")
+		ctx.Writef("Append one of these to browser's address bar:\n/assets/js/jquery-2.1.1.js\n/assets/css/bootstrap.min.css")
 	})
 
 	iris.Listen(":8080")

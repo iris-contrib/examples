@@ -21,15 +21,15 @@ func main() {
 	iris.Use(customLogger)
 
 	iris.Get("/", func(ctx *iris.Context) {
-		ctx.Write("hello")
+		ctx.Writef("hello")
 	})
 
 	iris.Get("/1", func(ctx *iris.Context) {
-		ctx.Write("hello")
+		ctx.Writef("hello")
 	})
 
 	iris.Get("/2", func(ctx *iris.Context) {
-		ctx.Write("hello")
+		ctx.Writef("hello")
 	})
 
 	// log http errors
@@ -38,7 +38,7 @@ func main() {
 	// yes we have options look at the logger.Options inside kataras/iris/middleware/logger.go
 	iris.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
 		errorLogger.Serve(ctx)
-		ctx.Write("My Custom 404 error page ")
+		ctx.Writef("My Custom 404 error page ")
 	})
 	//
 

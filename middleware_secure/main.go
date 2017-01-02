@@ -38,7 +38,7 @@ func main() {
 	})
 
 	iris.Get("/home", func(c *iris.Context) {
-		c.Write("Hello from /home ?")
+		c.Writef("Hello from /home ?")
 	})
 
 	iris.Listen(":8080")

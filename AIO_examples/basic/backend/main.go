@@ -16,7 +16,7 @@ func main() {
 	iris.Favicon("../frontend/public/images/favicon.ico")
 
 	// set static folder(s)
-	iris.Static("/public", "../frontend/public", 1)
+	iris.StaticWeb("/public", "../frontend/public")
 
 	// set the global middlewares
 	iris.Use(logger.New())

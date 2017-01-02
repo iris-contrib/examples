@@ -21,7 +21,7 @@ func main() {
 
 	// if you want to publish just a static website you don't have to set any routes
 	// Iris has one-line method to do that:
-	iris.StaticWeb("/", "../frontend/webstatic", 0)
+	iris.StaticWeb("/", "../frontend/webstatic")
 
 	// start the server
 	iris.Listen("127.0.0.1:8080")
