@@ -4,7 +4,7 @@ This repository contains all examples and how-to-use [Iris web framework](https:
 
 Examples are tested using Windows 7, Ubuntu 16.04 and LiteIDE as editor.
 
-Documentation: https://docs-iris.go
+Documentation: https://docs.iris-go.com
 
 Older: 
 
