@@ -23,8 +23,10 @@ func main() {
 }
 
 func responseLogger(c *iris.Context) {
+	// we need the recorder in order to take the body written by the main handler
+	w := c.Recorder()
 	c.Next() // process the request first, we don't want to have delays
 
 	date := time.Now().Format("01/02 - 15:04:05")
-	fmt.Printf("%s\n%s", date, c.ResponseWriter.Body())
+	fmt.Printf("%s\n%s", date, w.Body())
 }
