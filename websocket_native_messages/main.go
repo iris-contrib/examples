@@ -35,8 +35,8 @@ func main() {
 
 		c.OnMessage(func(data []byte) {
 			message := string(data)
-			c.To(iris.Broadcast).EmitMessage([]byte("Message from: " + c.ID() + "-> " + message))
-			c.EmitMessage([]byte("Me: " + message))
+			c.To(iris.Broadcast).EmitMessage([]byte("Message from: " + c.ID() + "-> " + message)) // broadcast to all clients except this
+			c.EmitMessage([]byte("Me: " + message))                                               // writes to itself
 		})
 
 		c.OnDisconnect(func() {

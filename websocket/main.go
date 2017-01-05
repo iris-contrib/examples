@@ -20,8 +20,8 @@ func main() {
 
 	// the path which the websocket client should listen/registed to ->
 	iris.Config.Websocket.Endpoint = "/my_endpoint"
-	// for Allow origin you can make use of the middleware
-	//iris.Config().Websocket.Headers["Access-Control-Allow-Origin"] = "*"
+	// by-default all origins are accepted, you can change this behavior by setting:
+	// iris.Config.Websocket.CheckOrigin
 
 	var myChatRoom = "room1"
 	iris.Websocket.OnConnection(func(c iris.WebsocketConnection) {
@@ -29,16 +29,28 @@ func main() {
 		c.Join(myChatRoom)
 
 		c.On("chat", func(message string) {
+			if message == "leave" {
+				c.Leave(myChatRoom)
+				c.To(myChatRoom).Emit("chat", "Client with ID: "+c.ID()+" left from the room and cannot send or receive message to/from this room.")
+				c.Emit("chat", "You have left from the room: "+myChatRoom+" you cannot send or receive any messages from others inside that room.")
+				return
+			}
 			// to all except this connection ->
-			//c.To(websocket.Broadcast).Emit("chat", "Message from: "+c.ID()+"-> "+message)
+			// c.To(iris.Broadcast).Emit("chat", "Message from: "+c.ID()+"-> "+message)
+			// to all connected clients: c.To(iris.All)
 
-			// to the client ->
+			// to the client itself ->
 			//c.Emit("chat", "Message from myself: "+message)
 
 			//send the message to the whole room,
 			//all connections are inside this room will receive this message
 			c.To(myChatRoom).Emit("chat", "From: "+c.ID()+": "+message)
 		})
+
+		// or create a new leave event
+		// c.On("leave", func() {
+		// 	c.Leave(myChatRoom)
+		// })
 
 		c.OnDisconnect(func() {
 			fmt.Printf("\nConnection with ID: %s has been disconnected!", c.ID())
