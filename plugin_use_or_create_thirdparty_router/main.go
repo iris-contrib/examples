@@ -8,13 +8,13 @@ import (
 	"github.com/kataras/iris"
 )
 
-// NOTE: Iris has this as plugin on https://github.com/iris-contrib/plugin/gorillamux
+// NOTE: Iris has this as plugin on https://github.com/iris-contrib/plugin/tree/master/gorillamux
 // The time this example writing is the time I'm writing the plugin also :)
 // it's a good oportunity to learn how I do these staff, and most importantly what you, as community
-// can do with an extensible framework like Iris. I changed zero lines on kataras/iris but look what we can do:
+// can do with an extensible framework like Iris. I changed zero lines on kataras/iris but look the result:
 
 /*
-Here you will see the Iris; power of customizable itself.
+Here you will see the Iris' power of customizable itself.
 I'm sure that, these you will see below you never saw it before (on other framework).
 Again Iris is first by distance, we make them to follow us.
 */
@@ -32,7 +32,7 @@ func main() {
 		ctx.HTML(iris.StatusNotFound, "<h1> CUSTOM NOT FOUND ERROR PAGE </h1>")
 	})
 
-	// GLOBAL/PARTY MIDDLEWARE IS SUPPORTED
+	// GLOBAL/PARTY MIDDLEWARE ARE SUPPORTED
 	iris.UseFunc(func(ctx *iris.Context) {
 		println("Request: " + ctx.Path())
 		ctx.Next()
