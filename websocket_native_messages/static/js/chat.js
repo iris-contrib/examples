@@ -21,7 +21,6 @@ $(function () {
 
 
 	$("#sendBtn").click(function () {
-		//w.EmitMessage(messageTxt.val());
 		w.send(messageTxt.val().toString());
 		messageTxt.val("");
 	});

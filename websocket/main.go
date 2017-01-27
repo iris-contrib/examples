@@ -1,8 +1,7 @@
 package main
 
 import (
-	"fmt"     // optional
-	"strings" // optional
+	"fmt" // optional
 
 	"github.com/kataras/iris"
 )
@@ -31,11 +30,13 @@ func main() {
 		// websocket has everything you need to authenticate the user BUT if it's necessary
 		// then  you use it to receive user information, for example: from headers.
 
-		httpRequest := c.Request()
-		fmt.Printf("Headers for the connection with ID: %s\n\n", c.ID())
-		for k, v := range httpRequest.Header {
-			fmt.Printf("%s = '%s'\n", k, strings.Join(v, ", "))
-		}
+		// httpRequest := c.Request()
+		// fmt.Printf("Headers for the connection with ID: %s\n\n", c.ID())
+		// for k, v := range httpRequest.Header {
+		// fmt.Printf("%s = '%s'\n", k, strings.Join(v, ", "))
+		// }
+
+		// join to a room (optional)
 		c.Join(myChatRoom)
 
 		c.On("chat", func(message string) {
@@ -64,6 +65,7 @@ func main() {
 
 		c.OnDisconnect(func() {
 			fmt.Printf("Connection with ID: %s has been disconnected!\n", c.ID())
+
 		})
 	})
 

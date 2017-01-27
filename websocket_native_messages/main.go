@@ -7,7 +7,11 @@ import (
 )
 
 /* Native messages no need to import the iris-ws.js to the ./templates.client.html
-Use of: OnMessage and EmitMessage
+Use of: OnMessage and EmitMessage.
+
+
+NOTICE: IF YOU HAVE RAN THE PREVIOUS EXAMPLES YOU HAVE TO CLEAR YOUR BROWSER's CACHE
+BECAUSE chat.js is different than the CACHED. OTHERWISE YOU WILL GET Ws is undefined from the browser's console, becuase it will use the cached.
 */
 
 type clientPage struct {

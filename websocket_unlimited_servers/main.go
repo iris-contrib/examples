@@ -1,5 +1,10 @@
 package main
 
+/*
+NOTICE: IF YOU HAVE RAN THE PREVIOUS EXAMPLE(websocket_native_messages) YOU HAVE TO CLEAR YOUR BROWSER's CACHE
+BECAUSE chat.js is different than the CACHED.
+*/
+
 import (
 	"fmt"
 
