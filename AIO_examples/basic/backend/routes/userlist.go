@@ -1,29 +1,22 @@
 package routes
 
-import "github.com/kataras/iris"
+import (
+	"github.com/iris-contrib/examples/AIO_examples/basic/backend/api/user"
+	"gopkg.in/kataras/iris.v6"
+)
 
 type (
-	User struct {
-		Username string
-	}
-
 	Page struct {
 		Title string
-		Users []User
+		Users []userAPI.User
 	}
 )
 
 func UserList(ctx *iris.Context) {
-	users := []User{
-		User{"firstUsername"},
-		User{"secondUsername"},
-		User{"thirdUsername"},
-	}
-
-	page := Page{"All users", users}
+	page := Page{"All users", userAPI.MyUsers}
 
 	if err := ctx.Render("userlist.html", page); err != nil {
-		iris.Logger.Println(err.Error())
+		ctx.Log(iris.DevMode, err.Error())
 		ctx.Panic()
 	}
 }

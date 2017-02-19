@@ -1,32 +1,54 @@
 package main
 
 import (
-	"github.com/iris-contrib/examples/AIO_examples/basic/backend/api"
+	"log"
+
+	"github.com/iris-contrib/examples/AIO_examples/basic/backend/api/user"
 	"github.com/iris-contrib/examples/AIO_examples/basic/backend/routes"
 
-	"github.com/iris-contrib/middleware/logger"
-	"github.com/kataras/go-template/html"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
+	"gopkg.in/kataras/iris.v6/adaptors/view"
+	"gopkg.in/kataras/iris.v6/middleware/logger"
 )
 
+var app *iris.Framework
+
+func init() {
+	app = iris.New(iris.Configuration{Gzip: false, Charset: "UTF-8"})
+}
+
 func main() {
+	// set the router we want to use
+	app.Adapt(httprouter.New())
+
+	// adapt a new logger which will print the dev messages(mostly errors)
+	// and panic on production messages (by-default only fatal errors are printed via ProdMode)
+	app.Adapt(iris.LoggerPolicy(func(mode iris.LogMode, msg string) {
+		if mode == iris.DevMode {
+			log.Printf(msg)
+		} else if mode == iris.ProdMode {
+			panic(msg)
+		}
+	})) // or use app.Adapt(iris.DevLogger()) to print only DevMode messages to the os.Stdout
+
 	// set the template engine
-	iris.UseTemplate(html.New(html.Config{Layout: "layout.html"})).Directory("../frontend/templates", ".html")
+	app.Adapt(view.HTML("../frontend/templates", ".html").Layout("layout.html"))
 	// set the favicon
-	iris.Favicon("../frontend/public/images/favicon.ico")
+	app.Favicon("../frontend/public/images/favicon.ico")
 
 	// set static folder(s)
-	iris.StaticWeb("/public", "../frontend/public")
+	app.StaticWeb("/public", "../frontend/public")
 
 	// set the global middlewares
-	iris.Use(logger.New())
+	app.Use(logger.New())
 
 	// set the custom errors
-	iris.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
+	app.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
 		ctx.Render("errors/404.html", iris.Map{"Title": iris.StatusText(iris.StatusNotFound)})
 	})
 
-	iris.OnError(iris.StatusInternalServerError, func(ctx *iris.Context) {
+	app.OnError(iris.StatusInternalServerError, func(ctx *iris.Context) {
 		ctx.Render("errors/500.html", nil, iris.RenderOptions{"layout": iris.NoLayout})
 	})
 
@@ -35,26 +57,32 @@ func main() {
 	registerAPI()
 
 	// start the server
-	iris.Listen("127.0.0.1:8080")
+	app.Listen("127.0.0.1:8080")
 }
 
 func registerRoutes() {
 	// register index using a 'Handler'
-	iris.Handle("GET", "/", routes.Index())
+	app.Handle("GET", "/", routes.Index())
 
 	// this is other way to declare a route
 	// using a 'HandlerFunc'
-	iris.Get("/about", routes.About)
+	app.Get("/about", routes.About)
 
 	// Dynamic route
 
-	iris.Get("/profile/:username", routes.Profile)("user-profile")
+	app.Get("/profile/:username", routes.Profile).ChangeName("user-profile")
 	// user-profile is the custom,optional, route's Name: with this we can use the {{ url "user-profile" $username}} inside userlist.html
 
-	iris.Get("/all", routes.UserList)
+	app.Get("/all", routes.UserList)
 }
 
 func registerAPI() {
-	// this is other way to declare routes using the 'API'
-	iris.API("/users", api.UserAPI{})
+	p := app.Party("/users")
+	{
+		p.Get("/", userAPI.GetAll)
+		p.Get("/:id", userAPI.GetByID)
+		p.Put("/", userAPI.Insert)
+		p.Post("/:id", userAPI.Update)
+		p.Delete("/:id", userAPI.DeleteByID)
+	}
 }
