@@ -2,37 +2,43 @@ package main
 
 import (
 	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
 )
 
 func main() {
+	app := iris.New()
+	// output startup banner and error logs on os.Stdout
+	app.Adapt(iris.DevLogger())
+	// set the router, you can choose gorillamux too
+	app.Adapt(httprouter.New())
 
-	iris.OnError(iris.StatusInternalServerError, func(ctx *iris.Context) {
+	app.OnError(iris.StatusInternalServerError, func(ctx *iris.Context) {
 		ctx.Writef(iris.StatusText(iris.StatusInternalServerError)) // Outputs: Internal Server Error
 		ctx.SetStatusCode(iris.StatusInternalServerError)           // 500
 
-		ctx.Log("http status: 500 happened!\n")
+		println("http status: 500 happened!")
 	})
 
-	iris.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
+	app.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
 		ctx.Writef(iris.StatusText(iris.StatusNotFound)) // Outputs: Not Found
 		ctx.SetStatusCode(iris.StatusNotFound)           // 404
 
-		ctx.Log("http status: 404 happened!\n")
+		println("http status: 404 happened!")
 	})
 
 	// emit the errors to test them
-	iris.Get("/500", func(ctx *iris.Context) {
+	app.Get("/500", func(ctx *iris.Context) {
 		ctx.EmitError(iris.StatusInternalServerError) // ctx.Panic()
 	})
 
-	iris.Get("/404", func(ctx *iris.Context) {
+	app.Get("/404", func(ctx *iris.Context) {
 		ctx.EmitError(iris.StatusNotFound) // ctx.NotFound()
 	})
 
 	// navigate to localhost:8080/dsajdsada and you will see the custom http error 404
 	// or navigate to localhost:8080/404 and localhost:8080/500 to emit the errors manually
 
-	users := iris.Party("/users")
+	users := app.Party("/users")
 	{
 		users.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
 			ctx.WriteString("This is a Not Found error for /users path prefix")
@@ -53,6 +59,6 @@ func main() {
 	// navigate to localhost:8080/users/dsajdsada and you will see the custom http error 404
 	// or navigate to localhost:8080/users/404 and localhost:8080/users/500 to emit the errors manually
 
-	iris.Listen(":8080")
+	app.Listen(":8080")
 
 }
