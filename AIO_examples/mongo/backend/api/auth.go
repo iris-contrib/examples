@@ -1,7 +1,7 @@
 package api
 
 import (
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 	"gopkg.in/mgo.v2/bson"
 
 	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/db"

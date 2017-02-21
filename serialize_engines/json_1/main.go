@@ -1,6 +1,6 @@
 package main
 
-import "github.com/kataras/iris"
+import "gopkg.in/kataras/iris.v6"
 
 type myjson struct {
 	Name string `json:"name"`

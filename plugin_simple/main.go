@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 )
 
 func main() {

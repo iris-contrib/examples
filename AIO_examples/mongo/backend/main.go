@@ -1,33 +1,44 @@
 package main
 
 import (
-	"github.com/iris-contrib/middleware/logger"
-	"github.com/kataras/go-template/html"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
+	"gopkg.in/kataras/iris.v6/adaptors/view"
+	"gopkg.in/kataras/iris.v6/middleware/logger"
 
 	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/api"
 	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/db"
 	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/routes"
 )
 
+var (
+	app *iris.Framework
+)
+
+func init() {
+	app = iris.New()
+}
+
 func main() {
+	app.Adapt(iris.DevLogger())
+	app.Adapt(httprouter.New())
 	// set the template engine
-	iris.UseTemplate(html.New(html.Config{Layout: "layout.html"})).Directory("../frontend/templates", ".html")
+	app.Adapt(view.HTML("../frontend/templates", ".html").Layout("layout.html"))
 	// set the favicon
-	iris.Favicon("../frontend/public/images/favicon.ico")
+	app.Favicon("../frontend/public/images/favicon.ico")
 
 	// set static folder(s)
-	iris.StaticWeb("/public", "../frontend/public")
+	app.StaticWeb("/public", "../frontend/public")
 
-	// set the global middlewares
-	iris.Use(logger.New())
+	// set the global http request middleware
+	app.Use(logger.New())
 
 	// set the custom errors
-	iris.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
+	app.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
 		ctx.Render("errors/404.html", iris.Map{"Title": iris.StatusText(iris.StatusNotFound)})
 	})
 
-	iris.OnError(iris.StatusInternalServerError, func(ctx *iris.Context) {
+	app.OnError(iris.StatusInternalServerError, func(ctx *iris.Context) {
 		ctx.Render("errors/500.html", nil, iris.RenderOptions{"layout": iris.NoLayout})
 	})
 
@@ -38,23 +49,23 @@ func main() {
 	registerAPI()
 
 	// start the server
-	iris.Listen("127.0.0.1:8080")
+	app.Listen("127.0.0.1:8080")
 }
 
 func registerRoutes() {
 	// register index using a 'Handler'
-	iris.Handle("GET", "/", routes.Index())
+	app.Handle("GET", "/", routes.Index())
 
 	// this is other way to declare a route
 	// using a 'HandlerFunc'
-	iris.Get("/about", routes.About)
+	app.Get("/about", routes.About)
 
 	// Dynamic route
 
-	iris.Get("/profile/:username", routes.Profile)("user-profile")
+	app.Get("/profile/:username", routes.Profile).ChangeName("user-profile")
 	// user-profile is the custom,optional, route's Name: with this we can use the {{ url "user-profile" $username}} inside userlist.html
 
-	iris.Get("/all", routes.UserList)
+	app.Get("/all", routes.UserList)
 }
 
 func registerAPI() {
@@ -62,14 +73,21 @@ func registerAPI() {
 	auth := new(api.AuthAPI)
 
 	// Custom handler
-	iris.Handle("GET", "/v1/blog/news", api.CustomAPI{})
+	app.Handle("GET", "/v1/blog/news", api.CustomAPI{})
 	// Function handler
-	iris.Post("/v1/auth/login", auth.Login)
-	iris.Post("/v1/auth/register", auth.Register)
-	iris.Get("/v1/auth/check", auth.Check)
-	iris.Get("/v1/auth/session", auth.Session)
+	app.Post("/v1/auth/login", auth.Login)
+	app.Post("/v1/auth/register", auth.Register)
+	app.Get("/v1/auth/check", auth.Check)
+	app.Get("/v1/auth/session", auth.Session)
 	// Api handler
-	iris.API("/v1/users", api.UserAPI{})
+	users := app.Party("/v1/users")
+	{
+		users.Get("/", api.GetAllUsers)
+		users.Get("/:userid", api.GetUserByID)
+		users.Put("/", api.UpdateUser)
+		users.Post("/:userid", api.IsertUser)
+		users.Delete("/", api.DeleteUser)
+	}
 
 }
 

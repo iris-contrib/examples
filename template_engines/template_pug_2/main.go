@@ -4,7 +4,7 @@ import (
 	"html/template"
 
 	"github.com/kataras/go-template/pug"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 )
 
 type Person struct {

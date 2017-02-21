@@ -1,28 +1,32 @@
 package main
 
 import (
-	"github.com/iris-contrib/middleware/logger"
-	"github.com/kataras/go-template/html"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
+	"gopkg.in/kataras/iris.v6/adaptors/view"
+	"gopkg.in/kataras/iris.v6/middleware/logger"
 )
 
 func main() {
-
+	app := iris.New()
+	app.Adapt(iris.DevLogger())
+	app.Adapt(httprouter.New())
 	// we need this only to set the custom 404 page, otherwise we can skip that:
 	// set the template engine
-	iris.UseTemplate(html.New()).Directory("../frontend/templates", ".html")
+	app.Adapt(view.HTML("../frontend/templates", ".html"))
+
 	// set the custom error(s)
-	iris.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
+	app.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
 		ctx.MustRender("404.html", nil)
 	})
 
 	// set the middleware(s)
-	iris.Use(logger.New())
+	app.Use(logger.New())
 
 	// if you want to publish just a static website you don't have to set any routes
 	// Iris has one-line method to do that:
-	iris.StaticWeb("/", "../frontend/webstatic")
+	app.StaticWeb("/", "../frontend/webstatic")
 
 	// start the server
-	iris.Listen("127.0.0.1:8080")
+	app.Listen("127.0.0.1:8080")
 }

@@ -5,7 +5,7 @@ import (
 	"html/template"
 	"time"
 
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 )
 
 func main() {

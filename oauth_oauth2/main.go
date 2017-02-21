@@ -10,7 +10,7 @@ import (
 	"sort"
 
 	"github.com/iris-contrib/gothic"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 	"github.com/markbates/goth"
 	"github.com/markbates/goth/providers/amazon"
 	"github.com/markbates/goth/providers/bitbucket"

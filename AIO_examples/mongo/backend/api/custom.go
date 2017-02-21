@@ -3,14 +3,14 @@ package api
 import (
 	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/db"
 	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/models"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 )
 
 type CustomAPI struct {
 	*iris.Context
 }
 
-func (this CustomAPI) Serve(ctx *iris.Context) {
+func (CustomAPI) Serve(ctx *iris.Context) {
 
 	Db := db.MgoDb{}
 	Db.Init()

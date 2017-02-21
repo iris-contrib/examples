@@ -3,7 +3,7 @@ package main
 import (
 	"crypto/md5"
 	"fmt"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 	"io"
 	"os"
 	"strconv"
@@ -45,6 +45,8 @@ func main() {
 		io.Copy(out, file)
 
 	})
+	
+	// use ctx.SetMaxRequestBodySize(10 << 20) to limit the uploaded file(s) size.
 
 	iris.Listen(":8080")
 

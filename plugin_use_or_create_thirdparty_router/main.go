@@ -5,7 +5,7 @@ import (
 	"sort"
 
 	"github.com/gorilla/mux"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 )
 
 // NOTE: Iris has this as plugin on https://github.com/iris-contrib/plugin/tree/master/gorillamux

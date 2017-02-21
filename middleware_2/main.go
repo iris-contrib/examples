@@ -1,6 +1,6 @@
 package main
 
-import "github.com/kataras/iris"
+import "gopkg.in/kataras/iris.v6"
 
 func firstMiddleware(ctx *iris.Context) {
 	ctx.Writef("1. This is the first middleware, before any of route's handlers \n")

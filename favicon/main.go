@@ -1,19 +1,23 @@
 package main
 
-import "github.com/kataras/iris"
+import (
+	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
+)
 
-// if your ide cannot find the ./static folder try to build that program and after execute it
-// or try to download & run this example via LiteIDE.
 func main() {
-	iris.Favicon("./static/favicons/iris_favicon_32_32.ico")
+	app := iris.New()
+	app.Adapt(httprouter.New())
 	// This will serve the ./static/favicons/iris_favicon_32_32.ico to: localhost:8080/favicon.ico
+	app.Favicon("./static/favicons/iris_favicon_32_32.ico")
 
-	// iris.Favicon("./static/favicons/iris_favicon_32_32.ico", "/favicon_32_32.ico")
+	// app.Favicon("./static/favicons/iris_favicon_32_32.ico", "/favicon_32_32.ico")
 	// This will serve the ./static/favicons/iris_favicon_32_32.ico to: localhost:8080/favicon_32_32.ico
 
-	iris.Get("/", func(ctx *iris.Context) {
-		ctx.HTML(iris.StatusOK, "You should see the favicon now at the side of your browser, if not please refresh or clear the browser's cache.")
+	app.Get("/", func(ctx *iris.Context) {
+		ctx.HTML(iris.StatusOK, `You should see the favicon now at the side of your browser,
+      if not, please refresh or clear the browser's cache.`)
 	})
 
-	iris.Listen(":8080")
+	app.Listen(":8080")
 }

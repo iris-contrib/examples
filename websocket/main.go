@@ -1,9 +1,12 @@
 package main
 
 import (
-	"fmt" // optional
+	"fmt"  // optional
+	"time" // optional
 
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
+	"gopkg.in/kataras/iris.v6/adaptors/view"
 )
 
 type clientPage struct {
@@ -12,19 +15,27 @@ type clientPage struct {
 }
 
 func main() {
-	iris.StaticWeb("/js", "./static/js")
+	app := iris.New()
+	app.Adapt(iris.DevLogger())
+	app.Adapt(httprouter.New())
+	app.Adapt(view.HTML("./templates", ".html"))
 
-	iris.Get("/", func(ctx *iris.Context) {
+	app.StaticWeb("/js", "./static/js")
+
+	app.Get("/", func(ctx *iris.Context) {
 		ctx.Render("client.html", clientPage{"Client Page", ctx.Host()})
+
 	})
 
 	// the path which the websocket client should listen/registed to ->
-	iris.Config.Websocket.Endpoint = "/my_endpoint"
+	app.Config.Websocket.Endpoint = "/my_endpoint"
 	// by-default all origins are accepted, you can change this behavior by setting:
 	// iris.Config.Websocket.CheckOrigin
 
 	var myChatRoom = "room1"
-	iris.Websocket.OnConnection(func(c iris.WebsocketConnection) {
+	app.Config.Websocket.WriteTimeout = 60 * time.Second
+
+	app.Websocket.OnConnection(func(c iris.WebsocketConnection) {
 		// Request returns the (upgraded) *http.Request of this connection
 		// avoid using it, you normally don't need it,
 		// websocket has everything you need to authenticate the user BUT if it's necessary
@@ -69,5 +80,5 @@ func main() {
 		})
 	})
 
-	iris.Listen(":8080")
+	app.Listen(":8080")
 }

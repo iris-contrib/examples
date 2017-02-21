@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/kataras/go-serializer/jsonp"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 )
 
 type myjson struct {

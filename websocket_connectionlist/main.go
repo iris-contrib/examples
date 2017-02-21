@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 )
 
 type clientPage struct {

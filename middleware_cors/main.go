@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/iris-contrib/middleware/cors"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 )
 
 func main() {
@@ -17,11 +17,4 @@ func main() {
 	}) //db.update...}
 
 	app.Listen(":3333")
-	//	or
-	//	ln, err := iris.TCP4("localhost:3333")
-	//	if err != nil {
-	//		panic(err)
-	//	}
-
-	//	app.Serve(ln)
 }

@@ -1,6 +1,6 @@
 package main
 
-import "github.com/kataras/iris"
+import "gopkg.in/kataras/iris.v6"
 
 // nothing to do, defaults to ./templates and .html extension, no need to import any template engine because HTML engine is the default
 // if anything else has been registered

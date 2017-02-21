@@ -8,7 +8,7 @@ BECAUSE chat.js is different than the CACHED.
 import (
 	"fmt"
 
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 )
 
 type clientPage struct {

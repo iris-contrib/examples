@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/xml"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 )
 
 type myxml struct {

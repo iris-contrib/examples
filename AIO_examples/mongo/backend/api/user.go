@@ -1,37 +1,30 @@
 package api
 
 import (
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 	"gopkg.in/mgo.v2/bson"
 
 	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/db"
 	"github.com/iris-contrib/examples/AIO_examples/mongo/backend/models"
 )
 
-type UserAPI struct {
-	*iris.Context
-}
-
-// GET /users
-func (this UserAPI) Get() {
-
+func GetAllUsers(ctx *iris.Context) {
 	Db := db.MgoDb{}
 	Db.Init()
 
 	result := []models.User{}
 	if err := Db.C("people").Find(nil).All(&result); err != nil {
-		this.JSON(iris.StatusOK, models.Err("1"))
+		ctx.JSON(iris.StatusOK, models.Err("1"))
 		return
-	} else {
-		this.JSON(iris.StatusOK, &result)
 	}
 
-	Db.Close()
+	ctx.JSON(iris.StatusOK, &result)
 
+	Db.Close()
 }
 
-// GET /users/:param1
-func (this UserAPI) GetBy(id string) {
+func GetUserByID(ctx *iris.Context) {
+	id := ctx.Param("userid")
 
 	Db := db.MgoDb{}
 	Db.Init()
@@ -39,23 +32,20 @@ func (this UserAPI) GetBy(id string) {
 	result := models.User{}
 
 	if err := Db.C("people").Find(bson.M{"id": id}).One(&result); err != nil {
-		this.JSON(iris.StatusOK, models.Err("1"))
+		ctx.JSON(iris.StatusOK, models.Err("1"))
 		return
-	} else {
-		this.JSON(iris.StatusOK, &result)
 	}
 
-	Db.Close()
+	ctx.JSON(iris.StatusOK, &result)
 
+	Db.Close()
 }
 
-// PUT /users
-func (this UserAPI) Put() {
-
-	newUsername := string(this.FormValue("username"))
+func UpdateUser(ctx *iris.Context) {
+	newUsername := string(ctx.FormValue("username"))
 	// myDb.InsertUser(newUsername)
 	println(newUsername + " has been inserted to database")
-	this.JSON(iris.StatusOK, iris.Map{"response": true})
+	ctx.JSON(iris.StatusOK, iris.Map{"response": true})
 
 	// // Update
 	// colQuerier := bson.M{"name": "Ale"}
@@ -64,54 +54,48 @@ func (this UserAPI) Put() {
 	// if err != nil {
 	// 	panic(err)
 	// }
-
 }
 
-// POST /users/:param1
-func (this UserAPI) PostBy(id string) {
-
+func InsertUser(ctx *iris.Context) {
+	id := ctx.Param("userid") //?
 	usr := models.User{}
-	err := this.ReadForm(&usr)
+	err := ctx.ReadForm(&usr)
 
 	if err != nil {
-		this.JSON(iris.StatusOK, models.Err("4"))
+		ctx.JSON(iris.StatusOK, models.Err("4"))
 		panic(err.Error())
 	}
 
-	usr.Id = id
+	usr.Id = id // ?
 
 	Db := db.MgoDb{}
 	Db.Init()
 
 	// Insert
 	if err := Db.C("people").Insert(&usr); err != nil {
-		this.JSON(iris.StatusOK, models.Err("5"))
+		ctx.JSON(iris.StatusOK, models.Err("5"))
 	} else {
-		this.JSON(iris.StatusOK, iris.Map{"response": true})
+		ctx.JSON(iris.StatusOK, iris.Map{"response": true})
 	}
 
 	Db.Close()
-
 }
 
-// DELETE /users/:param1
-func (this UserAPI) DeleteBy(id string) {
-
+func DeleteUser(ctx *iris.Context) {
 	// if _, err := db.Col.RemoveAll(bson.M{"id": id}); err != nil {
-	// 	this.JSON(iris.StatusOK, models.Err("1"))
+	// 	ctx.JSON(iris.StatusOK, models.Err("1"))
 	// 	return
 	// }
 
-	// this.JSON(iris.StatusOK, iris.Map{"response": true})
-
+	// ctx.JSON(iris.StatusOK, iris.Map{"response": true})
 }
 
 // // Get Params example code
-// var _name = string(this.FormValue("name"))
-// var _grender = string(this.FormValue("gender"))
-// var _age = string(this.FormValue("age"))
+// var _name = string(ctx.FormValue("name"))
+// var _grender = string(ctx.FormValue("gender"))
+// var _age = string(ctx.FormValue("age"))
 // _newage, _ := strconv.Atoi(_age)
-// var _id = string(this.FormValue("id"))
+// var _id = string(ctx.FormValue("id"))
 
 // usr := models.User{
 // 	Name:   _name,

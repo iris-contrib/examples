@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/kataras/go-template/django"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 )
 
 func main() {

@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/iris-contrib/middleware/basicauth"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 )
 
 func main() {
@@ -22,7 +22,7 @@ func main() {
 	/*
 		iris.Get("/mysecret", authentication, func(ctx *iris.Context) {
 			username := ctx.GetString("mycustomkey") //  the Contextkey from the authConfig
-			ctx.Write("Hello authenticated user: %s ", username)
+			ctx.Writef("Hello authenticated user: %s ", username)
 		})
 	*/
 

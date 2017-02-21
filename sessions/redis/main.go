@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/kataras/go-sessions/sessiondb/redis"
 	"github.com/kataras/go-sessions/sessiondb/redis/service"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 )
 
 func main() {

@@ -1,6 +1,6 @@
 ## Folder information
 
-This folder contains an example integration of Iris with MongoDb using the mgo driver, based on the [Iris commanad line tool](https://github.com/kataras/iris/tree/master/iris).
+This folder contains an example integration of Iris with MongoDb using the mgo driver, based on the [Iris commanad line tool](https://github.com/kataras/iris/tree/v6/iris).
 
 ### Additionally
 
@@ -29,7 +29,7 @@ $iris run backend/main.go
 
 Packages needed to integrate into your code
 ```sh
-go get -u github.com/kataras/iris/iris
+go get -u gopkg.in/kataras/iris.v6/iris
 go get -u github.com/iris-contrib/middleware/
 go get -u gopkg.in/mgo.v2/bson
 go get -u gopkg.in/mgo.v2

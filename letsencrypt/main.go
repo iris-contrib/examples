@@ -1,7 +1,7 @@
 // Package main provide one-line integration with letsencrypt.org
 package main
 
-import "github.com/kataras/iris"
+import "gopkg.in/kataras/iris.v6"
 
 func main() {
 	iris.Get("/", func(ctx *iris.Context) {

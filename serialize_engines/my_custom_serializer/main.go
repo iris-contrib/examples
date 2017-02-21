@@ -17,7 +17,7 @@ package main
 import (
 	"github.com/kataras/go-serializer"
 	"github.com/kataras/go-serializer/text"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 )
 
 // Let's do this with ` text/plain` content type, because you can see its results easly, the first engine will use this "text/plain" as key,

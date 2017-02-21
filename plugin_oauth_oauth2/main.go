@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/iris-contrib/plugin/oauth"
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
 )
 
 // register your auth via configs, providers with non-empty values will be registered to goth automatically by Iris
