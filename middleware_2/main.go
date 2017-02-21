@@ -1,6 +1,9 @@
 package main
 
-import "gopkg.in/kataras/iris.v6"
+import (
+	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
+)
 
 func firstMiddleware(ctx *iris.Context) {
 	ctx.Writef("1. This is the first middleware, before any of route's handlers \n")
@@ -22,17 +25,22 @@ func lastAlwaysMiddleware(ctx *iris.Context) {
 }
 
 func main() {
+	app := iris.New()
+	// output startup banner and error logs on os.Stdout
+	app.Adapt(iris.DevLogger())
+	// set the router, you can choose gorillamux too
+	app.Adapt(httprouter.New())
 
-	iris.UseFunc(firstMiddleware)
-	iris.DoneFunc(lastAlwaysMiddleware)
+	app.UseFunc(firstMiddleware)
+	app.DoneFunc(lastAlwaysMiddleware)
 
-	iris.Get("/", secondMiddleware, func(ctx *iris.Context) {
+	app.Get("/", secondMiddleware, func(ctx *iris.Context) {
 		ctx.Writef("Hello from %s \n", ctx.Path())
 		ctx.Next() // .Next because we 're using the third middleware after that, and lastAlwaysMiddleware also
 	}, thirdMiddleware)
 
 	// for parties look the 'middleware_3' example
 
-	iris.Listen(":8080")
+	app.Listen(":8080")
 
 }

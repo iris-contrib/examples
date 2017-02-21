@@ -5,11 +5,13 @@ import (
 	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
 )
 
-functx main() {
+func main() {
 	app := iris.New()
+	// output startup banner and error logs on os.Stdout
 	app.Adapt(iris.DevLogger())
+	// set the router, you can choose gorillamux too
 	app.Adapt(httprouter.New())
-	
+
 	// register global middleware, you can pass more than one handler comma separated
 	app.UseFunc(func(ctx *iris.Context) {
 		println("(1)Global logger path: " + ctx.Path())
@@ -40,7 +42,7 @@ type MyGlobalMiddlewareStructed struct {
 }
 
 //Important staff, iris middleware must implement the iris.Handler interface which is:
-functx (m MyGlobalMiddlewareStructed) Serve(ctx *iris.Context) {
-	fmt.Println("Hello from the MyGlobalMiddlewareStructed")
+func (m MyGlobalMiddlewareStructed) Serve(ctx *iris.Context) {
+	println("Hello from the MyGlobalMiddlewareStructed")
 	ctx.Next()
 }
