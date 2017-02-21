@@ -3,7 +3,8 @@ package main
 import (
 	"time"
 
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
 )
 
 var testMarkdownContents = `## Hello Markdown from Iris
@@ -53,11 +54,13 @@ All features of Sundown are supported, including:
 	[this is a link](https://github.com/kataras/iris) `
 
 func main() {
-	// if this is not setted then iris set this duration to the lowest expiration entry from the cache + 5 seconds
-	// recommentation is to left as it's or
-	// iris.Config.CacheGCDuration = time.Duration(5) * time.Minute
+	app := iris.New()
+	// output startup banner and error logs on os.Stdout
+	app.Adapt(iris.DevLogger())
+	// set the router, you can choose gorillamux too
+	app.Adapt(httprouter.New())
 
-	iris.Get("/hi", iris.Cache(func(c *iris.Context) {
+	app.Get("/hi", app.Cache(func(c *iris.Context) {
 		c.WriteString("Hi this is a big content, do not try cache on small content it will not make any significant difference!")
 	}, time.Duration(10)*time.Second))
 
@@ -67,13 +70,13 @@ func main() {
 
 	expiration := time.Duration(5 * time.Second)
 
-	iris.Get("/", iris.Cache(bodyHandler, expiration))
+	app.Get("/", app.Cache(bodyHandler, expiration))
 
 	// if expiration is <=time.Second then the cache tries to set the expiration from the "cache-control" maxage header's value(in seconds)
 	// // if this header doesn't founds then the default is 5 minutes
-	iris.Get("/cache_control", iris.Cache(func(ctx *iris.Context) {
+	app.Get("/cache_control", app.Cache(func(ctx *iris.Context) {
 		ctx.HTML(iris.StatusOK, "<h1>Hello!</h1>")
 	}, -1))
 
-	iris.Listen(":8080")
+	app.Listen(":8080")
 }

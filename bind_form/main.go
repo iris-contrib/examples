@@ -2,9 +2,9 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
+	"gopkg.in/kataras/iris.v6/adaptors/view"
 )
 
 type Visitor struct {
@@ -14,23 +14,29 @@ type Visitor struct {
 }
 
 func main() {
-	// no need to set a template engine here, because the default is the html with ./templates as directory and .html as files extension
+	app := iris.New()
+	// output startup banner and error logs on os.Stdout
+	app.Adapt(iris.DevLogger())
+	// set the router, you can choose gorillamux too
+	app.Adapt(httprouter.New())
+	// set the view html template engine
+	app.Adapt(view.HTML("./templates", ".html"))
 
-	iris.Get("/", func(ctx *iris.Context) {
+	app.Get("/", func(ctx *iris.Context) {
 		if err := ctx.Render("form.html", nil); err != nil {
-			iris.Logger.Printf(err.Error())
+			ctx.Log(iris.DevMode, err.Error())
 		}
 	})
 
-	iris.Post("/form_action", func(ctx *iris.Context) {
+	app.Post("/form_action", func(ctx *iris.Context) {
 		visitor := Visitor{}
 		err := ctx.ReadForm(&visitor)
 		if err != nil {
-			fmt.Println("Error when reading form: " + err.Error())
+			ctx.Log(iris.DevMode, "Error when reading form: "+err.Error())
 		}
-		fmt.Printf("\n Visitor: %#v", visitor)
-		ctx.Writef("%#v", visitor)
+
+		ctx.Writef("Visitor: %#v", visitor)
 	})
 
-	iris.Listen(":8080")
+	app.Listen(":8080")
 }

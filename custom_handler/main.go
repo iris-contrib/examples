@@ -1,7 +1,8 @@
 package main
 
 import (
-	"github.com/kataras/iris"
+	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
 )
 
 type MyData struct {
@@ -23,6 +24,12 @@ func (m *MyHandler) Serve(ctx *iris.Context) {
 }
 
 func main() {
+	app := iris.New()
+	// output startup banner and error logs on os.Stdout
+	app.Adapt(iris.DevLogger())
+	// set the router, you can choose gorillamux too
+	app.Adapt(httprouter.New())
+
 	/*
 	 Create the data with the predefined fields that will no change at every request
 	*/
@@ -34,8 +41,8 @@ func main() {
 		use a new MyHandler for each route,
 		keep the same original myData with the fields no need to change on every request
 	*/
-	iris.Handle("GET", "/", &MyHandler{myData})
-	iris.Handle("GET", "/about", &MyHandler{myData})
+	app.Handle("GET", "/", &MyHandler{myData})
+	app.Handle("GET", "/about", &MyHandler{myData})
 
-	iris.Listen(":8080")
+	app.Listen(":8080")
 }
