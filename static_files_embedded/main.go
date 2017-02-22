@@ -6,12 +6,19 @@ package main
 
 import (
 	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
 )
 
 func main() {
-	iris.Get("/", func(ctx *iris.Context) {
-		ctx.HTML(iris.StatusOK, "<b> Hi from index</b>")
-	})
+	app := iris.New()
+	// output startup banner and error logs on os.Stdout
+	app.Adapt(iris.DevLogger())
+	// set the router, you can choose gorillamux too
+	app.Adapt(httprouter.New())
+
+	//	app.Get("/", func(ctx *iris.Context) {
+	//		ctx.HTML(iris.StatusOK, "<b> Hi from index</b>")
+	//	})
 
 	// executing this go-bindata command creates a source file named 'bindata.go' which
 	// gives you the Asset and AssetNames funcs which we will pass into .StaticAssets
@@ -20,14 +27,14 @@ func main() {
 
 	// For the reason that you may use go-bindata to embed more than your assets, you should pass the 'virtual directory path', for example here is the : "./assets"
 	// and the request path, which these files will be served to, you can set as "/assets" or "/static" which resulting on http://localhost:8080/static/*anyfile.*extension
-	iris.StaticEmbedded("/static", "./assets", Asset, AssetNames)
 
+	app.StaticEmbedded("/static", "./assets", Asset, AssetNames)
 	// that's all
 	// this will serve the ./assets (embedded) files to the /static request path for example the favicon.ico will be served as :
 	// http://localhost:8080/static/favicon.ico
 	// Methods: GET and HEAD
 
-	iris.Listen(":8080")
+	app.Listen(":8080")
 }
 
 // Navigate to:
