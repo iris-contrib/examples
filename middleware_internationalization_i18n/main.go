@@ -1,13 +1,19 @@
 package main
 
 import (
-	"github.com/iris-contrib/middleware/i18n"
 	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
+	"gopkg.in/kataras/iris.v6/middleware/i18n"
 )
 
 func main() {
+	app := iris.New()
+	// output startup banner and error logs on os.Stdout
+	app.Adapt(iris.DevLogger())
+	// set the router, you can choose gorillamux too
+	app.Adapt(httprouter.New())
 
-	iris.Use(i18n.New(i18n.Config{
+	app.Use(i18n.New(i18n.Config{
 		Default:      "en-US",
 		URLParameter: "lang",
 		Languages: map[string]string{
@@ -15,7 +21,7 @@ func main() {
 			"el-GR": "./locales/locale_el-GR.ini",
 			"zh-CN": "./locales/locale_zh-CN.ini"}}))
 
-	iris.Get("/", func(ctx *iris.Context) {
+	app.Get("/", func(ctx *iris.Context) {
 
 		// it tries to find the language by:
 		// ctx.Get("language") , that should be setted on other middleware before the i18n middleware*
@@ -42,6 +48,6 @@ func main() {
 	// go to http://localhost:8080/?lang=el-GR
 	// or http://localhost:8080
 	// or http://localhost:8080/?lang=zh-CN
-	iris.Listen(":8080")
+	app.Listen(":8080")
 
 }

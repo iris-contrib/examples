@@ -204,9 +204,9 @@ func AssetNames() []string {
 // _bindata is a table, holding each asset generator, mapped to its name.
 var _bindata = map[string]func() (*asset, error){
 	"assets/css/bootstrap.min.css": assetsCssBootstrapMinCss,
-	"assets/favicon.ico": assetsFaviconIco,
-	"assets/index.html": assetsIndexHtml,
-	"assets/js/jquery-2.1.1.js": assetsJsJquery211Js,
+	"assets/favicon.ico":           assetsFaviconIco,
+	"assets/index.html":            assetsIndexHtml,
+	"assets/js/jquery-2.1.1.js":    assetsJsJquery211Js,
 }
 
 // AssetDir returns the file names below a certain
@@ -248,15 +248,16 @@ type bintree struct {
 	Func     func() (*asset, error)
 	Children map[string]*bintree
 }
+
 var _bintree = &bintree{nil, map[string]*bintree{
-	"assets": &bintree{nil, map[string]*bintree{
-		"css": &bintree{nil, map[string]*bintree{
-			"bootstrap.min.css": &bintree{assetsCssBootstrapMinCss, map[string]*bintree{}},
+	"assets": {nil, map[string]*bintree{
+		"css": {nil, map[string]*bintree{
+			"bootstrap.min.css": {assetsCssBootstrapMinCss, map[string]*bintree{}},
 		}},
-		"favicon.ico": &bintree{assetsFaviconIco, map[string]*bintree{}},
-		"index.html": &bintree{assetsIndexHtml, map[string]*bintree{}},
-		"js": &bintree{nil, map[string]*bintree{
-			"jquery-2.1.1.js": &bintree{assetsJsJquery211Js, map[string]*bintree{}},
+		"favicon.ico": {assetsFaviconIco, map[string]*bintree{}},
+		"index.html":  {assetsIndexHtml, map[string]*bintree{}},
+		"js": {nil, map[string]*bintree{
+			"jquery-2.1.1.js": {assetsJsJquery211Js, map[string]*bintree{}},
 		}},
 	}},
 }}
@@ -307,4 +308,3 @@ func _filePath(dir, name string) string {
 	cannonicalName := strings.Replace(name, "\\", "/", -1)
 	return filepath.Join(append([]string{dir}, strings.Split(cannonicalName, "/")...)...)
 }
-

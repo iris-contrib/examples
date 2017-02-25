@@ -11,17 +11,17 @@ type User struct {
 
 // MyUsers is our fake users database/store
 var MyUsers = []User{
-	User{
+	{
 		ID:        1,
 		Firstname: "Gerasimos",
 		Lastname:  "Maropoulos",
 	},
-	User{
+	{
 		ID:        2,
 		Firstname: "Hillary",
 		Lastname:  "Clinton",
 	},
-	User{
+	{
 		ID:        3,
 		Firstname: "Donald",
 		Lastname:  "Trump",

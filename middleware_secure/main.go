@@ -3,9 +3,16 @@ package main
 import (
 	"github.com/iris-contrib/middleware/secure"
 	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
 )
 
 func main() {
+	app := iris.New()
+	// output startup banner and error logs on os.Stdout
+	app.Adapt(iris.DevLogger())
+	// set the router, you can choose gorillamux too
+	app.Adapt(httprouter.New())
+
 	s := secure.New(secure.Options{
 		AllowedHosts:            []string{"ssl.example.com"},                                                                                                                         // AllowedHosts is a list of fully qualified domain names that are allowed. Default is empty list, which allows any and all host names.
 		SSLRedirect:             true,                                                                                                                                                // If SSLRedirect is set to true, then only allow HTTPS requests. Default is false.
@@ -26,7 +33,7 @@ func main() {
 		IsDevelopment: true, // This will cause the AllowedHosts, SSLRedirect, and STSSeconds/STSIncludeSubdomains options to be ignored during development. When deploying to production, be sure to set this to false.
 	})
 
-	iris.UseFunc(func(c *iris.Context) {
+	app.UseFunc(func(c *iris.Context) {
 		err := s.Process(c)
 
 		// If there was an error, do not continue.
@@ -37,10 +44,10 @@ func main() {
 		c.Next()
 	})
 
-	iris.Get("/home", func(c *iris.Context) {
+	app.Get("/home", func(c *iris.Context) {
 		c.Writef("Hello from /home ?")
 	})
 
-	iris.Listen(":8080")
+	app.Listen(":8080")
 
 }

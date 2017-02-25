@@ -1,11 +1,17 @@
 package main
 
 import (
-	"github.com/iris-contrib/middleware/logger"
 	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
+	"gopkg.in/kataras/iris.v6/middleware/logger"
 )
 
 func main() {
+	app := iris.New()
+	// output startup banner and error logs on os.Stdout
+	app.Adapt(iris.DevLogger())
+	// set the router, you can choose gorillamux too
+	app.Adapt(httprouter.New())
 
 	customLogger := logger.New(logger.Config{
 		// Status displays status code
@@ -18,17 +24,17 @@ func main() {
 		Path: true,
 	})
 
-	iris.Use(customLogger)
+	app.Use(customLogger)
 
-	iris.Get("/", func(ctx *iris.Context) {
+	app.Get("/", func(ctx *iris.Context) {
 		ctx.Writef("hello")
 	})
 
-	iris.Get("/1", func(ctx *iris.Context) {
+	app.Get("/1", func(ctx *iris.Context) {
 		ctx.Writef("hello")
 	})
 
-	iris.Get("/2", func(ctx *iris.Context) {
+	app.Get("/2", func(ctx *iris.Context) {
 		ctx.Writef("hello")
 	})
 
@@ -36,14 +42,12 @@ func main() {
 	errorLogger := logger.New()
 
 	// yes we have options look at the logger.Options inside kataras/iris/middleware/logger.go
-	iris.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
+	app.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
 		errorLogger.Serve(ctx)
 		ctx.Writef("My Custom 404 error page ")
 	})
 	//
 
-	iris.Listen(":8080")
+	app.Listen(":8080")
 
 }
-
-/* Book section: 'Logger' */

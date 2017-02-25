@@ -73,7 +73,7 @@ func main() {
 }
 
 func broadcast(Conn map[iris.WebsocketConnection]bool, message string) {
-	for k, _ := range Conn {
+	for k := range Conn {
 		k.To("room1").Emit("chat", message)
 	}
 }

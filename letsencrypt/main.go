@@ -12,6 +12,7 @@ func main() {
 	app.Adapt(iris.DevLogger())
 	// set the router, you can choose gorillamux too
 	app.Adapt(httprouter.New())
+
 	app.Get("/", func(ctx *iris.Context) {
 		ctx.Writef("Hello from SECURE SERVER!")
 	})

@@ -3,6 +3,7 @@ package main
 import (
 	"gopkg.in/kataras/iris.v6"
 	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
+	"gopkg.in/kataras/iris.v6/adaptors/view" // optional
 )
 
 func main() {
@@ -11,6 +12,9 @@ func main() {
 	app.Adapt(iris.DevLogger())
 	// set the router, you can choose gorillamux too
 	app.Adapt(httprouter.New())
+	// load the view templates from ./templates folder and .html extension
+	// use the standard html/template syntax
+	app.Adapt(view.HTML("./templates", ".html"))
 
 	app.OnError(iris.StatusInternalServerError, func(ctx *iris.Context) {
 		ctx.Writef(iris.StatusText(iris.StatusInternalServerError)) // Outputs: Internal Server Error
@@ -20,10 +24,7 @@ func main() {
 	})
 
 	app.OnError(iris.StatusNotFound, func(ctx *iris.Context) {
-		ctx.Writef(iris.StatusText(iris.StatusNotFound)) // Outputs: Not Found
-		ctx.SetStatusCode(iris.StatusNotFound)           // 404
-
-		println("http status: 404 happened!")
+		ctx.RenderWithStatus(iris.StatusNotFound, "errors/404.html", nil)
 	})
 
 	// emit the errors to test them

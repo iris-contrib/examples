@@ -1,45 +1,44 @@
-// Run this on command like with: go run main.go , after 2-3 seconds press control+C
 package main
 
 import (
+	"context"
 	"time"
 
 	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
 )
 
 func main() {
+	app := iris.New()
+	// output startup banner and error logs on os.Stdout
+	app.Adapt(iris.DevLogger())
+	// set the router, you can choose gorillamux too
+	app.Adapt(httprouter.New())
 
-	iris.Plugins.PostInterrupt(func(s *iris.Framework) {
-		// when os.Interrupt signal is fired the body of this function will be
-		// fired,
-		// you're responsible for closing the server with s.Close()
+	app.Adapt(iris.EventPolicy{
+		// Interrupt Event means when control+C pressed on terminal.
+		Interrupted: func(*iris.Framework) {
+			println("control+C pressed, do your external cleanup here!")
 
-		// if that event is not registered then the framework
-		// will close the server for you.
+			// when os.Interrupt signal is fired the body of this function will be
+			// fired,
+			// you're responsible for closing the server with app.Shutdown(...)
 
-		/* Do  any custom cleanup and finally call the s.Close()
-		   remember you have the iris.Plugins.PreClose(func(s *Framework)) event
-		   too
-		   so you can split your logic in two logically places.
-		*/
-
-		println("control+C pressed, closing the server in 5 seconds!")
-
-		time.Sleep(5 * time.Second)
-
-		s.Close() // ln.Close(), or s.Close(), doesn't matters.
+			// if that event is not registered then the framework
+			// will gracefully close the server for you.
+			ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
+			app.Shutdown(ctx)
+		},
 	})
 
-	iris.Get("/", func(ctx *iris.Context) {
+	app.Get("/", func(ctx *iris.Context) {
 		ctx.HTML(iris.StatusOK, "<h1>Hello from index!</h1>")
 	})
 
-	// make use of our custom tcp listener here
-	// in order to not panic on .Close() (.Listen functions panics on error, .Serve is not, you are responsible)
 	ln, err := iris.TCP4(":8080")
 	if err != nil {
 		panic(err)
 	}
-	iris.Serve(ln)
+	app.Serve(ln)
 
 }

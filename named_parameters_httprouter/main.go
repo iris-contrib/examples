@@ -1,39 +1,41 @@
 package main
 
 import (
-	"strconv"
-
 	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
 )
 
 func main() {
+	app := iris.New()
+	// output startup banner and error logs on os.Stdout
+	app.Adapt(iris.DevLogger())
+	// set the router, you can choose gorillamux too
+	app.Adapt(httprouter.New())
 
 	// Match to /hello/iris,  (if PathCorrection:true match also /hello/iris/)
 	// Not match to /hello or /hello/ or /hello/iris/something
-	iris.Get("/hello/:name", func(c *iris.Context) {
+	app.Get("/hello/:name", func(ctx *iris.Context) {
 		// Retrieve the parameter name
-		name := c.Param("name")
-		c.Writef("Hello %s", name)
+		name := ctx.Param("name")
+		ctx.Writef("Hello %s", name)
 	})
 
 	// Match to /profile/iris/friends/1, (if PathCorrection:true match also /profile/iris/friends/1/)
 	// Not match to /profile/ , /profile/iris ,
 	// Not match to /profile/iris/friends,  /profile/iris/friends ,
 	// Not match to /profile/iris/friends/2/something
-	iris.Get("/profile/:fullname/friends/:friendID", func(c *iris.Context) {
+	app.Get("/profile/:fullname/friends/:friendID", func(ctx *iris.Context) {
 		// Retrieve the parameters fullname and friendID
-		fullname := c.Param("fullname")
-		friendID, err := c.ParamInt("friendID")
-		if err != nil {
-			// Do something with the error
-		}
-		c.HTML(iris.StatusOK, "<b> Hello </b>"+fullname+"<b> with friends ID </b>"+strconv.Itoa(friendID))
+		fullname := ctx.Param("fullname")
+		friendID, _ := ctx.ParamInt("friendID")
+
+		ctx.Writef("hello %s with :friendID = %d", fullname, friendID)
 	})
 
 	/* Example: /posts/:id and /posts/new (dynamic value conficts with the static 'new') for performance reasons and simplicity
 	   but if you need to have them you can do that: */
 
-	iris.Get("/posts/*action", func(ctx *iris.Context) {
+	app.Get("/posts/*action", func(ctx *iris.Context) {
 		action := ctx.Param("action")
 		if action == "/new" {
 			// it's posts/new page
@@ -45,5 +47,5 @@ func main() {
 		}
 	})
 
-	iris.Listen(":8080")
+	app.Listen(":8080")
 }

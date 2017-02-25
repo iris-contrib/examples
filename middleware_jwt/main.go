@@ -2,11 +2,18 @@ package main
 
 import (
 	"github.com/dgrijalva/jwt-go"
+	// jwtmiddleware is a community middleware use with caution or select other middleware
 	jwtmiddleware "github.com/iris-contrib/middleware/jwt"
 	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
 )
 
 func main() {
+	app := iris.New()
+	// output startup banner and error logs on os.Stdout
+	app.Adapt(iris.DevLogger())
+	// set the router, you can choose gorillamux too
+	app.Adapt(httprouter.New())
 
 	myJwtMiddleware := jwtmiddleware.New(jwtmiddleware.Config{
 		ValidationKeyGetter: func(token *jwt.Token) (interface{}, error) {
@@ -15,10 +22,10 @@ func main() {
 		SigningMethod: jwt.SigningMethodHS256,
 	})
 
-	iris.Get("/ping", PingHandler)
+	app.Get("/ping", PingHandler)
 
-	iris.Get("/secured/ping", myJwtMiddleware.Serve, SecuredPingHandler)
-	iris.Listen(":8080")
+	app.Get("/secured/ping", myJwtMiddleware.Serve, SecuredPingHandler)
+	app.Listen(":8080")
 
 }
 

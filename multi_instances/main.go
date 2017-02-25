@@ -2,17 +2,20 @@ package main
 
 import (
 	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
 )
 
 func main() {
 	server1 := iris.New()
-	server1.Get("/", func(c *iris.Context) {
-		c.Writef("Hello from the server1 on :8080")
+	server1.Adapt(httprouter.New())
+	server1.Get("/", func(ctx *iris.Context) {
+		ctx.Writef("Hello from the server1 on :8080")
 	})
 
 	server2 := iris.New()
-	server2.Get("/", func(c *iris.Context) {
-		c.Writef("Hello from the server2 on :80")
+	server2.Adapt(httprouter.New())
+	server2.Get("/", func(ctx *iris.Context) {
+		ctx.Writef("Hello from the server2 on :80")
 	})
 
 	// remember that .Listen on Iris is a block function

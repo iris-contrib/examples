@@ -29,7 +29,7 @@ func main() {
 }
 
 func responseLogger(ctx *iris.Context) {
-	// we need the recorder in order to take the body written by the main handler
+	// optionally: use recorder in order to take the body written by the main handler
 	w := ctx.Recorder()
 	// process the actual request first, we don't want to have delays
 	// so execute the next(which is the main) handler first.

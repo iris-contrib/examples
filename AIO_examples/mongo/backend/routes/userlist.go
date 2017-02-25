@@ -15,9 +15,9 @@ type (
 
 func UserList(ctx *iris.Context) {
 	users := []User{
-		User{"firstUsername"},
-		User{"secondUsername"},
-		User{"thirdUsername"},
+		{"firstUsername"},
+		{"secondUsername"},
+		{"thirdUsername"},
 	}
 
 	page := Page{"All users", users}
