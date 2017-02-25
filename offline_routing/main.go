@@ -2,38 +2,42 @@ package main
 
 import (
 	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
 )
 
 func main() {
+	app := iris.New()
+	// output startup banner and error logs on os.Stdout
+	app.Adapt(iris.DevLogger())
+	// set the router, you can choose gorillamux too
+	app.Adapt(httprouter.New())
 
-	// You can find the Route by iris.Lookup("theRouteName")
-	// you can set a route name as: myRoute := iris.Get("/mypath", handler)("theRouteName")
-	// that will set a name to the route and returns its iris.Route instance for further usage.
-	api := iris.None("/api/users/:userid", func(ctx *iris.Context) {
+	// You can set a name to a route by app.Get("/mypath", handler).ChangeName("theRouteName")
+	// You can get a RouteInfo by app.Routes().Lookup("theRouteName")
+	userAPI := app.None("/api/users/:userid", func(ctx *iris.Context) {
 		userid := ctx.Param("userid")
 		ctx.Writef("user with id: %s", userid)
-	})("users.api")
+	})
 
 	// change the "users.api" state from offline to online and online to offline
-	iris.Get("/change", func(ctx *iris.Context) {
-		if api.IsOnline() {
-			// set to offline
-			iris.SetRouteOffline(api)
+	app.Get("/change", func(ctx *iris.Context) {
+		if userAPI.IsOnline() {
+			app.Routes().Offline(userAPI)
 		} else {
 			// set to online if it was not online(so it was offline)
-			iris.SetRouteOnline(api, iris.MethodGet)
+			app.Routes().Online(userAPI, iris.MethodGet)
 		}
 	})
 
-	iris.Get("/execute", func(ctx *iris.Context) {
+	app.Get("/execute", func(ctx *iris.Context) {
 		// change the path in order to be catcable from the ExecuteRoute
 		// ctx.Request.URL.Path = "/api/users/42"
 		// ctx.ExecRoute(iris.Route)
 		// or:
-		ctx.ExecRouteAgainst(api, "/api/users/42")
+		ctx.ExecRouteAgainst(userAPI, "/api/users/42")
 	})
 
-	iris.Get("/", func(ctx *iris.Context) {
+	app.Get("/", func(ctx *iris.Context) {
 		ctx.Writef("Hello from index /")
 	})
 
@@ -49,7 +53,9 @@ func main() {
 	// you should see the page working, NO 404 error
 	// go back to the http://localhost:8080/change
 	// you should get 404 error again
+	// Go to http://localhost:8080/execute to execute the offline route and send its result!
+	//
 	// You just dynamically changed the state of a route with 3 lines of code!
-	// you can do the same with group of routes and subdomains :)
-	iris.Listen(":8080")
+	// you can do the same with group of routes and subdomains, have fun :)
+	app.Listen(":8080")
 }

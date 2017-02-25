@@ -14,6 +14,8 @@ import (
 // WS is the current websocket connection
 var WS *websocket.Conn
 
+// Note: the original example(use old code) is not maden by me, but it was a post issue by a user to fix a bug
+// see more here: https://github.com/kataras/go-websocket/issues/24
 func main() {
 	if len(os.Args) == 2 && strings.ToLower(os.Args[1]) == "server" {
 		ServerLoop()

@@ -4,6 +4,9 @@ import (
 	"fmt"
 
 	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
+	"gopkg.in/kataras/iris.v6/adaptors/view"
+	"gopkg.in/kataras/iris.v6/adaptors/websocket"
 )
 
 type clientPage struct {
@@ -12,33 +15,47 @@ type clientPage struct {
 }
 
 func main() {
-	iris.StaticWeb("/js", "./static/js")
+	app := iris.New()
 
-	iris.Get("/", func(ctx *iris.Context) {
+	app.Adapt(iris.DevLogger())
+
+	app.Adapt(httprouter.New())
+
+	app.Adapt(view.HTML("./templates", ".html"))
+	ws := websocket.New(websocket.Config{
+		// the path which the websocket client should listen/registed to ->
+		Endpoint: "my_endpoint",
+		// WriteTimeout = 60 * time.Second,
+		// CheckOrigin: (...)bool, by default all origins are allowed.
+	})
+
+	ws.OnConnection(handleWebsocket)
+
+	// adapt the websocket server and you're ready
+	app.Adapt(ws)
+
+	app.StaticWeb("/js", "./static/js")
+
+	app.Get("/", func(ctx *iris.Context) {
 		ctx.Render("client.html", clientPage{"Client Page", ctx.Host()})
 	})
 
-	// the path which the websocket client should listen/registed to ->
-	iris.Config.Websocket.Endpoint = "/my_endpoint"
-	// by-default all origins are accepted, you can change this behavior by setting:
-	// iris.Config.Websocket.CheckOrigin
-	iris.Websocket.OnConnection(func(c iris.WebsocketConnection) {
+	app.Listen(":8080")
+}
 
-		// when event "chat" fired from client side, catch this message and:
-		// send it back with the "chat" event (client(.js) also waits for this event) to the client as Me: $themessage$
-		// and to all clients except itself as From $thisconnectionid: $themssage
-		c.On("chat", func(message string) {
-			// to all except this client ->
-			c.To(iris.Broadcast).Emit("chat", "From "+c.ID()+": "+message)
+func handleWebsocket(c websocket.Connection) {
+	// when event "chat" fired from client side, catch this message and:
+	// send it back with the "chat" event (client(.js) also waits for this event) to the client as Me: $themessage$
+	// and to all clients except itself as From $thisconnectionid: $themessage
+	c.On("chat", func(message string) {
+		// to all except this client ->
+		c.To(websocket.Broadcast).Emit("chat", "From "+c.ID()+": "+message)
 
-			// to this client as Me:
-			c.Emit("chat", "Me :"+message)
-		})
-
-		c.OnDisconnect(func() {
-			fmt.Printf("\nConnection with ID: %s has been disconnected!", c.ID())
-		})
+		// to this client as Me:
+		c.Emit("chat", "Me :"+message)
 	})
 
-	iris.Listen(":8080")
+	c.OnDisconnect(func() {
+		fmt.Printf("\nConnection with ID: %s has been disconnected!", c.ID())
+	})
 }

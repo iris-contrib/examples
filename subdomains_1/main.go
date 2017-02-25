@@ -3,13 +3,17 @@ package main
 
 import (
 	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
 )
 
 func main() {
-	api := iris.New()
+	app := iris.New()
+	app.Adapt(iris.DevLogger())
+	// subdomains works with all available routers, like other features too.
+	app.Adapt(httprouter.New())
 
 	// no order, you can register subdomains at the end also.
-	admin := api.Party("admin.")
+	admin := app.Party("admin.")
 	{
 		// admin.mydomain.com
 		admin.Get("/", func(c *iris.Context) {
@@ -26,14 +30,14 @@ func main() {
 	}
 
 	// mydomain.com/
-	api.Get("/", func(c *iris.Context) {
+	app.Get("/", func(c *iris.Context) {
 		c.Writef("INDEX FROM no-subdomain hey")
 	})
 
 	// mydomain.com/hey
-	api.Get("/hey", func(c *iris.Context) {
+	app.Get("/hey", func(c *iris.Context) {
 		c.Writef("HEY FROM no-subdomain hey")
 	})
 
-	api.Listen("mydomain.com:80")
+	app.Listen("mydomain.com:80")
 }

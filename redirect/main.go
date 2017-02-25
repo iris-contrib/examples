@@ -1,18 +1,26 @@
 // Package main, simple example for context.Redirect, to use Redirect via {{ url }} use the context.RedirectTo, look at the template_engines examples.
 package main
 
-import "gopkg.in/kataras/iris.v6"
+import (
+	"gopkg.in/kataras/iris.v6"
+	"gopkg.in/kataras/iris.v6/adaptors/httprouter"
+)
 
 func main() {
+	app := iris.New()
+	// output startup banner and error logs on os.Stdout
+	app.Adapt(iris.DevLogger())
+	// set the router, you can choose gorillamux too
+	app.Adapt(httprouter.New())
 
-	iris.Get("/", func(ctx *iris.Context) {
+	app.Get("/", func(ctx *iris.Context) {
 		//ctx.Log(string(ctx.Request.URI.String())
 		ctx.Redirect("/redirected")
 	})
 
-	iris.Get("/redirected", func(ctx *iris.Context) {
+	app.Get("/redirected", func(ctx *iris.Context) {
 		ctx.Writef("Hello, you have been redirected!")
 	})
 
-	iris.Listen(":8080")
+	app.Listen(":8080")
 }
