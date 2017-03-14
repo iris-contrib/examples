@@ -22,7 +22,9 @@ func main() {
 			ctx.HTML(iris.StatusNotFound, "<h1>/static:not_found</h1><h2> Not Found Custom Message or Render a template</h2>")
 		})
 		// or static.StaticWeb("/", "./static")
-		static.Get("/*file", static.StaticHandler("/", "./static", false, true))
+		// or static.Get("/*file", iris.StripPrefix("/static", iris.StaticHandler("./static", false, true)))
+		// or (depends on your needs)
+		static.Get("/*file", static.StaticHandler("", "./static", false, true))
 	}
 
 	app.Listen(":8080")
