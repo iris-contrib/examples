@@ -1,16 +1,18 @@
+# Community Examples
+
 <a href="https://travis-ci.org/iris-contrib/examples"><img src="https://img.shields.io/travis/iris-contrib/adaptors.svg?style=flat-square" alt="Build Status"></a>
 <a href="https://github.com/iris-contrib/examples/blob/master/LICENSE"><img src="https://img.shields.io/badge/%20license-MIT%20%20License%20-E91E63.svg?style=flat-square" alt="License"></a>
 <a href="https://github.com/kataras/iris/blob/v6/HISTORY.md"><img src="https://img.shields.io/badge/codename-√Νεxτ%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
 
-This repository provides a way to learn [Iris](https://github.com/kataras/iris) with small but practical examples. You can PR your own!
 
+This repository provides an easy way to overview the [Iris](https://github.com/kataras/iris) web framework through small examples. You can PR your own!
 
 Examples are tested using Windows 7, Ubuntu 16.04 with [LiteIDE](https://github.com/visualfc/liteide).
 
 ## Run
 
 ```sh
-$ cd $GOPATH/src/github.com/iris-contrib/examples/cors
+$ cd $GOPATH/src/github.com/iris-contrib/examples/AIO_examples/basic/backend/main.go
 $ go run main.go
 ```
 
