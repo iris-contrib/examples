@@ -47,6 +47,7 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
 * [Profiling (pprof)](pprof/main.go)
 * [Request Logger](request-logger/main.go)
 * [Basic Authentication](basicauth/main.go)
+* [OAuth2](oauth2/main.go)
 * [Transactions](transactions/main.go)
 * [HTTP Testing](httptest/main_test.go)
 * [Watch & Compile Typescript source files](typescript/main.go)
