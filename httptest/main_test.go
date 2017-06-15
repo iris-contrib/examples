@@ -7,11 +7,11 @@ import (
 	"github.com/kataras/iris/httptest"
 )
 
-// $ cd $GOPATH/src/github.com/iris-contrib/examples/httptest
+// $ cd $GOPATH/src/github.com/kataras/iris/_examples/intermediate/httptest
 // $ go test -v
 func TestNewApp(t *testing.T) {
 	app := newApp()
-	e := httptest.New(app, t)
+	e := httptest.New(t, app)
 
 	// redirects to /admin without basic auth
 	e.GET("/").Expect().Status(iris.StatusUnauthorized)

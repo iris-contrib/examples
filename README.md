@@ -2,7 +2,7 @@
 
 <a href="https://travis-ci.org/iris-contrib/examples"><img src="https://img.shields.io/travis/iris-contrib/adaptors.svg?style=flat-square" alt="Build Status"></a>
 <a href="https://github.com/iris-contrib/examples/blob/master/LICENSE"><img src="https://img.shields.io/badge/%20license-MIT%20%20License%20-E91E63.svg?style=flat-square" alt="License"></a>
-<a href="https://github.com/kataras/iris/blob/master/HISTORY.md"><img src="https://img.shields.io/badge/version-7%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
+<a href="https://github.com/kataras/iris/blob/master/HISTORY.md"><img src="https://img.shields.io/badge/version-7.2.0%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
 
 
 
@@ -29,6 +29,7 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Basic](routing/basic/main.go)
     * [Dynamic Path](routing/dynamic-path/main.go)
     * [Reverse routing](routing/reverse/main.go)
+	* [Custom wrapper](routing/custom-wrapper/main.go)
 * [Transform any third-party handler to iris-compatible handler](convert-handlers)
     * [From func(http.ResponseWriter, *http.Request, http.HandlerFunc)](convert-handlers/negroni-like/main.go)
     * [From http.Handler or http.HandlerFunc](convert-handlers/nethttp/main.go)
@@ -38,7 +39,11 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
 * [Read JSON](read-json/main.go)
 * [Read Form](read-form/main.go)
 * [Favicon](favicon/main.go)
-* [File Server](file-server/main.go)
+* [File Server](file-server)
+    * [Basic](file-server/basic/main.go)
+    * [Embedding Files Into App Executable File](file-server/embedding-files-into-app/main.go)
+    * [Single Page Application](file-server/single-page-application/main.go)
+    * [Embedding Single Page Application](file-server/embedding-single-page-application/main.go)
 * [Send Files](send-files/main.go)
 * [Stream Writer](stream-writer/main.go)
 * [Send An E-mail](e-mail/main.go)
@@ -52,7 +57,6 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
 * [HTTP Testing](httptest/main_test.go)
 * [Watch & Compile Typescript source files](typescript/main.go)
 * [Cloud Editor](cloud-editor/main.go)
-* [Serve Embedded Files](serve-embedded-files/main.go)
 * [HTTP Access Control](cors/main.go)
 * [Cache Markdown](cache-markdown/main.go)
 * [Localization and Internationalization](i18n/main.go)
@@ -94,6 +98,7 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Single](subdomains/single/main.go)
     * [Multi](subdomains/multi/main.go)
     * [Wildcard](subdomains/wildcard/main.go)
+    * [WWW](subdomains/www/main.go)
 * [Online Visitors](online-visitors/main.go)
 * [URL Shortener using BoltDB](url-shortener/main.go)
 

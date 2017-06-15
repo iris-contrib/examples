@@ -42,6 +42,6 @@ func h(ctx context.Context) {
 }
 
 func main() {
-	app := newAPp()
+	app := newApp()
 	app.Run(iris.Addr(":8080"))
 }
