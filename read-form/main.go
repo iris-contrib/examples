@@ -10,7 +10,7 @@ import (
 type Visitor struct {
 	Username string
 	Mail     string
-	Data     []string `form:"mydata"`
+	Data     []string `formam:"mydata"`
 }
 
 func main() {
