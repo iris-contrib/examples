@@ -63,7 +63,7 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
 * [Authentication](authentication)
     * [Basic Authentication](authentication/basicauth/main.go)
     * [OAUth2](authentication/oauth2/main.go)
-    * [JWT](https://github.com/iris-contrib/middleware/blob/master/jwt/_example/main.go)
+    * [JWT](experimental-handlers/jwt/simple/main.go)
 * [File Server](file-server)
     * [Favicon](file-server/favicon/main.go)
     * [Basic](file-server/basic/main.go)
