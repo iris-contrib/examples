@@ -18,7 +18,7 @@ func main() {
 
 	app.Use(m.ServeHTTP)
 
-	app.OnStatusCode(iris.StatusNotFound, func(ctx context.Context) {
+	app.OnErrorCode(iris.StatusNotFound, func(ctx context.Context) {
 		// error code handlers are not sharing the same middleware as other routes, so we have
 		// to call them inside their body.
 		m.ServeHTTP(ctx)
