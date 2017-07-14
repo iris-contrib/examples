@@ -4,8 +4,6 @@
 <a href="https://github.com/iris-contrib/examples/blob/master/LICENSE"><img src="https://img.shields.io/badge/%20license-MIT%20%20License%20-E91E63.svg?style=flat-square" alt="License"></a>
 <a href="https://github.com/kataras/iris/blob/master/HISTORY.md"><img src="https://img.shields.io/badge/version-8.x%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
 
-
-
 This repository provides easy to understand code snippets on how to get started with web development with the Go programming language using the [Iris](https://github.com/kataras/iris) web framework.
 
 It doesn't contains "best ways" neither explains all its features. It's just a simple, practical cookbook for young Gophers!
@@ -89,19 +87,30 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Profiling (pprof)](miscellaneous/pprof/main.go)
     * [Internal Application File Logger](miscellaneous/file-logger/main.go)
     * [Testing](testing/httptest/main_test.go)
-    * [Caching](https://github.com/kataras/iris/blob/master/cache/_examples/simple/main.go)
-* [Sessions](https://github.com/kataras/iris/tree/master/sessions)
-    * [Overview](https://github.com/kataras/iris/tree/master/sessions/_examples/overview/main.go)
-    * [Standalone](https://github.com/kataras/iris/tree/master/sessions/_examples/standalone/main.go)
-    * [Secure Cookie](https://github.com/kataras/iris/tree/master/sessions/_examples/securecookie/main.go)
-    * [Flash Messages](https://github.com/kataras/iris/tree/master/sessions/_examples/flash-messages/main.go)
-    * [Database](https://github.com/kataras/iris/tree/master/sessions/_examples/database/main.go)
-* [Websockets](https://github.com/kataras/iris/tree/master/websocket)
-    * [Chat](https://github.com/kataras/iris/tree/master/websocket/_examples/chat/main.go)
-    * [Native Messages](https://github.com/kataras/iris/tree/master/websocket/_examples/native-messages/main.go)
-    * [Connection List](https://github.com/kataras/iris/tree/master/websocket/_examples/connectionlist/main.go)
-    * [TLS Enabled](https://github.com/kataras/iris/tree/master/websocket/_examples/secure/main.go)
-    * [Custom Raw Go Client](https://github.com/kataras/iris/tree/master/websocket/_examples/custom-go-client/main.go)
+    * [Caching](cache/simple/main.go)
+* [Sessions](sessions)
+    * [Overview](sessions/overview/main.go)
+    * [Standalone](sessions/standalone/main.go)
+    * [Secure Cookie](sessions/securecookie/main.go)
+    * [Flash Messages](sessions/flash-messages/main.go)
+    * [Database](sessions/database/main.go)
+* [Websockets](websockets)
+    * [Chat](websockets/chat/main.go)
+    * [Native Messages](websockets/native-messages/main.go)
+    * [Connection List](websockets/connectionlist/main.go)
+    * [TLS Enabled](websockets/secure/main.go)
+    * [Custom Raw Go Client](websockets/custom-go-client/main.go)
+* [Experimental Handlers](experimental-handlers)
+    * [Casbin wrapper](experimental-handlers/casbin/wrapper/main.go)
+    * [Casbin middleware](experimental-handlers/casbin/middleware/main.go)
+    * [Cloudwatch](experimental-handlers/cloudwatch/simple/main.go)
+    * [CORS](experimental-handlers/cors/simple/main.go)
+    * [JWT](experimental-handlers/jwt/simple/main.go)
+    * [Newrelic](experimental-handlers/newrelic/simple/main.go)
+    * [Prometheus](experimental-handlers/prometheus/simple/main.go)
+    * [Secure](experimental-handlers/secure/simple/main.go)
+    * [Tollboothic](experimental-handlers/tollboothic/limit-handler/main.go)
+
 
 > Do not forget to [star or watch the project](https://github.com/kataras/iris/stargazers) in order to stay updated with the latest tech trends, it takes some seconds for the sake of go!
 

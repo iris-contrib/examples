@@ -1,0 +1,25 @@
+package main
+
+import (
+	"github.com/kataras/iris"
+	"github.com/kataras/iris/context"
+
+	"github.com/iris-contrib/middleware/newrelic"
+)
+
+func main() {
+	app := iris.New()
+	config := newrelic.Config("APP_SERVER_NAME", "NEWRELIC_LICENSE_KEY")
+	config.Enabled = true
+	m, err := newrelic.New(config)
+	if err != nil {
+		panic(err)
+	}
+	app.Use(m.ServeHTTP)
+
+	app.Get("/", func(ctx context.Context) {
+		ctx.Writef("success!\n")
+	})
+
+	app.Run(iris.Addr(":8080"))
+}
