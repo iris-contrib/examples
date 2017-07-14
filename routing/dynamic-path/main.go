@@ -14,15 +14,15 @@ func main() {
 	// we've seen static routes, group of routes, subdomains, wildcard subdomains, a small example of parameterized path
 	// with a single known paramete and custom http errors, now it's time to see wildcard parameters and macros.
 
-	// Iris, like net/http std package registers route's handlers
-	// by a Handler, the Iris' type of handler is just a func(ctx context.Context)
+	// iris, like net/http std package registers route's handlers
+	// by a Handler, the iris' type of handler is just a func(ctx context.Context)
 	// where context comes from github.com/kataras/iris/context.
 	// Until go 1.9 you will have to import that package too, after go 1.9 this will be not be necessary.
 	//
-	// Iris has the easiest and the most powerful routing process you have ever meet.
+	// iris has the easiest and the most powerful routing process you have ever meet.
 	//
 	// At the same time,
-	// Iris has its own interpeter(yes like a programming language)
+	// iris has its own interpeter(yes like a programming language)
 	// for route's path syntax and their dynamic path parameters parsing and evaluation,
 	// I am calling them "macros" for shortcut.
 	// How? It calculates its needs and if not any special regexp needed then it just
@@ -74,7 +74,7 @@ func main() {
 	// {param:int min(3)}
 	//
 	//
-	// Besides the fact that Iris provides the basic types and some default "macro funcs"
+	// Besides the fact that iris provides the basic types and some default "macro funcs"
 	// you are able to register your own too!.
 	//
 	// Register a named path parameter function:
@@ -143,7 +143,7 @@ func main() {
 	// let's use a trivial custom regexp that validates a single path parameter
 	// which its value is only lowercase letters.
 
-	// http://localhost:8080/lowercase/kataras
+	// http://localhost:8080/lowercase/anylowercase
 	app.Get("/lowercase/{name:string regexp(^[a-z]+)}", func(ctx context.Context) {
 		ctx.Writef("name should be only lowercase, otherwise this handler will never executed: %s", ctx.Params().Get("name"))
 	})

@@ -3,7 +3,6 @@ package main
 import (
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/context"
-	"github.com/kataras/iris/view"
 )
 
 func main() {
@@ -13,7 +12,7 @@ func main() {
 	// $ go build
 	// $ ./embedding-templates-into-app
 	// html files are not used, you can delete the folder and run the example
-	app.AttachView(view.HTML("./templates", ".html").Binary(Asset, AssetNames))
+	app.RegisterView(iris.HTML("./templates", ".html").Binary(Asset, AssetNames))
 	app.Get("/", hi)
 
 	// http://localhost:8080

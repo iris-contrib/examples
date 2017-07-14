@@ -5,7 +5,6 @@ import (
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/context"
 	"github.com/kataras/iris/core/router"
-	"github.com/kataras/iris/view"
 )
 
 const (
@@ -19,37 +18,34 @@ func main() {
 	// which is useful when you have nginx or caddy in front of iris.
 	rv := router.NewRoutePathReverser(app, router.WithHost(host), router.WithScheme("http"))
 	// locate and define our templates as usual.
-	templates := view.HTML("./templates", ".html")
+	templates := iris.HTML("./templates", ".html")
 	// add a custom func of "url" and pass the rv.URL as its template function body,
 	// so {{url "routename" "paramsOrSubdomainAsFirstArgument"}} will work inside our templates.
 	templates.AddFunc("url", rv.URL)
 
-	app.AttachView(templates)
+	app.RegisterView(templates)
 
 	// wildcard subdomain, will catch username1.... username2.... username3... username4.... username5...
 	// that our below links are providing via page.html's first argument which is the subdomain.
 
 	subdomain := app.Party("*.")
 
-	mypathRoute, _ := subdomain.Get("/mypath", emptyHandler)
+	mypathRoute := subdomain.Get("/mypath", emptyHandler)
 	mypathRoute.Name = "my-page1"
 
-	mypath2Route, _ := subdomain.Get("/mypath2/{paramfirst}/{paramsecond}", emptyHandler)
+	mypath2Route := subdomain.Get("/mypath2/{paramfirst}/{paramsecond}", emptyHandler)
 	mypath2Route.Name = "my-page2"
 
-	mypath3Route, _ := subdomain.Get("/mypath3/{paramfirst}/statichere/{paramsecond}", emptyHandler)
+	mypath3Route := subdomain.Get("/mypath3/{paramfirst}/statichere/{paramsecond}", emptyHandler)
 	mypath3Route.Name = "my-page3"
 
-	mypath4Route, _ := subdomain.Get("/mypath4/{paramfirst}/statichere/{paramsecond}/{otherparam}/{something:path}", emptyHandler)
+	mypath4Route := subdomain.Get("/mypath4/{paramfirst}/statichere/{paramsecond}/{otherparam}/{something:path}", emptyHandler)
 	mypath4Route.Name = "my-page4"
 
-	mypath5Route, _ := subdomain.Handle("GET", "/mypath5/{paramfirst}/statichere/{paramsecond}/{otherparam}/anything/{something:path}", emptyHandler)
+	mypath5Route := subdomain.Handle("GET", "/mypath5/{paramfirst}/statichere/{paramsecond}/{otherparam}/anything/{something:path}", emptyHandler)
 	mypath5Route.Name = "my-page5"
 
-	mypath6Route, err := subdomain.Get("/mypath6/{paramfirst}/{paramsecond}/staticParam/{paramThirdAfterStatic}", emptyHandler)
-	if err != nil { // catch any route problems when declare a route or on err := app.Run(...); err != nil { panic(err) }
-		panic(err)
-	}
+	mypath6Route := subdomain.Get("/mypath6/{paramfirst}/{paramsecond}/staticParam/{paramThirdAfterStatic}", emptyHandler)
 	mypath6Route.Name = "my-page6"
 
 	app.Get("/", func(ctx context.Context) {

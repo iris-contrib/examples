@@ -5,13 +5,12 @@ import (
 
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/context"
-	"github.com/kataras/iris/core/handlerconv"
 )
 
 func main() {
 	app := iris.New()
-	irisMiddleware := handlerconv.FromStdWithNext(negronilikeTestMiddleware)
-	app.Use(irisMiddleware)
+	ionMiddleware := iris.FromStd(negronilikeTestMiddleware)
+	app.Use(ionMiddleware)
 
 	// Method GET: http://localhost:8080/
 	app.Get("/", func(ctx context.Context) {
@@ -41,3 +40,6 @@ func negronilikeTestMiddleware(w http.ResponseWriter, r *http.Request, next http
 	w.WriteHeader(iris.StatusBadRequest)
 	w.Write([]byte("Bad request"))
 }
+
+// Look "routing/custom-context" if you want to convert a custom handler with a custom Context
+// to a context.Handler.

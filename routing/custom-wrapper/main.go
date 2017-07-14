@@ -13,7 +13,7 @@ import (
 // be executed in order to execute the registered routes' handlers.
 //
 // To see how you can serve files on root "/" without a custom wrapper
-// just navigate to the "beginner/file-server/single-page-application" example.
+// just navigate to the "file-server/single-page-application" example.
 //
 // This is just for the proof of concept, you can skip this tutorial if it's too much for you.
 func newApp() *iris.Application {
@@ -78,7 +78,7 @@ func main() {
 	// http://localhost:8080/index.html
 	// http://localhost:8080/app.js
 	// http://localhost:8080/css/main.css
-	// http://localhost:8080/profile/kataras
+	// http://localhost:8080/profile/anyusername
 	app.Run(iris.Addr(":8080"))
 
 	// Note: In this example we just saw one use case,

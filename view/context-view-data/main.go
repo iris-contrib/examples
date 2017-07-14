@@ -1,7 +1,3 @@
-// this example will show you how you can set per-request data for a template outside of the main handler which calls
-// the .Render, via middleware.
-//
-// Remember: .Render has the "binding" argument which can be used to send data to the template at any case.
 package main
 
 import (
@@ -9,7 +5,6 @@ import (
 
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/context"
-	"github.com/kataras/iris/view"
 )
 
 const (
@@ -22,7 +17,7 @@ func main() {
 	// output startup banner and error logs on os.Stdout
 
 	// set the view engine target to ./templates folder
-	app.AttachView(view.HTML("./templates", ".html").Reload(true))
+	app.RegisterView(iris.HTML("./templates", ".html").Reload(true))
 
 	app.Use(func(ctx context.Context) {
 		// set the title, current time and a layout in order to be used if and when the next handler(s) calls the .Render function
@@ -37,7 +32,7 @@ func main() {
 	app.Get("/", func(ctx context.Context) {
 		ctx.ViewData("BodyMessage", "a sample text here... setted by the route handler")
 		if err := ctx.View("index.html"); err != nil {
-			ctx.Application().Log(err.Error())
+			ctx.Application().Logger().Infof(err.Error())
 		}
 	})
 
@@ -47,7 +42,7 @@ func main() {
 
 		// same file, just to keep things simple.
 		if err := ctx.View("index.html"); err != nil {
-			ctx.Application().Log(err.Error())
+			ctx.Application().Logger().Infof(err.Error())
 		}
 	})
 

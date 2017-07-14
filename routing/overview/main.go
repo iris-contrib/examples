@@ -11,9 +11,9 @@ func main() {
 	// GET: http://localhost:8080
 	app.Get("/", info)
 
-	// GET: http://localhost:8080/profile/kataras
+	// GET: http://localhost:8080/profile/anyusername
 	app.Get("/profile/{username:string}", info)
-	// GET: http://localhost:8080/profile/kataras/backups/any/number/of/paths/here
+	// GET: http://localhost:8080/profile/anyusername/backups/any/number/of/paths/here
 	app.Get("/profile/{username:string}/backups/{filepath:path}", info)
 	// Favicon
 
@@ -58,7 +58,7 @@ func main() {
 	})
 
 	// GET: http://localhost:8080/users/42
-	// **/users/42 and /users/help works after Iris version 7.0.5**
+	// **/users/42 and /users/help works after iris version 7.0.5**
 	usersRoutes.Get("/{id:int}", func(ctx context.Context) {
 		id, _ := ctx.Params().GetInt("id")
 		ctx.Writef("get user by id: %d", id)
@@ -85,7 +85,7 @@ func main() {
 
 	// Subdomains, depends on the host, you have to edit the hosts or nginx/caddy's configuration if you use them.
 	//
-	// See more subdomains examples at _examples/intermediate/subdomains folder.
+	// See more subdomains examples at _examples/subdomains folder.
 	adminRoutes := app.Party("admin.")
 
 	// GET: http://admin.localhost:8080
@@ -100,8 +100,8 @@ func main() {
 	dynamicSubdomainRoutes.Get("/", info)
 
 	// GET: http://localhost:8080/
-	// GET: http://localhost:8080/profile/kataras
-	// GET: http://localhost:8080/profile/kataras/backups/any/number/of/paths/here
+	// GET: http://localhost:8080/profile/anyusername
+	// GET: http://localhost:8080/profile/anyusername/backups/any/number/of/paths/here
 
 	// GET: http://localhost:8080/users/help
 	// GET: http://localhost:8080/users

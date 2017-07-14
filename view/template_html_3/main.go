@@ -4,37 +4,30 @@ package main
 import (
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/context"
-	"github.com/kataras/iris/view"
 )
 
 func main() {
 	app := iris.New()
-	if err := app.AttachView(view.HTML("./templates", ".html").Reload(true)); err != nil {
-		panic(err)
-	}
+	app.RegisterView(iris.HTML("./templates", ".html").Reload(true))
 
-	mypathRoute, _ := app.Get("/mypath", writePathHandler)
+	mypathRoute := app.Get("/mypath", writePathHandler)
 	mypathRoute.Name = "my-page1"
 
-	mypath2Route, err := app.Get("/mypath2/{paramfirst}/{paramsecond}", writePathHandler)
-	// same as: app.Get("/mypath2/:paramfirst/:paramsecond", writePathHandler)
-	if err != nil { // catch errors when creating a route or catch them on err := .Run, it's up to you.
-		panic(err)
-	}
+	mypath2Route := app.Get("/mypath2/{paramfirst}/{paramsecond}", writePathHandler)
 	mypath2Route.Name = "my-page2"
 
-	mypath3Route, _ := app.Get("/mypath3/{paramfirst}/statichere/{paramsecond}", writePathHandler)
+	mypath3Route := app.Get("/mypath3/{paramfirst}/statichere/{paramsecond}", writePathHandler)
 	mypath3Route.Name = "my-page3"
 
-	mypath4Route, _ := app.Get("/mypath4/{paramfirst}/statichere/{paramsecond}/{otherparam}/{something:path}", writePathHandler)
+	mypath4Route := app.Get("/mypath4/{paramfirst}/statichere/{paramsecond}/{otherparam}/{something:path}", writePathHandler)
 	// same as: app.Get("/mypath4/:paramfirst/statichere/:paramsecond/:otherparam/*something", writePathHandler)
 	mypath4Route.Name = "my-page4"
 
 	// same with Handle/Func
-	mypath5Route, _ := app.Handle("GET", "/mypath5/{paramfirst}/statichere/{paramsecond}/{otherparam}/anything/{something:path}", writePathHandler)
+	mypath5Route := app.Handle("GET", "/mypath5/{paramfirst}/statichere/{paramsecond}/{otherparam}/anything/{something:path}", writePathHandler)
 	mypath5Route.Name = "my-page5"
 
-	mypath6Route, _ := app.Get("/mypath6/{paramfirst}/{paramsecond}/statichere/{paramThirdAfterStatic}", writePathHandler)
+	mypath6Route := app.Get("/mypath6/{paramfirst}/{paramsecond}/statichere/{paramThirdAfterStatic}", writePathHandler)
 	mypath6Route.Name = "my-page6"
 
 	app.Get("/", func(ctx context.Context) {

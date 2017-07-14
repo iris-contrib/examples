@@ -19,7 +19,7 @@
 # localhost name resolution is handled within DNS itself.
 127.0.0.1       localhost
 ::1             localhost
-#-IRIS-For development machine, you have to configure your dns also for online, search google how to do it if you don't know
+#-iris-For development machine, you have to configure your dns also for online, search google how to do it if you don't know
 
 127.0.0.1		username1.127.0.0.1
 127.0.0.1		username2.127.0.0.1
@@ -27,6 +27,6 @@
 127.0.0.1		username4.127.0.0.1
 127.0.0.1		username5.127.0.0.1
 # note that you can always use custom subdomains
-#-END IRIS-
+#-END iris-
 
 # Windows: Drive:/Windows/system32/drivers/etc/hosts, on Linux: /etc/hosts

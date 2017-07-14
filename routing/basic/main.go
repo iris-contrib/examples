@@ -65,9 +65,9 @@ func main() {
 	adminRoutes := app.Party("/admin", adminMiddleware)
 
 	adminRoutes.Done(func(ctx context.Context) { // executes always last if ctx.Next()
-		ctx.Application().Log("response sent to " + ctx.Path())
+		ctx.Application().Logger().Infof("response sent to " + ctx.Path())
 	})
-	// adminRoutes.Layout("/views/layouts/admin.html") // set a view layout for these routes, see more at intermediate/view examples.
+	// adminRoutes.Layout("/views/layouts/admin.html") // set a view layout for these routes, see more at view examples.
 
 	// GET: http://localhost:8080/admin
 	adminRoutes.Get("/", func(ctx context.Context) {
@@ -154,9 +154,9 @@ func donateHandler(ctx context.Context) {
 
 func donateFinishHandler(ctx context.Context) {
 	// values can be any type of object so we could cast the value to a string
-	// but Iris provides an easy to do that, if donate_url is not defined, then it returns an empty string instead.
+	// but iris provides an easy to do that, if donate_url is not defined, then it returns an empty string instead.
 	donateURL := ctx.Values().GetString("donate_url")
-	ctx.Application().Log("donate_url value was: " + donateURL)
+	ctx.Application().Logger().Infof("donate_url value was: " + donateURL)
 	ctx.Writef("\n\nDonate sent(?).")
 }
 

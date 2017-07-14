@@ -17,11 +17,11 @@ type User struct {
 
 func main() {
 	app := iris.New()
-
+	app.Logger().Level = iris.NoLog
 	// Define templates using the std html/template engine.
 	// Parse and load all files inside "./views" folder with ".html" file extension.
 	// Reload the templates on each request (development mode).
-	app.AttachView(view.HTML("./views", ".html").Reload(true))
+	app.RegisterView(view.HTML("./views", ".html").Reload(true))
 
 	// Regster custom handler for specific http errors.
 	app.OnErrorCode(iris.StatusInternalServerError, func(ctx context.Context) {
@@ -36,12 +36,12 @@ func main() {
 	})
 
 	app.Use(func(ctx context.Context) {
-		ctx.Application().Log("Begin request for path: %s", ctx.Path())
+		ctx.Application().Logger().Infof("Begin request for path: %s", ctx.Path())
 		ctx.Next()
 	})
-
 	// app.Done(func(ctx context.Context) {]})
-
+	app.Subdomain("wtf.").Post("/decode", func(ctx context.Context) {})
+	app.Subdomain("wtf.").Post("/decode", func(ctx context.Context) {})
 	// Method POST: http://localhost:8080/decode
 	app.Post("/decode", func(ctx context.Context) {
 		var user User
@@ -78,7 +78,7 @@ func main() {
 }
 
 func logThisMiddleware(ctx context.Context) {
-	ctx.Application().Log("Path: %s | IP: %s", ctx.Path(), ctx.RemoteAddr())
+	ctx.Application().Logger().Infof("Path: %s | IP: %s", ctx.Path(), ctx.RemoteAddr())
 
 	// .Next is required to move forward to the chain of handlers,
 	// if missing then it stops the execution at this handler.

@@ -12,27 +12,21 @@ Read:
 "overview"
 "basic"
 "dynamic-path"
-and "reverse" examples if you want to release Iris' real power.
+and "reverse" examples if you want to release iris' real power.
 */
 
 const maxBodySize = 1 << 20
+const notFoundHTML = "<h1> custom http error page </h1>"
 
-var app *iris.Application
-
-func init() {
-	app = iris.New()
-}
-
-func registerErrors() {
+func registerErrors(app *iris.Application) {
 	// set a custom 404 handler
 	app.OnErrorCode(iris.StatusNotFound, func(ctx context.Context) {
-		ctx.HTML("<h1> custom http error page </h1>")
+		ctx.HTML(notFoundHTML)
 	})
 }
 
-func registerGamesRoutes() {
+func registerGamesRoutes(app *iris.Application) {
 	gamesMiddleware := func(ctx context.Context) {
-		println(ctx.Method() + ": " + ctx.Path())
 		ctx.Next()
 	}
 
@@ -64,19 +58,17 @@ func registerGamesRoutes() {
 	}
 }
 
-func registerSubdomains() {
+func registerSubdomains(app *iris.Application) {
 	mysubdomain := app.Party("mysubdomain.")
 	// http://mysubdomain.myhost.com
-	mysubdomain.Get("/", func(ctx context.Context) {
-		ctx.Writef("Hello from subdomain: %s , from host: %s, method: %s and path: %s", ctx.Subdomain(), ctx.Host(), ctx.Method(), ctx.Path())
-	})
+	mysubdomain.Get("/", h)
 }
-func main() {
-	registerErrors()
-	registerGamesRoutes()
-	registerSubdomains()
 
-	// more random examples below:
+func newApp() *iris.Application {
+	app := iris.New()
+	registerErrors(app)
+	registerGamesRoutes(app)
+	registerSubdomains(app)
 
 	app.Handle("GET", "/healthcheck", h)
 
@@ -85,8 +77,7 @@ func main() {
 	// and sends back the same body
 	// remember, we have limit to that body in order
 	// to protect ourselves from "over heating".
-	app.Post("/", func(ctx context.Context) {
-		ctx.SetMaxRequestBodySize(maxBodySize) // set max request body that client can send.
+	app.Post("/", context.LimitRequestBodySize(maxBodySize), func(ctx context.Context) {
 		// get request body
 		b, err := ioutil.ReadAll(ctx.Request().Body)
 		// if is larger then send a bad request status
@@ -99,10 +90,56 @@ func main() {
 		ctx.Write(b)
 	})
 
-	// start the server on 0.0.0.0:8080
-	app.Run(iris.Addr(":8080"))
+	return app
 }
 
 func h(ctx context.Context) {
-	ctx.HTML("<h1>Path: " + ctx.Path() + "</h1>")
+	method := ctx.Method()       // the http method requested a server's resource.
+	subdomain := ctx.Subdomain() // the subdomain, if any.
+
+	// the request path (without scheme and host).
+	path := ctx.Path()
+	// how to get all parameters, if we don't know
+	// the names:
+	paramsLen := ctx.Params().Len()
+
+	ctx.Params().Visit(func(name string, value string) {
+		ctx.Writef("%s = %s\n", name, value)
+	})
+	ctx.Writef("Info\n\n")
+	ctx.Writef("Method: %s\nSubdomain: %s\nPath: %s\nParameters length: %d", method, subdomain, path, paramsLen)
+}
+
+func main() {
+	app := newApp()
+
+	/*
+		// GET
+		http://localhost:8080/healthcheck
+		http://localhost:8080/games/42/clans
+		http://localhost:8080/games/42/clans/clan/93
+		http://localhost:8080/games/42/clans/search
+		http://mysubdomain.localhost:8080/
+
+		// PUT
+		http://localhost:8080/games/42/players/93
+		http://localhost:8080/games/42/clans/clan/93
+
+		// POST
+		http://localhost:8080/
+		http://localhost:8080/games/42/clans
+		http://localhost:8080/games/42/players
+		http://localhost:8080/games/42/clans/93/leave
+		http://localhost:8080/games/42/clans/93/memberships/application
+		http://localhost:8080/games/42/clans/93/memberships/application/anystring
+		http://localhost:8080/games/42/clans/93/memberships/invitation
+		http://localhost:8080/games/42/clans/93/memberships/invitation/anystring
+		http://localhost:8080/games/42/clans/93/memberships/delete
+		http://localhost:8080/games/42/clans/93/memberships/promote
+		http://localhost:8080/games/42/clans/93/memberships/demote
+
+		// FIRE NOT FOUND
+		http://localhost:8080/coudlntfound
+	*/
+	app.Run(iris.Addr(":8080"))
 }

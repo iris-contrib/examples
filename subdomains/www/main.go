@@ -24,13 +24,11 @@ func newApp() *iris.Application {
 
 	www := app.Party("www.")
 	{
-		// get all routes that are registered so far, including all "Parties":
+		// get all routes that are registered so far, including all "Parties" but subdomains:
 		currentRoutes := app.GetRoutes()
 		// register them to the www subdomain/vhost as well:
 		for _, r := range currentRoutes {
-			if _, err := www.Handle(r.Method, r.Path, r.Handlers...); err != nil {
-				app.Log("%s for www. failed: %v", r.Path, err)
-			}
+			www.Handle(r.Method, r.Path, r.Handlers...)
 		}
 	}
 
@@ -39,18 +37,18 @@ func newApp() *iris.Application {
 
 func main() {
 	app := newApp()
-	// http://iris-go.com
-	// http://iris-go.com/about
-	// http://iris-go.com/contact
-	// http://iris-go.com/api/users
-	// http://iris-go.com/api/users/42
+	// http://mydomain.com
+	// http://mydomain.com/about
+	// http://imydomain.com/contact
+	// http://mydomain.com/api/users
+	// http://mydomain.com/api/users/42
 
-	// http://www.iris-go.com
-	// http://www.iris-go.com/about
-	// http://www.iris-go.com/contact
-	// http://www.iris-go.com/api/users
-	// http://www.iris-go.com/api/users/42
-	if err := app.Run(iris.Addr("iris-go.com:80")); err != nil {
+	// http://www.mydomain.com
+	// http://www.mydomain.com/about
+	// http://www.mydomain.com/contact
+	// http://www.mydomain.com/api/users
+	// http://www.mydomain.com/api/users/42
+	if err := app.Run(iris.Addr("mydomain.com:80")); err != nil {
 		panic(err)
 	}
 }

@@ -3,19 +3,18 @@ package main
 import (
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/context"
-	"github.com/kataras/iris/view"
 )
 
 func main() {
 	app := iris.New()
 
-	tmpl := view.HTML("./templates", ".html")
+	tmpl := iris.HTML("./templates", ".html")
 	tmpl.Layout("layouts/layout.html")
 	tmpl.AddFunc("greet", func(s string) string {
 		return "Greetings " + s + "!"
 	})
 
-	app.AttachView(tmpl)
+	app.RegisterView(tmpl)
 
 	app.Get("/", func(ctx context.Context) {
 		if err := ctx.View("page1.html"); err != nil {
@@ -26,7 +25,7 @@ func main() {
 
 	// remove the layout for a specific route
 	app.Get("/nolayout", func(ctx context.Context) {
-		ctx.ViewLayout(view.NoLayout)
+		ctx.ViewLayout(iris.NoLayout)
 		if err := ctx.View("page1.html"); err != nil {
 			ctx.StatusCode(iris.StatusInternalServerError)
 			ctx.Writef(err.Error())

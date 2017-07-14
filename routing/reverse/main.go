@@ -12,12 +12,12 @@ func main() {
 	// you normally don't need it because of the {{ urlpath "routename" "path" "values" "here"}}
 	rv := router.NewRoutePathReverser(app)
 
-	myroute, _ := app.Get("/anything/{anythingparameter:path}", func(ctx context.Context) {
+	myroute := app.Get("/anything/{anythingparameter:path}", func(ctx context.Context) {
 		paramValue := ctx.Params().Get("anythingparameter")
 		ctx.Writef("The path after /anything is: %s", paramValue)
 	})
 
-	// useful for links, altough iris' view engine has the {{ urlpath "routename" "path values"}} already.
+	// useful for links, although iris' view engine has the {{ urlpath "routename" "path values"}} already.
 	app.Get("/reverse_myroute", func(ctx context.Context) {
 		myrouteRequestPath := rv.Path(myroute.Name, "any/path")
 		ctx.HTML("Should be <b>/anything/any/path</b>: " + myrouteRequestPath)

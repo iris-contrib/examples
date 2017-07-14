@@ -3,19 +3,18 @@ package main
 import (
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/context"
-	"github.com/kataras/iris/view"
 )
 
 func main() {
 	app := iris.New() // defaults to these
 
-	// - standard html  | view.HTML(...)
-	// - django         | view.Django(...)
-	// - pug(jade)      | view.Pug(...)
-	// - handlebars     | view.Handlebars(...)
-	// - amber          | view.Amber(...)
+	// - standard html  | iris.HTML(...)
+	// - django         | iris.Django(...)
+	// - pug(jade)      | iris.Pug(...)
+	// - handlebars     | iris.Handlebars(...)
+	// - amber          | iris.Amber(...)
 
-	tmpl := view.HTML("./templates", ".html")
+	tmpl := iris.HTML("./templates", ".html")
 	tmpl.Reload(true) // reload templates on each request (development mode)
 	// default template funcs are:
 	//
@@ -27,7 +26,7 @@ func main() {
 	tmpl.AddFunc("greet", func(s string) string {
 		return "Greetings " + s + "!"
 	})
-	app.AttachView(tmpl)
+	app.RegisterView(tmpl)
 
 	app.Get("/", hi)
 
@@ -37,7 +36,20 @@ func main() {
 
 func hi(ctx context.Context) {
 	ctx.ViewData("Title", "Hi Page")
-	ctx.ViewData("Name", "Iris") // {{.Name}} will render: Iris
+	ctx.ViewData("Name", "iris") // {{.Name}} will render: iris
 	// ctx.ViewData("", myCcustomStruct{})
 	ctx.View("hi.html")
 }
+
+/*
+Note:
+
+In case you're wondering, the code behind the view engines derives from the "github.com/kataras/iris/view" package,
+access to the engines' variables can be granded by "github.com/kataras/iris" package too.
+
+    iris.HTML(...) is a shortcut of view.HTML(...)
+    iris.Django(...)     >> >>      view.Django(...)
+    iris.Pug(...)        >> >>      view.Pug(...)
+    iris.Handlebars(...) >> >>      view.Handlebars(...)
+    iris.Amber(...)      >> >>      view.Amber(...)
+*/
