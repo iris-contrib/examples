@@ -29,7 +29,7 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Graceful Shutdown](http-listening/graceful-shutdown/default-notifier/main.go)
 * [Configuration](configuration)
     * [Functional](configuration/functional/main.go)
-    * [From Configuration Struct](configuration/from-configuration-struct/main.go)
+    * [From Configuration Struct](configuration/from-configuration-structure/main.go)
     * [Import from YAML file](configuration/from-yaml-file/main.go)
     * [Import from TOML file](configuration/from-toml-file/main.go)
 * [Routing](routing)
