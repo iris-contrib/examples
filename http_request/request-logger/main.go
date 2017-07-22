@@ -18,28 +18,38 @@ func main() {
 		Method: true,
 		// Path displays the request path
 		Path: true,
+		// Columns: true,
+
+		// if !empty then its contents derives from `ctx.Values().Get("logger_message")
+		// will be added to the logs.
+		MessageContextKey: "logger_message",
 	})
 
 	app.Use(customLogger)
 
-	app.Get("/", func(ctx context.Context) {
-		ctx.Writef("hello")
-	})
+	h := func(ctx context.Context) {
+		ctx.Writef("Hello from %s", ctx.Path())
+	}
+	app.Get("/", h)
 
-	app.Get("/1", func(ctx context.Context) {
-		ctx.Writef("hello")
-	})
+	app.Get("/1", h)
 
-	app.Get("/2", func(ctx context.Context) {
-		ctx.Writef("hello")
-	})
+	app.Get("/2", h)
 
-	// log http errors should be done manually
-	errorLogger := logger.New()
+	// http errors have their own handlers, therefore
+	// registering a middleare should be done manually.
+	/*
+	 app.OnErrorCode(404 ,customLogger, func(ctx context.Context) {
+	 	ctx.Writef("My Custom 404 error page ")
+	 })
+	*/
+	// or catch all http errors:
+	app.OnAnyErrorCode(customLogger, func(ctx context.Context) {
+		// this should be added to the logs, at the end because of the `logger.Config#MessageContextKey`
+		ctx.Values().Set("logger_message",
+			"a dynamic message passed to the logs")
 
-	app.OnErrorCode(iris.StatusNotFound, func(ctx context.Context) {
-		errorLogger(ctx)
-		ctx.Writef("My Custom 404 error page ")
+		ctx.Writef("My Custom error page")
 	})
 
 	// http://localhost:8080
