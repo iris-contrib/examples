@@ -61,8 +61,13 @@ func main() {
 	})
 
 	app.Get("/destroy", func(ctx context.Context) {
-		//destroy, removes the entire session data and cookie
+		// destroy, removes the entire session data and cookie
 		sess.Destroy(ctx)
+	})
+
+	app.Get("/update", func(ctx context.Context) {
+		// update, update expire date with a new date
+		sess.ShiftExpiraton(ctx)
 	})
 
 	app.Run(iris.Addr(":8080"))

@@ -69,8 +69,12 @@ func main() {
 		sess.Start(ctx).Clear()
 	})
 
-	app.Get("/destroy", func(ctx context.Context) {
+	app.Get("/update", func(ctx context.Context) {
+		// update expire date
+		sess.ShiftExpiraton(ctx)
+	})
 
+	app.Get("/destroy", func(ctx context.Context) {
 		//destroy, removes the entire session data and cookie
 		sess.Destroy(ctx)
 	})
