@@ -66,7 +66,7 @@ func main() {
 	})
 
 	app.Get("/update", func(ctx context.Context) {
-		// update, update expire date with a new date
+		// updates expire date with a new date
 		sess.ShiftExpiraton(ctx)
 	})
 
