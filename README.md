@@ -15,6 +15,7 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Glimpse](overview/main.go)
     * [Tutorial: Online Visitors](tutorial/online-visitors/main.go)
     * [Tutorial: URL Shortener using BoltDB](tutorial/url-shortener/main.go)
+    * [Tutorial: How to turn your Android Device into a fully featured Web Server (**MUST**)](https://twitter.com/ThePracticalDev/status/892022594031017988)
 * [HTTP Listening](http-listening)
     * [Common, with address](http-listening/listen-addr/main.go)
     * [UNIX socket file](http-listening/listen-unix/main.go)
@@ -40,7 +41,11 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Root level wildcard path](routing/dynamic-path/root-wildcard/main.go)
     * [Reverse routing](routing/reverse/main.go)
     * [Custom wrapper](routing/custom-wrapper/main.go)
-    * [Route State](routing/route-state/main.go) 
+    * [Route State](routing/route-state/main.go)
+* [MVC](mvc)
+    * [Hello world](mvc/hello-world/main.go)
+    * [Session Controller](mvc/session-controller/main.go)
+    * [A simple but featured Controller with model and views](mvc/controller-with-model-and-view)  
 * [Custom Context](routing/custom-context)
     * [Method Overriding](routing/custom-context/method-overriding/main.go)
     * [New Implementation](routing/custom-context/new-implementation/main.go)  
@@ -121,8 +126,9 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
 > Examples are tested using Windows 7, Ubuntu 16.04 with [LiteIDE](https://github.com/visualfc/liteide).
 
 ## Run
+[Download the examples](https://github.com/iris-contrib/examples/archive/master.zip) and paste them to your `$GOPATH/src/github.com/iris-contrib/examples`.
 
-```sh
+```bash
 $ cd $GOPATH/src/github.com/iris-contrib/examples/overview
 $ go run main.go
 ```
@@ -133,4 +139,4 @@ $ go run main.go
 
 ## Su, 04 June 2017
 
-This repository is just a minor of the github.com/kataras/iris/[version or master]/_examples folder.
+This repository is just a minor of the https://github.com/kataras/iris/master/_examples folder.

@@ -1,27 +1,25 @@
 package main
 
 import (
+	"time"
+
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/context"
 
 	"github.com/kataras/iris/sessions"
-	"github.com/kataras/iris/sessions/sessiondb/redis"
-	"github.com/kataras/iris/sessions/sessiondb/redis/service"
+	"github.com/kataras/iris/sessions/sessiondb/file"
 )
 
 func main() {
-	// replace with your running redis' server settings:
-	db := redis.New(service.Config{Network: service.DefaultRedisNetwork,
-		Addr:          service.DefaultRedisAddr,
-		Password:      "",
-		Database:      "",
-		MaxIdle:       0,
-		MaxActive:     0,
-		IdleTimeout:   service.DefaultRedisIdleTimeout,
-		Prefix:        "",
-		MaxAgeSeconds: service.DefaultRedisMaxAgeSeconds}) // optionally configure the bridge between your redis server
+	db, _ := file.New("./sessions/", 0666)
 
-	sess := sessions.New(sessions.Config{Cookie: "sessionscookieid"})
+	// use different go routines to sync the database
+	db.Async(true)
+
+	sess := sessions.New(sessions.Config{
+		Cookie:  "sessionscookieid",
+		Expires: 45 * time.Minute, // <=0 means unlimited life
+	})
 
 	//
 	// IMPORTANT:
@@ -35,17 +33,34 @@ func main() {
 		ctx.Writef("You should navigate to the /set, /get, /delete, /clear,/destroy instead")
 	})
 	app.Get("/set", func(ctx context.Context) {
-
+		s := sess.Start(ctx)
 		//set session values
-		sess.Start(ctx).Set("name", "iris")
+		s.Set("name", "iris")
 
 		//test if setted here
-		ctx.Writef("All ok session setted to: %s", sess.Start(ctx).GetString("name"))
+		ctx.Writef("All ok session setted to: %s", s.GetString("name"))
+	})
+
+	app.Get("/set/{key}/{value}", func(ctx context.Context) {
+		key, value := ctx.Params().Get("key"), ctx.Params().Get("value")
+		s := sess.Start(ctx)
+		// set session values
+		s.Set(key, value)
+
+		// test if setted here
+		ctx.Writef("All ok session setted to: %s", s.GetString(key))
 	})
 
 	app.Get("/get", func(ctx context.Context) {
 		// get a specific key, as string, if no found returns just an empty string
 		name := sess.Start(ctx).GetString("name")
+
+		ctx.Writef("The name on the /set was: %s", name)
+	})
+
+	app.Get("/get/{key}", func(ctx context.Context) {
+		// get a specific key, as string, if no found returns just an empty string
+		name := sess.Start(ctx).GetString(ctx.Params().Get("key"))
 
 		ctx.Writef("The name on the /set was: %s", name)
 	})
@@ -61,13 +76,13 @@ func main() {
 	})
 
 	app.Get("/destroy", func(ctx context.Context) {
-		// destroy, removes the entire session data and cookie
+		//destroy, removes the entire session data and cookie
 		sess.Destroy(ctx)
 	})
 
 	app.Get("/update", func(ctx context.Context) {
 		// updates expire date with a new date
-		sess.ShiftExpiraton(ctx)
+		sess.ShiftExpiration(ctx)
 	})
 
 	app.Run(iris.Addr(":8080"))
