@@ -12,7 +12,7 @@ func main() {
 	config.Enabled = true
 	m, err := newrelic.New(config)
 	if err != nil {
-		app.Logger().Fatalf(err)
+		app.Logger().Fatal(err)
 	}
 	app.Use(m.ServeHTTP)
 
