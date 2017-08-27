@@ -126,11 +126,16 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
 > Examples are tested using Windows 7, Ubuntu 16.04 with [LiteIDE](https://github.com/visualfc/liteide).
 
 ## Run
-[Download the examples](https://github.com/iris-contrib/examples/archive/master.zip) and paste them to your `$GOPATH/src/github.com/iris-contrib/examples`.
 
-```bash
-$ cd $GOPATH/src/github.com/iris-contrib/examples/overview
-$ go run main.go
+1. Install the Go Programming Language, version 1.9 from [here](https://golang.org/dl).
+2. Install Iris: `go get -u github.com/kataras/iris`
+3. [Download the examples](https://github.com/iris-contrib/examples/archive/master.zip) and paste them to your `$GOPATH/src/github.com/iris-contrib/examples`
+
+And run
+
+```sh
+cd $GOPATH/src/github.com/iris-contrib/examples/overview
+go run main.go
 ```
 
 ## Any troubles with examples?

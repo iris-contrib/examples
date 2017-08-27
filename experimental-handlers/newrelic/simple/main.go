@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/context"
 
 	"github.com/iris-contrib/middleware/newrelic"
 )
@@ -13,11 +12,11 @@ func main() {
 	config.Enabled = true
 	m, err := newrelic.New(config)
 	if err != nil {
-		panic(err)
+		app.Logger().Fatalf(err)
 	}
 	app.Use(m.ServeHTTP)
 
-	app.Get("/", func(ctx context.Context) {
+	app.Get("/", func(ctx iris.Context) {
 		ctx.Writef("success!\n")
 	})
 

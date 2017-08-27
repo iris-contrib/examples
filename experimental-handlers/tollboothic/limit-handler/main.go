@@ -4,11 +4,13 @@ import (
 	"time"
 
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/context"
 
 	"github.com/didip/tollbooth"
 	"github.com/iris-contrib/middleware/tollboothic"
 )
+
+// $ go get github.com/didip/tollbooth
+// $ go run main.go
 
 func main() {
 	app := iris.New()
@@ -16,7 +18,7 @@ func main() {
 	// Create a limiter struct.
 	limiter := tollbooth.NewLimiter(1, time.Second)
 
-	app.Get("/", tollboothic.LimitHandler(limiter), func(ctx context.Context) {
+	app.Get("/", tollboothic.LimitHandler(limiter), func(ctx iris.Context) {
 		ctx.HTML("<b>Hello, world!</b>")
 	})
 

@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/context"
 
 	"github.com/iris-contrib/middleware/secure"
 )
@@ -31,7 +30,7 @@ func main() {
 	app := iris.New()
 	app.Use(s.Serve)
 
-	app.Get("/home", func(ctx context.Context) {
+	app.Get("/home", func(ctx iris.Context) {
 		ctx.Writef("Hello from /home")
 	})
 

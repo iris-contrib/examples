@@ -12,13 +12,12 @@ package main
 
 import (
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/context"
 
 	"github.com/dgrijalva/jwt-go"
 	jwtmiddleware "github.com/iris-contrib/middleware/jwt"
 )
 
-func myHandler(ctx context.Context) {
+func myHandler(ctx iris.Context) {
 	user := ctx.Values().Get("jwt").(*jwt.Token)
 
 	ctx.Writef("This is an authenticated request\n")

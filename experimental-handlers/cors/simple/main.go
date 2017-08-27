@@ -5,7 +5,6 @@ package main
 
 import (
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/context"
 
 	"github.com/iris-contrib/middleware/cors"
 )
@@ -21,13 +20,13 @@ func main() {
 	v1 := app.Party("/api/v1")
 	v1.Use(crs)
 	{
-		v1.Get("/home", func(ctx context.Context) {
+		v1.Get("/home", func(ctx iris.Context) {
 			ctx.WriteString("Hello from /home")
 		})
-		v1.Get("/about", func(ctx context.Context) {
+		v1.Get("/about", func(ctx iris.Context) {
 			ctx.WriteString("Hello from /about")
 		})
-		v1.Post("/send", func(ctx context.Context) {
+		v1.Post("/send", func(ctx iris.Context) {
 			ctx.WriteString("sent")
 		})
 	}

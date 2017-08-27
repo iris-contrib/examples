@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/context"
 
 	prometheusMiddleware "github.com/iris-contrib/middleware/prometheus"
 
@@ -18,7 +17,7 @@ func main() {
 
 	app.Use(m.ServeHTTP)
 
-	app.OnErrorCode(iris.StatusNotFound, func(ctx context.Context) {
+	app.OnErrorCode(iris.StatusNotFound, func(ctx iris.Context) {
 		// error code handlers are not sharing the same middleware as other routes, so we have
 		// to call them inside their body.
 		m.ServeHTTP(ctx)
@@ -26,7 +25,7 @@ func main() {
 		ctx.Writef("Not Found")
 	})
 
-	app.Get("/", func(ctx context.Context) {
+	app.Get("/", func(ctx iris.Context) {
 		sleep := rand.Intn(4999) + 1
 		time.Sleep(time.Duration(sleep) * time.Millisecond)
 		ctx.Writef("Slept for %d milliseconds", sleep)

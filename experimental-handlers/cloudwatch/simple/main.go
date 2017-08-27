@@ -4,18 +4,20 @@ import (
 	"time"
 
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/context"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/cloudwatch"
 	cw "github.com/iris-contrib/middleware/cloudwatch"
 )
 
+// $ go get github.com/aws/aws-sdk-go/...
+// $ go run main.go
+
 func main() {
 	app := iris.New()
 	app.Use(cw.New("us-east-1", "test").ServeHTTP)
 
-	app.Get("/", func(ctx context.Context) {
+	app.Get("/", func(ctx iris.Context) {
 		put := cw.GetPutFunc(ctx)
 
 		put([]*cloudwatch.MetricDatum{
