@@ -4,15 +4,12 @@ import (
 	"time"
 
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/mvc"
 
 	"github.com/kataras/iris/sessions"
 )
 
 type VisitController struct {
-	// if you build with go1.9 you can omit the import of mvc package
-	// and just use `iris.Controller` instead.
-	mvc.SessionController
+	iris.SessionController
 
 	StartTime time.Time
 }
@@ -21,12 +18,13 @@ func (u *VisitController) Get() {
 	// get the visits, before calcuate this new one.
 	visits, _ := u.Session.GetIntDefault("visits", 0)
 
-	// increment the visits counter and set them to the session.
+	// increment the visits and store to the session.
 	visits++
 	u.Session.Set("visits", visits)
 
 	// write the current, updated visits
-	u.Ctx.Writef("%d visits in %0.1f seconds", visits, time.Now().Sub(u.StartTime).Seconds())
+	u.Ctx.Writef("%d visit from my current session in %0.1f seconds of server's up-time",
+		visits, time.Now().Sub(u.StartTime).Seconds())
 }
 
 func main() {

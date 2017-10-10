@@ -15,6 +15,7 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Glimpse](overview/main.go)
     * [Tutorial: Online Visitors](tutorial/online-visitors/main.go)
     * [Tutorial: URL Shortener using BoltDB](tutorial/url-shortener/main.go)
+    * [Tutorial: DropzoneJS + Go: How to build a file upload form](tutorial/dropzonejs/main.go)
 * [HTTP Listening](http-listening)
     * [Common, with address](http-listening/listen-addr/main.go)
     * [UNIX socket file](http-listening/listen-unix/main.go)
@@ -46,6 +47,7 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Session Controller](mvc/session-controller/main.go)
     * [A simple but featured Controller with model and views](mvc/controller-with-model-and-view/main.go)
 	* [Login showcase](mvc/login/main.go)
+    * [Render using the method result (plus Service-oriented design)](mvc/using-method-result)
 * [Custom Context](routing/custom-context)
     * [Method Overriding](routing/custom-context/method-overriding/main.go)
     * [New Implementation](routing/custom-context/new-implementation/main.go)
@@ -96,6 +98,7 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Internal Application File Logger](miscellaneous/file-logger/main.go)
     * [Testing](testing/httptest/main_test.go)
     * [Caching](cache/simple/main.go)
+    * [Yaag - API Automated Docs](apidoc/yaag/main.go)
 * [Sessions](sessions)
     * [Overview](sessions/overview/main.go)
     * [Standalone](sessions/standalone/main.go)
@@ -119,11 +122,9 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Secure](experimental-handlers/secure/simple/main.go)
     * [Tollboothic](experimental-handlers/tollboothic/limit-handler/main.go)
 
-
 > Do not forget to [star or watch the project](https://github.com/kataras/iris/stargazers) in order to stay updated with the latest tech trends, it takes some seconds for the sake of go!
 
-
-> Examples are tested using Windows 7, Ubuntu 16.04 with [LiteIDE](https://github.com/visualfc/liteide).
+> Examples are tested using Windows 10, Ubuntu 16.10 with [Microsoft Visual Studio](https://code.visualstudio.com/) and built using the [Go 1.9](https://golang.org/dl).
 
 ## Run
 
