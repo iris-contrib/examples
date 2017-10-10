@@ -16,7 +16,7 @@ func main() {
 	app := iris.New()
 
 	// Create a limiter struct.
-	limiter := tollbooth.NewLimiter(1, time.Second)
+	limiter := tollbooth.NewLimiter(1, time.Second, nil)
 
 	app.Get("/", tollboothic.LimitHandler(limiter), func(ctx iris.Context) {
 		ctx.HTML("<b>Hello, world!</b>")

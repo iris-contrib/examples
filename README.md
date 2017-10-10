@@ -124,7 +124,7 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
 
 > Do not forget to [star or watch the project](https://github.com/kataras/iris/stargazers) in order to stay updated with the latest tech trends, it takes some seconds for the sake of go!
 
-> Examples are tested using Windows 10, Ubuntu 16.10 with [Microsoft Visual Studio](https://code.visualstudio.com/) and built using the [Go 1.9](https://golang.org/dl).
+> Examples are tested using Windows 10, Ubuntu 16.10 with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and built using the [Go 1.9](https://golang.org/dl).
 
 ## Run
 
