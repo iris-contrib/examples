@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/iris-contrib/examples/structuring/login-single-responsibility-package/user"
+	"github.com/iris-contrib/examples/structuring/login-mvc-single-responsibility-package/user"
 
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/sessions"
