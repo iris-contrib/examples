@@ -17,7 +17,7 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Tutorial: URL Shortener using BoltDB](tutorial/url-shortener/main.go)
     * [Tutorial: DropzoneJS + Go: How to build a file upload form](tutorial/dropzonejs/main.go)
 * [Structuring](structuring)
-    * [Bootstrapper](structuring/bootstrap/bootstrap.main.go)
+    * [Bootstrapper](structuring/bootstrap/bootstrap/main.go)
     * [MVC with Repository and Service layer Overview](mvc/overview/main.go)
     * [Login (MVC with Single Responsibility package)](structuring/login-mvc-single-responsible-package/main.go)
     * [Login (MVC with Datamodels, Datasource, Repository and Service layer)](mvc/login/main.go)
