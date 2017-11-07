@@ -8,7 +8,7 @@ This repository provides easy to understand code snippets on how to get started 
 
 It doesn't contains "best ways" neither explains all its features. It's just a simple, practical cookbook for young Gophers!
 
-## Table of contents
+## Table of Contents
 
 * [Overview](overview)
     * [Hello world!](hello-world/main.go)
@@ -16,6 +16,7 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Tutorial: Online Visitors](tutorial/online-visitors/main.go)
     * [Tutorial: URL Shortener using BoltDB](tutorial/url-shortener/main.go)
     * [Tutorial: DropzoneJS + Go: How to build a file upload form](tutorial/dropzonejs/main.go)
+    * [Tutorial:Iris Go Framework + MongoDB](https://medium.com/go-language/iris-go-framework-mongodb-552e349eab9c)
 * [Structuring](structuring)
     * [Bootstrapper](structuring/bootstrap/bootstrap/bootstrapper.go)
     * [MVC with Repository and Service layer Overview](mvc/overview/main.go)
@@ -37,6 +38,7 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Functional](configuration/functional/main.go)
     * [From Configuration Struct](configuration/from-configuration-structure/main.go)
     * [Import from YAML file](configuration/from-yaml-file/main.go)
+        * [Share Configuration between multiple instances](configuration/from-yaml-file/shared-configuration/main.go)
     * [Import from TOML file](configuration/from-toml-file/main.go)
 * [Routing](routing)
     * [Overview](routing/overview/main.go)
@@ -120,7 +122,7 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Casbin middleware](experimental-handlers/casbin/middleware/main.go)
     * [Cloudwatch](experimental-handlers/cloudwatch/simple/main.go)
     * [CORS](experimental-handlers/cors/simple/main.go)
-    * [JWT](experimental-handlers/jwt/simple/main.go)
+    * [JWT](experimental-handlers/jwt/main.go)
     * [Newrelic](experimental-handlers/newrelic/simple/main.go)
     * [Prometheus](experimental-handlers/prometheus/simple/main.go)
     * [Secure](experimental-handlers/secure/simple/main.go)
@@ -134,13 +136,13 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
 
 1. Install the Go Programming Language, version 1.9 from [here](https://golang.org/dl).
 2. Install Iris: `go get -u github.com/kataras/iris`
-3. [Download the examples](https://github.com/iris-contrib/examples/archive/master.zip) and paste them to your `$GOPATH/src/github.com/iris-contrib/examples`
+3. [Download the examples](https://github.com/iris-contrib/examples/archive/master.zip) and copy-paste them to your `$GOPATH/src/github.com/iris-contrib/examples`
 
 And run
 
 ```sh
-cd $GOPATH/src/github.com/iris-contrib/examples/overview
-go run main.go
+$ cd $GOPATH/src/github.com/iris-contrib/examples/overview
+$ go run main.go
 ```
 
 ## Any troubles with examples?

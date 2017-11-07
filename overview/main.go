@@ -39,8 +39,10 @@ func main() {
 		ctx.Next()
 	})
 	// app.Done(func(ctx iris.Context) {]})
-	app.Subdomain("wtf.").Post("/decode", func(ctx iris.Context) {})
-	app.Subdomain("wtf.").Post("/decode", func(ctx iris.Context) {})
+
+	// Method POST: http://mysubdomain.[localhost:8080 or domain.com]/decode
+	app.Subdomain("mysubdomain.").Post("/decode", func(ctx iris.Context) {})
+
 	// Method POST: http://localhost:8080/decode
 	app.Post("/decode", func(ctx iris.Context) {
 		var user User
