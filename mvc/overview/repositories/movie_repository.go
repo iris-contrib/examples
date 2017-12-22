@@ -6,7 +6,7 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/iris-contrib/examples/mvc/overview/datamodels"
+	"github.com/kataras/iris/_examples/mvc/overview/datamodels"
 )
 
 // Query represents the visitor and action queries.
@@ -60,6 +60,7 @@ func (r *movieMemoryRepository) Exec(query Query, action Query, actionLimit int,
 		ok = query(movie)
 		if ok {
 			if action(movie) {
+				loops++
 				if actionLimit >= loops {
 					break // break
 				}

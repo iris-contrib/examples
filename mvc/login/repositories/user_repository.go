@@ -4,7 +4,7 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/iris-contrib/examples/mvc/login/datamodels"
+	"github.com/kataras/iris/_examples/mvc/login/datamodels"
 )
 
 // Query represents the visitor and action queries.
@@ -58,6 +58,7 @@ func (r *userMemoryRepository) Exec(query Query, action Query, actionLimit int, 
 		ok = query(user)
 		if ok {
 			if action(user) {
+				loops++
 				if actionLimit >= loops {
 					break // break
 				}

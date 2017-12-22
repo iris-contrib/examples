@@ -6,11 +6,11 @@ import (
 	"time"
 
 	"github.com/kataras/iris"
-	"github.com/iris-contrib/examples/mvc/login/datasource"
-	"github.com/iris-contrib/examples/mvc/login/repositories"
-	"github.com/iris-contrib/examples/mvc/login/services"
-	"github.com/iris-contrib/examples/mvc/login/web/controllers"
-	"github.com/iris-contrib/examples/mvc/login/web/middleware"
+	"github.com/kataras/iris/_examples/mvc/login/datasource"
+	"github.com/kataras/iris/_examples/mvc/login/repositories"
+	"github.com/kataras/iris/_examples/mvc/login/services"
+	"github.com/kataras/iris/_examples/mvc/login/web/controllers"
+	"github.com/kataras/iris/_examples/mvc/login/web/middleware"
 	"github.com/kataras/iris/sessions"
 )
 
