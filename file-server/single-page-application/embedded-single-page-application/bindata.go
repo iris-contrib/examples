@@ -85,7 +85,7 @@ func publicAppJs() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "public/app.js", size: 39, mode: os.FileMode(438), modTime: time.Unix(1497458456, 0)}
+	info := bindataFileInfo{name: "public/app.js", size: 39, mode: os.FileMode(438), modTime: time.Unix(1513267652, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -105,7 +105,7 @@ func publicCssMainCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "public/css/main.css", size: 41, mode: os.FileMode(438), modTime: time.Unix(1497455997, 0)}
+	info := bindataFileInfo{name: "public/css/main.css", size: 41, mode: os.FileMode(438), modTime: time.Unix(1513267652, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -125,7 +125,7 @@ func publicIndexHtml() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "public/index.html", size: 174, mode: os.FileMode(438), modTime: time.Unix(1497460815, 0)}
+	info := bindataFileInfo{name: "public/index.html", size: 174, mode: os.FileMode(438), modTime: time.Unix(1513267652, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -182,9 +182,9 @@ func AssetNames() []string {
 
 // _bindata is a table, holding each asset generator, mapped to its name.
 var _bindata = map[string]func() (*asset, error){
-	"public/app.js":       publicAppJs,
+	"public/app.js": publicAppJs,
 	"public/css/main.css": publicCssMainCss,
-	"public/index.html":   publicIndexHtml,
+	"public/index.html": publicIndexHtml,
 }
 
 // AssetDir returns the file names below a certain
@@ -226,14 +226,13 @@ type bintree struct {
 	Func     func() (*asset, error)
 	Children map[string]*bintree
 }
-
 var _bintree = &bintree{nil, map[string]*bintree{
-	"public": {nil, map[string]*bintree{
-		"app.js": {publicAppJs, map[string]*bintree{}},
-		"css": {nil, map[string]*bintree{
-			"main.css": {publicCssMainCss, map[string]*bintree{}},
+	"public": &bintree{nil, map[string]*bintree{
+		"app.js": &bintree{publicAppJs, map[string]*bintree{}},
+		"css": &bintree{nil, map[string]*bintree{
+			"main.css": &bintree{publicCssMainCss, map[string]*bintree{}},
 		}},
-		"index.html": {publicIndexHtml, map[string]*bintree{}},
+		"index.html": &bintree{publicIndexHtml, map[string]*bintree{}},
 	}},
 }}
 
@@ -283,3 +282,4 @@ func _filePath(dir, name string) string {
 	cannonicalName := strings.Replace(name, "\\", "/", -1)
 	return filepath.Join(append([]string{dir}, strings.Split(cannonicalName, "/")...)...)
 }
+

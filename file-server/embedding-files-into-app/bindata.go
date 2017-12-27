@@ -85,7 +85,7 @@ func assetsCssBootstrapMinCss() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "assets/css/bootstrap.min.css", size: 141513, mode: os.FileMode(511), modTime: time.Unix(1499700236, 0)}
+	info := bindataFileInfo{name: "assets/css/bootstrap.min.css", size: 141513, mode: os.FileMode(438), modTime: time.Unix(1513267652, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -105,7 +105,7 @@ func assetsFaviconIco() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "assets/favicon.ico", size: 15086, mode: os.FileMode(511), modTime: time.Unix(1496572980, 0)}
+	info := bindataFileInfo{name: "assets/favicon.ico", size: 15086, mode: os.FileMode(438), modTime: time.Unix(1513267652, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -125,7 +125,7 @@ func assetsJsJquery211Js() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "assets/js/jquery-2.1.1.js", size: 256541, mode: os.FileMode(511), modTime: time.Unix(1499700236, 0)}
+	info := bindataFileInfo{name: "assets/js/jquery-2.1.1.js", size: 256541, mode: os.FileMode(438), modTime: time.Unix(1513267652, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -183,8 +183,8 @@ func AssetNames() []string {
 // _bindata is a table, holding each asset generator, mapped to its name.
 var _bindata = map[string]func() (*asset, error){
 	"assets/css/bootstrap.min.css": assetsCssBootstrapMinCss,
-	"assets/favicon.ico":           assetsFaviconIco,
-	"assets/js/jquery-2.1.1.js":    assetsJsJquery211Js,
+	"assets/favicon.ico": assetsFaviconIco,
+	"assets/js/jquery-2.1.1.js": assetsJsJquery211Js,
 }
 
 // AssetDir returns the file names below a certain
@@ -226,15 +226,14 @@ type bintree struct {
 	Func     func() (*asset, error)
 	Children map[string]*bintree
 }
-
 var _bintree = &bintree{nil, map[string]*bintree{
-	"assets": {nil, map[string]*bintree{
-		"css": {nil, map[string]*bintree{
-			"bootstrap.min.css": {assetsCssBootstrapMinCss, map[string]*bintree{}},
+	"assets": &bintree{nil, map[string]*bintree{
+		"css": &bintree{nil, map[string]*bintree{
+			"bootstrap.min.css": &bintree{assetsCssBootstrapMinCss, map[string]*bintree{}},
 		}},
-		"favicon.ico": {assetsFaviconIco, map[string]*bintree{}},
-		"js": {nil, map[string]*bintree{
-			"jquery-2.1.1.js": {assetsJsJquery211Js, map[string]*bintree{}},
+		"favicon.ico": &bintree{assetsFaviconIco, map[string]*bintree{}},
+		"js": &bintree{nil, map[string]*bintree{
+			"jquery-2.1.1.js": &bintree{assetsJsJquery211Js, map[string]*bintree{}},
 		}},
 	}},
 }}
@@ -285,3 +284,4 @@ func _filePath(dir, name string) string {
 	cannonicalName := strings.Replace(name, "\\", "/", -1)
 	return filepath.Join(append([]string{dir}, strings.Split(cannonicalName, "/")...)...)
 }
+
