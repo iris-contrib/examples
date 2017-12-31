@@ -4,7 +4,7 @@
 //
 // $ go get github.com/boltdb/bolt/...
 // $ go get github.com/satori/go.uuid
-// $ cd $GOPATH/src/github.com/kataras/iris/_examples/tutorial/url-shortener
+// $ cd $GOPATH/src/github.com/iris-contrib/examples/tutorial/url-shortener
 // $ go build
 // $ ./url-shortener
 package main

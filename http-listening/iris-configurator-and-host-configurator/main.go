@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/kataras/iris/_examples/http-listening/iris-configurator-and-host-configurator/counter"
+	"github.com/iris-contrib/examples/http-listening/iris-configurator-and-host-configurator/counter"
 
 	"github.com/kataras/iris"
 )

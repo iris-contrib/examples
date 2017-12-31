@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"log"
 
-	"github.com/iris-contrib/examples/http_responsewriter/hero/template"
+	"github.com/iris-contrib/examples/http_responsewriter/herotemplate/template"
 
 	"github.com/kataras/iris"
 )
@@ -46,7 +46,7 @@ func main() {
 
 		// using an io.Writer for automatic buffer management (i.e. hero built-in buffer pool),
 		// iris context implements the io.Writer by its ResponseWriter
-		// which is an enhanced version of the standar http.ResponseWriter
+		// which is an enhanced version of the standard http.ResponseWriter
 		// but still 100% compatible.
 		template.UserListToWriter(userList, ctx)
 	})

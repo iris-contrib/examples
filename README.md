@@ -4,7 +4,7 @@
 
 <a href="https://travis-ci.org/iris-contrib/examples"><img src="https://img.shields.io/travis/iris-contrib/examples.svg?style=flat-square" alt="Build Status"></a>
 <a href="https://github.com/iris-contrib/examples/blob/master/LICENSE"><img src="https://img.shields.io/badge/%20license-MIT%20%20License%20-E91E63.svg?style=flat-square" alt="License"></a>
-<a href="https://github.com/kataras/iris/blob/master/HISTORY.md"><img src="https://img.shields.io/badge/version-8.x%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
+<a href="https://github.com/kataras/iris/blob/master/HISTORY.md"><img src="https://img.shields.io/badge/version-10.x%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
 
 This repository provides easy to understand code snippets on how to get started with web development with the Go programming language using the [Iris](https://github.com/kataras/iris) web framework.
 
@@ -51,11 +51,17 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Reverse routing](routing/reverse/main.go)
     * [Custom wrapper](routing/custom-wrapper/main.go)
     * [Route State](routing/route-state/main.go)
+* [Hero](hero)
+    * [Basic](hero/basic/main.go)
+    * [Overview](hero/overview/main.go)
 * [MVC](mvc)
-    * [Hello world](mvc/hello-world/main.go)
-    * [Session Controller](mvc/session-controller/main.go)
-    * [Overview - Plus Repository and Service layers](mvc/overview/main.go)
-    * [Login showcase - Plus Repository and Service layers](mvc/login/main.go)
+    * [Hello world](mvc/hello-world/main.go) **UPDATED**
+    * [Session Controller](mvc/session-controller/main.go) **UPDATED**
+    * [Overview - Plus Repository and Service layers](mvc/overview/main.go) **UPDATED**
+    * [Login showcase - Plus Repository and Service layers](mvc/login/web/main.go) **UPDATED**
+    * [Singleton](mvc/singleton/main.go) **NEW**
+    * [Websocket Controller](mvc/websocket/main.go) **NEW**
+    * [Vue.js Todo MVC](tutorial/vuejs-todo-mvc/src/web/main.go) **NEW**
 * [Custom Context](routing/custom-context)
     * [Method Overriding](routing/custom-context/method-overriding/main.go)
     * [New Implementation](routing/custom-context/new-implementation/main.go)
