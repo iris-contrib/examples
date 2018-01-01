@@ -3,7 +3,6 @@ package main
 import (
 	"io/ioutil"
 	"path/filepath"
-	"runtime"
 	"strings"
 	"testing"
 
@@ -37,9 +36,9 @@ func (r resource) loadFromBase(dir string) string {
 
 	result := string(b)
 
-	if runtime.GOOS != "windows" {
-		result = strings.Replace(result, "\n", "\r\n", -1)
-	}
+	// if runtime.GOOS != "windows" {
+	// 	result = strings.Replace(result, "\n", "\r\n", -1)
+	// }
 	return result
 }
 
