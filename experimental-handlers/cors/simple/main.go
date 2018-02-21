@@ -13,12 +13,12 @@ import (
 func main() {
 
 	app := iris.New()
+
+	// `crs := cors.NewAllowAllPartyMiddleware()`, or:
 	crs := cors.NewPartyMiddleware(cors.Options{
 		AllowedOrigins:   []string{"*"}, // allows everything, use that to change the hosts.
 		AllowCredentials: true,
 	})
-
-	var p router.Party
 
 	v1 := app.Party("/api/v1")
 	v1.ConfigureParty(crs)
