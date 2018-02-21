@@ -29,6 +29,12 @@ func main() {
 		v1.Post("/send", func(ctx iris.Context) {
 			ctx.WriteString("sent")
 		})
+		v1.Put("/send", func(ctx iris.Context) {
+			ctx.WriteString("updated")
+		})
+		v1.Delete("/send", func(ctx iris.Context) {
+			ctx.WriteString("deleted")
+		})
 	}
 
 	// or use that to wrap the entire router
