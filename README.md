@@ -90,6 +90,7 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Favicon](file-server/favicon/main.go)
     * [Basic](file-server/basic/main.go)
     * [Embedding Files Into App Executable File](file-server/embedding-files-into-app/main.go)
+    * [Embedding Gziped Files Into App Executable File](file-server/embedding-gziped-files-into-app/main.go) **NEW**
     * [Send/Force-Download Files](file-server/send-files/main.go)
 * [Single Page Applications](file-server/single-page-application)
     * [Single Page Application](file-server/single-page-application/basic/main.go)
