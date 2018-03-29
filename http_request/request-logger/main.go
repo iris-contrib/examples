@@ -22,7 +22,17 @@ func main() {
 
 		// if !empty then its contents derives from `ctx.Values().Get("logger_message")
 		// will be added to the logs.
-		MessageContextKey: "logger_message",
+		MessageContextKeys: []string{"logger_message"},
+		// MessageHeaderKeys if not empty,
+		// the middleware will try to fetch
+		// the contents with `ctx.Values().Get(MessageHeaderKey)`
+		// and if available then these contents will be
+		// appended as part of the logs (with `%v`, in order to be able to set a struct too),
+		// if Columns field was setted to true then
+		// a new column will be added named 'HeaderMessage'.
+		//
+		// Defaults to empty.
+		// MessageHeaderKeys: []string{},
 	})
 
 	app.Use(customLogger)
