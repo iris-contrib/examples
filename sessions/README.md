@@ -6,16 +6,14 @@ Iris sessions manager lives on its own [kataras/iris/sessions](https://github.co
 
 Some trivial examples,
 
-- [Overview](https://github.com/kataras/iris/blob/master/_examples/sessions/overview/main.go)
-- [Standalone](https://github.com/kataras/iris/blob/master/_examples/sessions/standalone/main.go)
-- [Secure Cookie](https://github.com/kataras/iris/blob/master/_examples/sessions/securecookie/main.go)
-- [Flash Messages](https://github.com/kataras/iris/blob/master/_examples/sessions/flash-messages/main.go)
-- [Databases](https://github.com/kataras/iris/tree/master/_examples/sessions/database)
-    * [BadgerDB](https://github.com/kataras/iris/blob/master/_examples/sessions/database/badger/main.go) **fastest**
-    * [File](https://github.com/kataras/iris/blob/master/_examples/sessions/database/file/main.go)
-    * [BoltDB](https://github.com/kataras/iris/blob/master/_examples/sessions/database/boltdb/main.go)
-    * [LevelDB](https://github.com/kataras/iris/blob/master/_examples/sessions/database/leveldb/main.go)
-    * [Redis](https://github.com/kataras/iris/blob/master/_examples/sessions/database/redis/main.go)
+- [Overview](https://github.com/iris-contrib/examples/blob/master/sessions/overview/main.go)
+- [Standalone](https://github.com/iris-contrib/examples/blob/master/sessions/standalone/main.go)
+- [Secure Cookie](https://github.com/iris-contrib/examples/blob/master/sessions/securecookie/main.go)
+- [Flash Messages](https://github.com/iris-contrib/examples/blob/master/sessions/flash-messages/main.go)
+- [Databases](https://github.com/kataras/iris/tree/master/sessions/database)
+    * [Badger](https://github.com/iris-contrib/examples/blob/master/sessions/database/badger/main.go) **fastest**
+    * [BoltDB](https://github.com/iris-contrib/examples/blob/master/sessions/database/boltdb/main.go)
+    * [Redis](https://github.com/iris-contrib/examples/blob/master/sessions/database/redis/main.go)
 
 ## Overview
 
@@ -48,7 +46,7 @@ manager.
 
 This example will show how to store data from a session.
 
-You don't need any third-party library except Iris, but if you want you can use anything, remember Iris is fully compatible with the standard library. You can find a more detailed examples by pressing [here](https://github.com/kataras/iris/tree/master/_examples/sessions).
+You don't need any third-party library except Iris, but if you want you can use anything, remember Iris is fully compatible with the standard library. You can find a more detailed examples by pressing [here](https://github.com/kataras/iris/tree/master/sessions).
 
 In this example we will only allow authenticated users to view our secret message on the `/secret` age. To get access to it, the will first have to visit `/login` to get a valid session cookie, hich logs him in. Additionally he can visit `/logout` to revoke his access to our secret message.
 

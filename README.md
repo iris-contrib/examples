@@ -123,6 +123,7 @@ It doesn't contains "best ways" neither explains all its features. It's just a s
     * [Databases](sessions/database)
         * [Badger](sessions/database/badger/main.go)
         * [Redis](sessions/database/redis/main.go)
+        * [BoltDB](sessions/database/boltdb/main.go)
 * [Websockets](websocket)
     * [Chat](websocket/chat/main.go)
     * [Native Messages](websocket/native-messages/main.go)
