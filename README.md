@@ -8,7 +8,7 @@
 
 This repository provides easy to understand code snippets on how to get started with web development with the Go programming language using the [Iris](https://github.com/kataras/iris) web framework.
 
-It doesn't contains "best ways" neither explains all its features. It's just a simple, practical cookbook for young Gophers!
+It doesn't contain "best ways" neither explains all its features. It's just a simple, practical cookbook for young Gophers!
 
 ## Table of Contents
 
