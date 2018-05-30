@@ -58,7 +58,7 @@ It doesn't contain "best ways" neither explains all its features. It's just a si
     * [Hello world](mvc/hello-world/main.go) **UPDATED**
     * [Session Controller](mvc/session-controller/main.go) **UPDATED**
     * [Overview - Plus Repository and Service layers](mvc/overview/main.go) **UPDATED**
-    * [Login showcase - Plus Repository and Service layers](mvc/login/web/main.go) **UPDATED**
+    * [Login showcase - Plus Repository and Service layers](mvc/login/main.go) **UPDATED**
     * [Singleton](mvc/singleton/main.go) **NEW**
     * [Websocket Controller](mvc/websocket/main.go) **NEW**
     * [Vue.js Todo MVC](tutorial/vuejs-todo-mvc/src/web/main.go) **NEW**
