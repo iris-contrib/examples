@@ -20,9 +20,12 @@ func main() {
 		db.Close()
 	})
 
+	defer db.Close() // close and unlock the database if application errored.
+
 	sess := sessions.New(sessions.Config{
-		Cookie:  "sessionscookieid",
-		Expires: 45 * time.Minute, // <=0 means unlimited life
+		Cookie:       "sessionscookieid",
+		Expires:      45 * time.Minute, // <=0 means unlimited life. Defaults to 0.
+		AllowReclaim: true,
 	})
 
 	//
@@ -89,5 +92,5 @@ func main() {
 		sess.ShiftExpiration(ctx)
 	})
 
-	app.Run(iris.Addr(":8080"))
+	app.Run(iris.Addr(":8080"), iris.WithoutServerError(iris.ErrServerClosed))
 }

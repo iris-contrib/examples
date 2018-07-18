@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/satori/go.uuid"
 	"net/url"
+
+	"github.com/satori/go.uuid"
 )
 
 // Generator the type to generate keys(short urls)
@@ -10,7 +11,8 @@ type Generator func() string
 
 // DefaultGenerator is the defautl url generator
 var DefaultGenerator = func() string {
-	return uuid.NewV4().String()
+	id, _ := uuid.NewV4()
+	return id.String()
 }
 
 // Factory is responsible to generate keys(short urls)

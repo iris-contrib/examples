@@ -14,6 +14,7 @@ It doesn't contain "best ways" neither explains all its features. It's just a si
 
 * [Overview](overview)
     * [Hello world!](hello-world/main.go)
+    * [Hello WebAssemply!](webassembly/basic/main.go) **NEW**
     * [Glimpse](overview/main.go)
     * [Tutorial: Online Visitors](tutorial/online-visitors/main.go)
     * [Tutorial: URL Shortener using BoltDB](tutorial/url-shortener/main.go)
@@ -82,6 +83,11 @@ It doesn't contain "best ways" neither explains all its features. It's just a si
     * [The `url` tmpl func](view/template_html_4/main.go)
     * [Inject Data Between Handlers](view/context-view-data/main.go)
     * [Embedding Templates Into App Executable File](view/embedding-templates-into-app/main.go)
+    * [Write to a custom `io.Writer`](view/write-to/main.go)
+    * [Greeting with Pug (Jade)`](view/template_pug_0/main.go)
+    * [Pug (Jade) Actions`](view/template_pug_1/main.go)
+    * [Pug (Jade) Includes`](view/template_pug_2/main.go)
+    * [Pug (Jade) Extends`](view/template_pug_3/main.go)
 * [Authentication](authentication)
     * [Basic Authentication](authentication/basicauth/main.go)
     * [OAUth2](authentication/oauth2/main.go)
