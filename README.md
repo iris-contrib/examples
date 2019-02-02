@@ -14,7 +14,7 @@ It doesn't contain "best ways" neither explains all its features. It's just a si
 
 * [Overview](overview)
     * [Hello world!](hello-world/main.go)
-    * [Hello WebAssemply!](webassembly/basic/main.go) **NEW**
+    * [Hello WebAssemply!](https://github.com/kataras/iris/tree/master/_examples/webassemply/basic) **NEW**
     * [Glimpse](overview/main.go)
     * [Tutorial: Online Visitors](tutorial/online-visitors/main.go)
     * [Tutorial: URL Shortener using BoltDB](tutorial/url-shortener/main.go)
