@@ -1,10 +1,10 @@
 # Examples
 
-<img align="right" width="150px" src="https://iris-go.com/images/logo.svg?v=10">
+<img align="right" width="150px" src="https://iris-go.com/images/logo.svg?v=11.1.1">
 
 <a href="https://travis-ci.org/iris-contrib/examples"><img src="https://img.shields.io/travis/iris-contrib/examples.svg?style=flat-square" alt="Build Status"></a>
 <a href="https://github.com/iris-contrib/examples/blob/master/LICENSE"><img src="https://img.shields.io/badge/%20license-MIT%20%20License%20-E91E63.svg?style=flat-square" alt="License"></a>
-<a href="https://github.com/kataras/iris/blob/master/HISTORY.md"><img src="https://img.shields.io/badge/version-10.x%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
+<a href="https://github.com/kataras/iris/blob/v11.1.1/HISTORY.md"><img src="https://img.shields.io/badge/version-11.1%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
 
 This repository provides easy to understand code snippets on how to get started with web development with the Go programming language using the [Iris](https://github.com/kataras/iris) web framework.
 
@@ -14,7 +14,7 @@ It doesn't contain "best ways" neither explains all its features. It's just a si
 
 * [Overview](overview)
     * [Hello world!](hello-world/main.go)
-    * [Hello WebAssembly!](https://github.com/kataras/iris/tree/master/_examples/webassembly/basic) **NEW**
+    * [Hello WebAssembly!](https://github.com/iris-contrib/examples/tree/v11.1.1/webassembly/basic) **NEW**
     * [Glimpse](overview/main.go)
     * [Tutorial: Online Visitors](tutorial/online-visitors/main.go)
     * [Tutorial: URL Shortener using BoltDB](tutorial/url-shortener/main.go)

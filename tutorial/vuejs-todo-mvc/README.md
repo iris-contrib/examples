@@ -27,7 +27,7 @@ Many articles have been written, in the past, that lead developers not to use a 
 You’ll need two dependencies:
 
 1. Vue.js, for our client-side requirements. Download it from [here](https://vuejs.org/), latest v2.
-2. The Iris Web Framework, for our server-side requirements. Can be found [here](https://github.com/kataras/iris), latest v10.
+2. The Iris Web Framework, for our server-side requirements. Can be found [here](https://github.com/kataras/iris), latest v11.
 
 > If you have Go already installed then just execute `go get -u github.com/kataras/iris` to install the Iris Web Framework.
 
@@ -530,7 +530,7 @@ func main() {
     todosApp.Handle(new(controllers.TodoController))
 
     // start the web server at http://localhost:8080
-    app.Run(iris.Addr(":8080"), iris.WithoutVersionChecker)
+    app.Run(iris.Addr(":8080"))
 }
 ```
 
@@ -549,13 +549,13 @@ Open one or more browser tabs at: http://localhost:8080 and have fun!
 
 ### Download the Source Code
 
-The whole project, all the files you saw in this article are located at: https://github.com/kataras/iris/tree/master/_examples/tutorial/vuejs-todo-mvc
+The whole project, all the files you saw in this article are located at: https://github.com/iris-contrib/examples/tree/v11.1.1/tutorial/vuejs-todo-mvc
 
 ## References
 
 https://vuejs.org/v2/examples/todomvc.html (using browser's local storage)
 
-https://github.com/kataras/iris/tree/master/_examples/mvc (mvc examples and features overview repository)
+https://github.com/iris-contrib/examples/tree/v11.1.1/mvc (mvc examples and features overview repository)
 
 ## Thank you, once again
 

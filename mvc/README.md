@@ -143,4 +143,4 @@ If you're new to back-end web development read about the MVC architectural patte
 - [Websocket Controller](websocket) **NEW**
 - [Register Middleware](middleware) **NEW**
 
-Folder structure guidelines can be found at the [_examples/#structuring](https://github.com/kataras/iris/tree/master/_examples/#structuring) section.
+Folder structure guidelines can be found at the [_examples/#structuring](https://github.com/iris-contrib/examples/tree/v11.1.1/#structuring) section.

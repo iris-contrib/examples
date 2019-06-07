@@ -146,7 +146,7 @@ func main() {
 //
 // See `Configuration#IgnoreServerErrors []string` too.
 //
-// Example: https://github.com/kataras/iris/tree/master/_examples/http-listening/listen-addr/omit-server-errors
+// Example: https://github.com/iris-contrib/examples/tree/v11.1.1/http-listening/listen-addr/omit-server-errors
 func WithoutServerError(errors ...error) Configurator
 
 // WithoutStartupLog turns off the information send, once, to the terminal when the main server is open.

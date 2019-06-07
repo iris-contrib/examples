@@ -31,7 +31,7 @@ func (c *VisitController) Get() string {
 	visits := c.Session.Increment("visits", 1)
 	// write the current, updated visits.
 	since := time.Now().Sub(c.StartTime).Seconds()
-	return fmt.Sprintf("%d visit from my current session in %0.1f seconds of server's up-time",
+	return fmt.Sprintf("%d visit(s) from my current session in %0.1f seconds of server's up-time",
 		visits, since)
 }
 
@@ -68,5 +68,5 @@ func main() {
 	// 3. refresh the page some times
 	// 4. close the browser
 	// 5. re-open the browser and re-play 2.
-	app.Run(iris.Addr(":8080"), iris.WithoutVersionChecker)
+	app.Run(iris.Addr(":8080"))
 }

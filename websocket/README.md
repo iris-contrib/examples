@@ -2,7 +2,7 @@
 
 [WebSocket](https://wikipedia.org/wiki/WebSocket) is a protocol that enables two-way persistent communication channels over TCP connections. It is used for applications such as chat, stock tickers, games, anywhere you want real-time functionality in a web application.
 
-[View or download sample code](https://github.com/kataras/iris/tree/master/_examples/websocket).
+[View or download sample code](https://github.com/iris-contrib/examples/tree/v11.1.1/websocket).
 
 ## When to use it
 

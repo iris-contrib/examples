@@ -27,6 +27,7 @@ func main() {
 
 	// Read
 	app.Post("/decode", func(ctx iris.Context) {
+		// Read https://github.com/iris-contrib/examples/blob/v11.1.1/http_request/read-json/main.go as well.
 		var user User
 		ctx.ReadJSON(&user)
 
