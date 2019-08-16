@@ -168,7 +168,7 @@ func main() {
     app := iris.New()
     app.RegisterView(iris.HTML("./views", ".html"))
 
-    app.StaticWeb("/public", "./public")
+    app.HandleDir("/public", "./public")
 
     app.Get("/", func(ctx iris.Context) {
         ctx.View("upload.html")
@@ -302,7 +302,7 @@ If you have done it successfully. Now go and upload some images and reload the u
 - http://www.dropzonejs.com/#server-side-implementation
 - https://www.startutorial.com/articles/view/how-to-build-a-file-upload-form-using-dropzonejs-and-php
 - https://docs.iris-go.com
-- https://github.com/iris-contrib/examples/tree/v11.1.1/tutorial/dropzonejs
+- https://github.com/kataras/iris/tree/master/_examples/tutorial/dropzonejs
 
 ## The end
 

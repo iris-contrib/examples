@@ -1,1 +1,1 @@
-# Please navigate to the [_examples/mvc/login](https://github.com/iris-contrib/examples/tree/v11.1.1/mvc/login)
+# Please navigate to the [_examples/mvc/login](https://github.com/kataras/iris/tree/master/_examples/mvc/login)

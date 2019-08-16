@@ -1,1 +1,1 @@
-# Please navigate to the [_examples/mvc/overview](https://github.com/iris-contrib/examples/tree/v11.1.1/mvc/overview)
+# Please navigate to the [_examples/mvc/overview](https://github.com/kataras/iris/tree/master/_examples/mvc/overview)
