@@ -2,7 +2,7 @@
 
 <a href="https://iris-go.com"> <img align="right" width="115px" src="https://iris-go.com/images/icon.svg?v=a" title="logo created by @merry.dii" /> </a>
 
-<a href="https://travis-ci.org/iris-contrib/examples"><img src="https://img.shields.io/travis/iris-contrib/examples.svg?style=flat-square" alt="Build Status"></a>
+<a href="https://travis-ci.org/kataras/iris"><img src="https://img.shields.io/travis/kataras/iris.svg?style=flat-square" alt="Build Status"></a>
 <a href="https://github.com/iris-contrib/examples/blob/master/LICENSE"><img src="https://img.shields.io/badge/%20license-MIT%20%20License%20-E91E63.svg?style=flat-square" alt="License"></a>
 <a href="https://github.com/kataras/iris/blob/v11/HISTORY.md"><img src="https://img.shields.io/badge/version-11.2%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
 
