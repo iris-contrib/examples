@@ -4,10 +4,6 @@ os:
   - osx
 go:
   - tip
-env:
- global:
-   - GO111MODULE=on
 script:
-  - go get github.com/kataras/iris@master
   - go get ./...
   - go test -v -cover ./...
