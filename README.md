@@ -68,8 +68,8 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Custom Router (high-level)](routing/custom-high-level-router/main.go)
     * [Custom Wrapper](routing/custom-wrapper/main.go) **UPDATED**
     * Custom Context
-            * [method overriding](routing/custom-context/method-overriding/main.go)
-            * [new implementation](routing/custom-context/new-implementation/main.go)
+        * [method overriding](routing/custom-context/method-overriding/main.go)
+        * [new implementation](routing/custom-context/new-implementation/main.go)
     * [Route State](routing/route-state/main.go)
     * [Writing a middleware](routing/writing-a-middleware)
             * [per-route](routing/writing-a-middleware/per-route/main.go)
