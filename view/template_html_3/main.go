@@ -2,7 +2,7 @@
 package main
 
 import (
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 )
 
 func main() {
@@ -59,7 +59,6 @@ func main() {
 	// http://localhost:8080
 	// http://localhost:8080/redirect/my-page1
 	app.Run(iris.Addr(":8080"))
-
 }
 
 func writePathHandler(ctx iris.Context) {

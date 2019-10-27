@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/kataras/iris/httptest"
+	"github.com/kataras/iris/v12/httptest"
 )
 
 func TestI18n(t *testing.T) {
@@ -45,5 +45,4 @@ func TestI18n(t *testing.T) {
 		Body().Equal(elgrMulti)
 	e.GET("/multi").WithQueryString("lang=en-US").Expect().Status(httptest.StatusOK).
 		Body().Equal(enusMulti)
-
 }

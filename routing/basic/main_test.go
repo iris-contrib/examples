@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/kataras/iris/httptest"
+	"github.com/kataras/iris/v12/httptest"
 )
 
 // Shows a very basic usage of the httptest.
@@ -85,5 +85,4 @@ func TestRoutingBasic(t *testing.T) {
 
 	e.Request("GET", "/").WithURL("http://any-subdomain-here.example.com").Expect().Status(httptest.StatusOK).
 		Body().Equal(expectedSubdomainWildcardIndexResponse)
-
 }

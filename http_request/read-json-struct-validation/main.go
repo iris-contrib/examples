@@ -5,7 +5,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 	// $ go get gopkg.in/go-playground/validator.v9
 	"gopkg.in/go-playground/validator.v9"
 )
@@ -131,7 +131,6 @@ func main() {
 // hooks right into validator and you can combine with validation tags and still have a
 // common error output format.
 func UserStructLevelValidation(sl validator.StructLevel) {
-
 	user := sl.Current().Interface().(User)
 
 	if len(user.FirstName) == 0 && len(user.LastName) == 0 {

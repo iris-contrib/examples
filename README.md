@@ -3,8 +3,8 @@
 <a href="https://iris-go.com"> <img align="right" width="115px" src="https://iris-go.com/images/icon.svg?v=a" title="logo created by @merry.dii" /> </a>
 
 <a href="https://travis-ci.org/kataras/iris"><img src="https://img.shields.io/travis/kataras/iris.svg?style=flat-square" alt="Build Status"></a>
-<a href="https://github.com/iris-contrib/examples/blob/master/LICENSE"><img src="https://img.shields.io/badge/%20license-MIT%20%20License%20-E91E63.svg?style=flat-square" alt="License"></a>
-<a href="https://github.com/kataras/iris/blob/v11/HISTORY.md"><img src="https://img.shields.io/badge/version-11.2%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
+<a href="https://github.com/iris-contrib/examples/blob/v12/LICENSE"><img src="https://img.shields.io/badge/%20license-MIT%20%20License%20-E91E63.svg?style=flat-square" alt="License"></a>
+<a href="https://github.com/kataras/iris/blob/v12/HISTORY.md"><img src="https://img.shields.io/badge/version-v12.0%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
 
 This repository provides easy to understand code snippets on how to get started with web development with the Go programming language using the [Iris](https://github.com/kataras/iris) web framework.
 
@@ -211,9 +211,9 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 
 ## Run
 
-1. Install the Go Programming Language, version 1.12 from [here](https://golang.org/dl).
-2. Install Iris: `go get github.com/kataras/iris@master`
-3. [Download the examples](https://github.com/iris-contrib/examples/archive/master.zip) and copy-paste them to your `$GOPATH/src/github.com/iris-contrib/examples`
+1. Install the Go Programming Language, version 1.13 from [here](https://golang.org/dl).
+2. Install Iris: `go get github.com/kataras/iris/v12@latest`
+3. [Download the examples](https://github.com/iris-contrib/examples/archive/v12.zip) and copy-paste them to your `$GOPATH/src/github.com/iris-contrib/examples`
 
 And run
 

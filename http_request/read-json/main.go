@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 )
 
 type Company struct {
@@ -32,7 +32,6 @@ type Person struct {
 func MyHandler2(ctx iris.Context) {
 	var persons []Person
 	err := ctx.ReadJSON(&persons)
-
 	if err != nil {
 		ctx.StatusCode(iris.StatusBadRequest)
 		ctx.WriteString(err.Error())

@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 	"github.com/r3labs/sse"
 )
 
@@ -42,7 +42,6 @@ func main() {
 		s.Publish("messages", &sse.Event{
 			Data: []byte("third message"),
 		})
-
 	}() // ...
 
 	app.Run(iris.Addr(":8080"), iris.WithoutServerError(iris.ErrServerClosed))

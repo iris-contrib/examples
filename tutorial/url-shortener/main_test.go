@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kataras/iris/httptest"
+	"github.com/kataras/iris/v12/httptest"
 )
 
 // TestURLShortener tests the simple tasks of our url shortener application.
@@ -73,5 +73,4 @@ func TestURLShortener(t *testing.T) {
 	}
 
 	time.Sleep(1 * time.Second)
-
 }

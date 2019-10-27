@@ -4,14 +4,13 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 )
 
 // In this example you'll just see one use case of .WrapRouter.
 // You can use the .WrapRouter to add custom logic when or when not the router should
 // be executed in order to execute the registered routes' handlers.
 func newApp() *iris.Application {
-
 	app := iris.New()
 
 	app.OnErrorCode(iris.StatusNotFound, func(ctx iris.Context) {

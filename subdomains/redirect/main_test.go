@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/kataras/iris/httptest"
+	"github.com/kataras/iris/v12/httptest"
 )
 
 func TestSubdomainRedirectWWW(t *testing.T) {
@@ -26,5 +26,4 @@ func TestSubdomainRedirectWWW(t *testing.T) {
 	for _, test := range tests {
 		e.GET(test.path).Expect().Status(httptest.StatusOK).Body().Equal(test.response)
 	}
-
 }

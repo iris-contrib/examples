@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 )
 
 func main() {
@@ -16,7 +16,6 @@ func main() {
 	})
 
 	app.Get("/change", func(ctx iris.Context) {
-
 		if none.IsOnline() {
 			none.Method = iris.MethodNone
 		} else {

@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 )
 
 func main() {
@@ -84,7 +84,6 @@ func saveUploadedFile(fh *multipart.FileHeader, destDirectory string) (int64, er
 
 	out, err := os.OpenFile(filepath.Join(destDirectory, fh.Filename),
 		os.O_WRONLY|os.O_CREATE, os.FileMode(0666))
-
 	if err != nil {
 		return 0, err
 	}

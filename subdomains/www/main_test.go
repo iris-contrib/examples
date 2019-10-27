@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/kataras/iris/httptest"
+	"github.com/kataras/iris/v12/httptest"
 )
 
 type testRoute struct {
@@ -54,5 +54,4 @@ func TestSubdomainWWW(t *testing.T) {
 			Status(httptest.StatusOK).
 			Body().Equal(test.response())
 	}
-
 }

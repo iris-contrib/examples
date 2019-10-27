@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/Shopify/sarama"
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 )
 
 /*
@@ -375,5 +375,4 @@ func getTopicConsumeSSEHandler(ctx iris.Context) {
 			flusher.Flush()
 		}
 	}
-
 }

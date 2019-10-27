@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/kataras/iris/httptest"
+	"github.com/kataras/iris/v12/httptest"
 )
 
 func TestContentNegotiation(t *testing.T) {
@@ -74,5 +74,4 @@ func TestContentNegotiation(t *testing.T) {
 	if expected, got := expectedHTMLResponse, string(rawResponse); expected != got {
 		t.Fatalf("expected response to be:\n%s but got:\n%s", expected, got)
 	}
-
 }

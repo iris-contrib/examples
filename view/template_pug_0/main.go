@@ -1,6 +1,6 @@
 package main
 
-import "github.com/kataras/iris"
+import "github.com/kataras/iris/v12"
 
 func main() {
 	app := iris.New()
@@ -25,5 +25,4 @@ func index(ctx iris.Context) {
 	// Q: why need extension .pug?
 	// A: Because you can register more than one view engine per Iris application.
 	ctx.View("index.pug")
-
 }

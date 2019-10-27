@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 )
 
 const maxSize = 5 << 20 // 5MB
@@ -113,7 +113,6 @@ func main() {
 		// assuming that you have a folder named 'uploads'
 		out, err := os.OpenFile("./uploads/"+fname,
 			os.O_WRONLY|os.O_CREATE, 0666)
-
 		if err != nil {
 			ctx.StatusCode(iris.StatusInternalServerError)
 			ctx.HTML("Error while uploading: <b>" + err.Error() + "</b>")

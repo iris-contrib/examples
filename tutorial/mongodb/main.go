@@ -11,13 +11,13 @@ import (
 	"os"
 
 	// APIs
-	storeapi "github.com/iris-contrib/examples/tutorial/mongodb/api/store"
+	storeapi "github.com/kataras/iris/v12/_examples/tutorial/mongodb/api/store"
 
 	//
-	"github.com/iris-contrib/examples/tutorial/mongodb/env"
-	"github.com/iris-contrib/examples/tutorial/mongodb/store"
+	"github.com/kataras/iris/v12/_examples/tutorial/mongodb/env"
+	"github.com/kataras/iris/v12/_examples/tutorial/mongodb/store"
 
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -26,7 +26,7 @@ import (
 const version = "0.0.1"
 
 func init() {
-	var envFileName = ".env"
+	envFileName := ".env"
 
 	flagset := flag.CommandLine
 	flagset.StringVar(&envFileName, "env", envFileName, "the env file which web app will use to extract its environment variables")

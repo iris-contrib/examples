@@ -12,7 +12,7 @@ package main
 import (
 	"html/template"
 
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 )
 
 func main() {
@@ -99,7 +99,6 @@ func newApp(db *DB) *iris.Application {
 					ctx.ViewData("FORM_RESULT",
 						template.HTML("<pre><a target='_new' href='"+shortenURL+"'>"+shortenURL+" </a></pre>"))
 				}
-
 			}
 		}
 

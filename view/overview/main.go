@@ -1,6 +1,6 @@
 package main
 
-import "github.com/kataras/iris"
+import "github.com/kataras/iris/v12"
 
 func main() {
 	app := iris.New()
@@ -14,11 +14,9 @@ func main() {
 	// - {{ current }}
 	app.RegisterView(iris.HTML("./templates", ".html"))
 	app.Get("/", func(ctx iris.Context) {
-
 		ctx.ViewData("Name", "iris") // the .Name inside the ./templates/hi.html
 		ctx.Gzip(true)               // enable gzip for big files
 		ctx.View("hi.html")          // render the template with the file name relative to the './templates'
-
 	})
 
 	// http://localhost:8080/
@@ -28,8 +26,8 @@ func main() {
 /*
 Note:
 
-In case you're wondering, the code behind the view engines derives from the "github.com/kataras/iris/view" package,
-access to the engines' variables can be granded by "github.com/kataras/iris" package too.
+In case you're wondering, the code behind the view engines derives from the "github.com/kataras/iris/v12/view" package,
+access to the engines' variables can be granded by "github.com/kataras/iris/v12" package too.
 
     iris.HTML(...) is a shortcut of view.HTML(...)
     iris.Django(...)     >> >>      view.Django(...)

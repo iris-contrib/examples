@@ -1,13 +1,14 @@
 package main
 
 import (
+	"errors"
 	"os"
 	"time"
 
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 
-	"github.com/kataras/iris/sessions"
-	"github.com/kataras/iris/sessions/sessiondb/boltdb"
+	"github.com/kataras/iris/v12/sessions"
+	"github.com/kataras/iris/v12/sessions/sessiondb/boltdb"
 )
 
 func main() {
@@ -42,10 +43,10 @@ func main() {
 	})
 	app.Get("/set", func(ctx iris.Context) {
 		s := sess.Start(ctx)
-		//set session values
+		// set session values
 		s.Set("name", "iris")
 
-		//test if set here
+		// test if set here
 		ctx.Writef("All ok session value of the 'name' is: %s", s.GetString("name"))
 	})
 
@@ -84,16 +85,16 @@ func main() {
 	})
 
 	app.Get("/destroy", func(ctx iris.Context) {
-		//destroy, removes the entire session data and cookie
+		// destroy, removes the entire session data and cookie
 		sess.Destroy(ctx)
 	})
 
 	app.Get("/update", func(ctx iris.Context) {
 		// updates resets the expiration based on the session's `Expires` field.
 		if err := sess.ShiftExpiration(ctx); err != nil {
-			if sessions.ErrNotFound.Equal(err) {
+			if errors.Is(err, sessions.ErrNotFound) {
 				ctx.StatusCode(iris.StatusNotFound)
-			} else if sessions.ErrNotImplemented.Equal(err) {
+			} else if errors.Is(err, sessions.ErrNotImplemented) {
 				ctx.StatusCode(iris.StatusNotImplemented)
 			} else {
 				ctx.StatusCode(iris.StatusNotModified)
