@@ -4,7 +4,7 @@
 
 <a href="https://travis-ci.org/kataras/iris"><img src="https://img.shields.io/travis/kataras/iris.svg?style=flat-square" alt="Build Status"></a>
 <a href="https://github.com/iris-contrib/examples/blob/v12/LICENSE"><img src="https://img.shields.io/badge/%20license-MIT%20%20License%20-E91E63.svg?style=flat-square" alt="License"></a>
-<a href="https://github.com/kataras/iris/blob/v12/HISTORY.md"><img src="https://img.shields.io/badge/version-v12.0%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
+<a href="https://github.com/kataras/iris/blob/v12/HISTORY.md"><img src="https://img.shields.io/badge/version-v12.1%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
 
 This repository provides easy to understand code snippets on how to get started with web development with the Go programming language using the [Iris](https://github.com/kataras/iris) web framework.
 
@@ -159,11 +159,16 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 * [ORM](orm)
     * [Using xorm(Mysql, MyMysql, Postgres, Tidb, **SQLite**, MsSql, MsSql, Oracle)](orm/xorm/main.go)
     * [Using gorm](orm/gorm/main.go)
+* [Desktop App](desktop-app)
+	* [Blink](desktop-app/blink)
+	* [Lorca](desktop-app/lorca)
+	* [Webview](desktop-app/webview)
 * [Miscellaneous](miscellaneous)
     * [HTTP Method Override](https://github.com/kataras/iris/blob/master/middleware/methodoverride/methodoverride_test.go) **NEW**
     * [Request Logger](http_request/request-logger/main.go)
         * [log requests to a file](http_request/request-logger/request-logger-file/main.go)
-    * [Localization and Internationalization](miscellaneous/i18n/main.go)
+    * [Localization and Internationalization](i18n/main.go)
+    * [Sitemap.xml](sitemap/main.go)
     * [Recovery](miscellaneous/recover/main.go)
     * [Profiling (pprof)](miscellaneous/pprof/main.go)
     * [Internal Application File Logger](miscellaneous/file-logger/main.go)
@@ -189,7 +194,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 * [Cookies](cookies)
     * [Basic](cookies/basic/main.go)
     * [Encode/Decode (securecookie)](cookies/securecookie/main.go)
-[Sessions](sessions)
+* [Sessions](sessions)
     * [Overview](sessions/overview/main.go)
     * [Middleware](sessions/middleware/main.go)
     * [Secure Cookie](sessions/securecookie/main.go)
