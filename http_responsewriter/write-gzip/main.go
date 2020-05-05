@@ -4,6 +4,9 @@ import "github.com/kataras/iris/v12"
 
 func main() {
 	app := iris.New()
+	// app.Use(iris.Gzip)
+	// func(ctx iris.Context) { ctx.Gzip(true/false)}
+	// OR:
 	app.Get("/", func(ctx iris.Context) {
 		ctx.WriteGzip([]byte("Hello World!"))
 		ctx.Header("X-Custom",
@@ -17,5 +20,5 @@ func main() {
 		ctx.GzipResponseWriter().WriteString("Hello World!")
 	})
 
-	app.Run(iris.Addr(":8080"))
+	app.Listen(":8080")
 }

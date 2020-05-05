@@ -1,3 +1,5 @@
+// +build windows
+
 package main
 
 import (
@@ -8,7 +10,7 @@ import (
 const addr = "127.0.0.1:8080"
 
 /*
-	$ go build -ldflags -H=windowsgui -o myapp.exe # build for windows
+	$ go build -ldflags -H=windowsgui -o myapp.exe
 	$ ./myapp.exe # run the app
 */
 func main() {
@@ -21,7 +23,7 @@ func runServer() {
 	app.Get("/", func(ctx iris.Context) {
 		ctx.HTML("<h1> Hello Desktop</h1>")
 	})
-	app.Run(iris.Addr(addr))
+	app.Listen(addr)
 }
 
 func showAndWaitWindow() {

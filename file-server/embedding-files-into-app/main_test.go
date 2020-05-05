@@ -18,7 +18,7 @@ type resource string
 func (r resource) contentType() string {
 	switch filepath.Ext(r.String()) {
 	case ".js":
-		return "application/javascript"
+		return "text/javascript"
 	case ".css":
 		return "text/css"
 	case ".ico":
@@ -55,6 +55,7 @@ func (r resource) loadFromBase(dir string) string {
 
 	if runtime.GOOS != "windows" {
 		result = strings.Replace(result, "\n", "\r\n", -1)
+		result = strings.Replace(result, "\r\r", "", -1)
 	}
 	return result
 }

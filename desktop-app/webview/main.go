@@ -30,10 +30,15 @@ func runServer() {
 	app.Get("/", func(ctx iris.Context) {
 		ctx.HTML("<h1> Hello Desktop</h1>")
 	})
-	app.Run(iris.Addr(addr))
+	app.Listen(addr)
 }
 
 func showAndWaitWindow() {
-	webview.Open("My App",
-		addr, 800, 600, true)
+	debug := true
+	w := webview.New(debug)
+	defer w.Destroy()
+	w.SetTitle("Minimal webview example")
+	w.SetSize(800, 600, webview.HintNone)
+	w.Navigate("https://iris-go.com")
+	w.Run()
 }

@@ -5,7 +5,7 @@ import (
 )
 
 // Follow these steps first:
-// $ go get -u github.com/shuLhan/go-bindata/...
+// $ go get -u github.com/go-bindata/go-bindata/...
 // $ go-bindata ./assets/...
 // $ go build
 // $ ./embedding-files-into-app
@@ -32,5 +32,5 @@ func main() {
 	// http://localhost:8080/static/css/bootstrap.min.css
 	// http://localhost:8080/static/js/jquery-2.1.1.js
 	// http://localhost:8080/static/favicon.ico
-	app.Run(iris.Addr(":8080"))
+	app.Listen(":8080")
 }

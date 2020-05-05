@@ -1,7 +1,7 @@
 package main
 
 import (
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 
 	"github.com/kataras/iris/v12"
 )
@@ -19,7 +19,7 @@ func main() {
 	//
 	// The response should be:
 	// Received: main.config{Addr:"localhost:8080", ServerName:"Iris"}
-	app.Run(iris.Addr(":8080"), iris.WithoutServerError(iris.ErrServerClosed), iris.WithOptimizations)
+	app.Listen(":8080", iris.WithOptimizations)
 }
 
 func newApp() *iris.Application {

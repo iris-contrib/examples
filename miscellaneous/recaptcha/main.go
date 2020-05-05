@@ -26,7 +26,7 @@ func main() {
 			return
 		}
 
-		result := recaptcha.SiteFerify(ctx, recaptchaSecret)
+		result := recaptcha.SiteVerify(ctx, recaptchaSecret)
 		if !result.Success {
 			/* redirect here if u want or do nothing */
 			ctx.HTML("<b> failed please try again </b>")
@@ -36,5 +36,5 @@ func main() {
 		ctx.Writef("succeed.")
 	})
 
-	app.Run(iris.Addr(":8080"))
+	app.Listen(":8080")
 }

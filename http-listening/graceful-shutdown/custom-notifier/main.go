@@ -33,7 +33,7 @@ func main() {
 		case <-ch:
 			println("shutdown...")
 
-			timeout := 5 * time.Second
+			timeout := 10 * time.Second
 			ctx, cancel := stdContext.WithTimeout(stdContext.Background(), timeout)
 			defer cancel()
 			app.Shutdown(ctx)
@@ -42,5 +42,5 @@ func main() {
 
 	// Start the server and disable the default interrupt handler in order to
 	// handle it clear and simple by our own, without any issues.
-	app.Run(iris.Addr(":8080"), iris.WithoutInterruptHandler)
+	app.Listen(":8080", iris.WithoutInterruptHandler)
 }

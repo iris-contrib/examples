@@ -11,6 +11,9 @@ import (
 	"github.com/kataras/iris/v12"
 )
 
+// $ go get -u github.com/go-bindata/go-bindata/...
+// $ go-bindata ./views/...
+// $ go build
 func main() {
 	app := iris.New()
 	tmpl := iris.Jet("./views", ".jet").Binary(Asset, AssetNames)
@@ -27,5 +30,5 @@ func main() {
 		port = ":" + port
 	}
 
-	app.Run(iris.Addr(port))
+	app.Listen(port)
 }

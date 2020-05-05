@@ -2,7 +2,7 @@ package main
 
 import "github.com/kataras/iris/v12"
 
-// $ go get -u github.com/shuLhan/go-bindata/...
+// $ go get -u github.com/go-bindata/go-bindata/...
 // $ go-bindata ./public/...
 // $ go build
 // $ ./embedded-single-page-application-with-other-routes
@@ -61,5 +61,5 @@ func main() {
 	// http://localhost:8080/.well-known/metrics
 	//
 	// Remember: we could use the root wildcard `app.Get("/{param:path}")` and serve the files manually as well.
-	app.Run(iris.Addr(":8080"))
+	app.Listen(":8080")
 }

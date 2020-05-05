@@ -70,7 +70,7 @@ func main() {
 	// this will be executed by the MyContext.Context
 	// if MyContext is not directly define the View function by itself.
 	app.Handle("GET", "/hi/{firstname:alphabetical}", recordWhichContextJustForProofOfConcept, func(ctx iris.Context) {
-		firstname := ctx.Values().GetString("firstname")
+		firstname := ctx.Params().Get("firstname")
 
 		ctx.ViewData("firstname", firstname)
 		ctx.Gzip(true)
@@ -78,7 +78,7 @@ func main() {
 		ctx.View("hi.html")
 	})
 
-	app.Run(iris.Addr(":8080"))
+	app.Listen(":8080")
 }
 
 // should always print "($PATH) Handler is executing from 'MyContext'"

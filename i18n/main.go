@@ -10,7 +10,10 @@ func newApp() *iris.Application {
 	// Configure i18n.
 	// First parameter: Glob filpath patern,
 	// Second variadic parameter: Optional language tags, the first one is the default/fallback one.
-	app.I18n.Load("./locales/*/*.ini", "en-US", "el-GR", "zh-CN")
+	err := app.I18n.Load("./locales/*/*.ini", "en-US", "el-GR", "zh-CN")
+	if err != nil {
+		panic(err)
+	}
 	// app.I18n.LoadAssets for go-bindata.
 
 	// Default values:
@@ -20,6 +23,9 @@ func newApp() *iris.Application {
 	// Set to false to disallow path (local) redirects,
 	// see https://github.com/kataras/iris/issues/1369.
 	// app.I18n.PathRedirect = true
+	//
+	// See `app.I18n.ExtractFunc = func(ctx iris.Context) string` or
+	// `ctx.SetLanguage(langCode string)` to change the extracted language from a request.
 
 	app.Get("/", func(ctx iris.Context) {
 		hi := ctx.Tr("hi", "iris")
@@ -54,7 +60,7 @@ func newApp() *iris.Application {
 
 		// Note that,
 		// Iris automatically adds a "tr" global template function as well,
-		// the only differene is the way you call it inside your templates and
+		// the only difference is the way you call it inside your templates and
 		// that it accepts a language code as its first argument: {{ tr "el-GR" "hi" "iris"}}
 	})
 	//
@@ -85,5 +91,5 @@ func main() {
 	// or http://localhost:8080/other?lang=en-US
 	//
 	// or use cookies to set the language.
-	app.Run(iris.Addr(":8080"), iris.WithSitemap("http://localhost:8080"))
+	app.Listen(":8080", iris.WithSitemap("http://localhost:8080"))
 }

@@ -110,11 +110,11 @@ func main() {
 
 	// serves the browser-based websocket client.
 	app.Get("/", func(ctx iris.Context) {
-		ctx.ServeFile("./browser/index.html", false)
+		ctx.ServeFile("./browser/index.html")
 	})
 
 	// serves the npm browser websocket client usage example.
 	app.HandleDir("/browserify", "./browserify")
 
-	app.Run(iris.Addr(":8080"), iris.WithoutServerError(iris.ErrServerClosed))
+	app.Listen(":8080")
 }

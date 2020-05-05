@@ -24,13 +24,13 @@ func main() {
 
 	// http://localhost:8080/module/xxx.json (OK)
 	// http://localhost:8080/module/xxx.xml  (Not Found)
-	app.Run(iris.Addr(":8080"))
+	app.Listen(":8080")
 }
 
 type myController struct{}
 
 func (m *myController) BeforeActivation(b mvc.BeforeActivation) {
-	// b.Dependencies().Add/Remove
+	// b.Dependencies().Register
 	// b.Router().Use/UseGlobal/Done // and any standard API call you already know
 
 	// 1-> Method

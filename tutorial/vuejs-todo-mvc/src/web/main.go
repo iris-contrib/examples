@@ -36,7 +36,6 @@ func main() {
 	// any dependencies bindings here...
 	todosApp.Register(
 		todo.NewMemoryService(),
-		sess.Start,
 	)
 
 	todosController := new(controllers.TodoController)
@@ -60,5 +59,5 @@ func main() {
 	todosWebsocketApp.Router.Get("/", websocket.Handler(websocketServer, idGenerator))
 
 	// start the web server at http://localhost:8080
-	app.Run(iris.Addr(":8080"))
+	app.Listen(":8080")
 }

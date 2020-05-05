@@ -93,6 +93,7 @@ func registerSubdomains(app *iris.Application) {
 
 func newApp() *iris.Application {
 	app := iris.New()
+
 	registerErrors(app)
 	registerGamesRoutes(app)
 	registerSubdomains(app)
@@ -177,5 +178,5 @@ func main() {
 		// FIRE NOT FOUND
 		http://localhost:8080/coudlntfound
 	*/
-	app.Run(iris.Addr(":8080"))
+	app.Listen(":8080")
 }

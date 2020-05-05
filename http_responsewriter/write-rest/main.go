@@ -7,12 +7,12 @@ import (
 	"github.com/kataras/iris/v12/context"
 )
 
-// User bind struct
+// User example struct for json and msgpack.
 type User struct {
-	Firstname string `json:"firstname"`
-	Lastname  string `json:"lastname"`
-	City      string `json:"city"`
-	Age       int    `json:"age"`
+	Firstname string `json:"firstname" msgpack:"firstname"`
+	Lastname  string `json:"lastname" msgpack:"lastname"`
+	City      string `json:"city" msgpack:"city"`
+	Age       int    `json:"age" msgpack:"age"`
 }
 
 // ExampleXML just a test struct to view represents xml content-type
@@ -20,6 +20,12 @@ type ExampleXML struct {
 	XMLName xml.Name `xml:"example"`
 	One     string   `xml:"one,attr"`
 	Two     string   `xml:"two,attr"`
+}
+
+// ExampleYAML just a test struct to write yaml to the client.
+type ExampleYAML struct {
+	Name       string `yaml:"name"`
+	ServerAddr string `yaml:"ServerAddr"`
 }
 
 func main() {
@@ -36,15 +42,15 @@ func main() {
 
 	// Write
 	app.Get("/encode", func(ctx iris.Context) {
-		peter := User{
+		u := User{
 			Firstname: "John",
 			Lastname:  "Doe",
 			City:      "Neither FBI knows!!!",
 			Age:       25,
 		}
 
-		// Manually setting a content type: ctx.ContentType("application/javascript")
-		ctx.JSON(peter)
+		// Manually setting a content type: ctx.ContentType("text/javascript")
+		ctx.JSON(u)
 	})
 
 	// Other content types,
@@ -74,6 +80,21 @@ func main() {
 		ctx.Markdown([]byte("# Hello Dynamic Markdown -- iris"))
 	})
 
+	app.Get("/yaml", func(ctx iris.Context) {
+		ctx.YAML(ExampleYAML{Name: "Iris", ServerAddr: "localhost:8080"})
+	})
+
+	app.Get("/msgpack", func(ctx iris.Context) {
+		u := User{
+			Firstname: "John",
+			Lastname:  "Doe",
+			City:      "Neither FBI knows!!!",
+			Age:       25,
+		}
+
+		ctx.MsgPack(u)
+	})
+
 	// http://localhost:8080/decode
 	// http://localhost:8080/encode
 	//
@@ -83,6 +104,7 @@ func main() {
 	// http://localhost:8080/jsonp
 	// http://localhost:8080/xml
 	// http://localhost:8080/markdown
+	// http://localhost:8080/msgpack
 	//
 	// `iris.WithOptimizations` is an optional configurator,
 	// if passed to the `Run` then it will ensure that the application
@@ -91,5 +113,5 @@ func main() {
 	//
 	// `iris.WithoutServerError` is an optional configurator,
 	// if passed to the `Run` then it will not print its passed error as an actual server error.
-	app.Run(iris.Addr(":8080"), iris.WithoutServerError(iris.ErrServerClosed), iris.WithOptimizations)
+	app.Listen(":8080", iris.WithOptimizations)
 }

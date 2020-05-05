@@ -165,7 +165,8 @@ func main() {
 			"data": user.Serializer(),
 		})
 	})
-	app.Run(iris.Addr(":8080"), iris.WithoutServerError(iris.ErrServerClosed))
+
+	app.Listen(":8080")
 }
 
 type patchParam struct {

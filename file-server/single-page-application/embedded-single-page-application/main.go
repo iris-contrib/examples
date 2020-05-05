@@ -4,7 +4,7 @@ import (
 	"github.com/kataras/iris/v12"
 )
 
-// $ go get -u github.com/shuLhan/go-bindata/...
+// $ go get -u github.com/go-bindata/go-bindata/...
 // $ go-bindata ./public/...
 // $ go run .
 
@@ -37,5 +37,5 @@ func main() {
 	// http://localhost:8080/app.js
 	// http://localhost:8080/css/main.css
 	// http://localhost:8080/app2
-	app.Run(iris.Addr(":8080"))
+	app.Listen(":8080")
 }

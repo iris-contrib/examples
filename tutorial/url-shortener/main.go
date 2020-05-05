@@ -2,7 +2,7 @@
 //
 // Article: https://medium.com/@kataras/a-url-shortener-service-using-go-iris-and-bolt-4182f0b00ae7
 //
-// $ go get github.com/etcd-io/bbolt
+// $ go get go.etcd.io/bbolt/...
 // $ go get github.com/iris-contrib/go.uuid
 // $ cd $GOPATH/src/github.com/iris-contrib/examples/tutorial/url-shortener
 // $ go build
@@ -24,7 +24,7 @@ func main() {
 	// release the "db" connection when server goes off.
 	iris.RegisterOnInterrupt(db.Close)
 
-	app.Run(iris.Addr(":8080"))
+	app.Listen(":8080")
 }
 
 func newApp(db *DB) *iris.Application {

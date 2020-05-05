@@ -8,10 +8,8 @@ import (
 func main() {
 	app := iris.New()
 
-	// subdomains works with all available routers, like other features too.
-
-	// no order, you can register subdomains at the end also.
-	admin := app.Party("admin.")
+	// Subdomain method is just another Party.
+	admin := app.Subdomain("admin")
 	{
 		// admin.mydomain.com
 		admin.Get("/", func(c iris.Context) {
@@ -27,7 +25,7 @@ func main() {
 		})
 	}
 
-	// mydomain.com/
+	// mydomain.com
 	app.Get("/", func(c iris.Context) {
 		c.Writef("INDEX FROM no-subdomain hey")
 	})
@@ -42,5 +40,5 @@ func main() {
 	// http://admin.mydomain.com/hey2
 	// http://mydomain.com
 	// http://mydomain.com/hey
-	app.Run(iris.Addr("mydomain.com:80")) // for beginners: look ../hosts file
+	app.Listen("mydomain.com:80") // for beginners: look ../hosts file
 }
