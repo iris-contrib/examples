@@ -182,6 +182,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Singleton](mvc/singleton)
     * [Regexp](mvc/regexp/main.go)
     * [Session Controller](mvc/session-controller/main.go)
+    * [Authenticated Controller](mvc/authenticated-controller)
     * [Websocket Controller](mvc/websocket)
     * [Register Middleware](mvc/middleware)
 * Object-Relational Mapping
