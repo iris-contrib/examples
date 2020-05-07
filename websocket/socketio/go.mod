@@ -1,4 +1,4 @@
-module github.com/iris-contrib/examples/websocket/socketio
+module github.com/kataras/iris/_examples/websocket/socketio
 
 go 1.14
 

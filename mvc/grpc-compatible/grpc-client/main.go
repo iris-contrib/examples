@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	pb "github.com/kataras/iris/v12/_examples/mvc/grpc-compatible/helloworld"
+	pb "github.com/iris-contrib/examples/mvc/grpc-compatible/helloworld"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"

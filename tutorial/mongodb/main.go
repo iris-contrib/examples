@@ -11,11 +11,11 @@ import (
 	"os"
 
 	// APIs
-	storeapi "github.com/kataras/iris/v12/_examples/tutorial/mongodb/api/store"
+	storeapi "github.com/iris-contrib/examples/tutorial/mongodb/api/store"
 
 	//
-	"github.com/kataras/iris/v12/_examples/tutorial/mongodb/env"
-	"github.com/kataras/iris/v12/_examples/tutorial/mongodb/store"
+	"github.com/iris-contrib/examples/tutorial/mongodb/env"
+	"github.com/iris-contrib/examples/tutorial/mongodb/store"
 
 	"github.com/kataras/iris/v12"
 

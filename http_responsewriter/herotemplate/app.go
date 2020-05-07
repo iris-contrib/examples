@@ -3,7 +3,7 @@ package main
 import (
 	"bytes"
 
-	"github.com/kataras/iris/v12/_examples/http_responsewriter/herotemplate/template"
+	"github.com/iris-contrib/examples/http_responsewriter/herotemplate/template"
 
 	"github.com/kataras/iris/v12"
 )

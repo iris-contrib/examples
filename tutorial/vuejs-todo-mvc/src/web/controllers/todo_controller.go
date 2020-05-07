@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/kataras/iris/v12/_examples/tutorial/vuejs-todo-mvc/src/todo"
+	"github.com/iris-contrib/examples/tutorial/vuejs-todo-mvc/src/todo"
 
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/mvc"

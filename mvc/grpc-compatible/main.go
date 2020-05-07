@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 
-	pb "github.com/kataras/iris/v12/_examples/mvc/grpc-compatible/helloworld"
+	pb "github.com/iris-contrib/examples/mvc/grpc-compatible/helloworld"
 
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/mvc"

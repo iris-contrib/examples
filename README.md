@@ -151,8 +151,9 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Basic](cookies/basic/main.go)
     * [Encode/Decode (with `securecookie`)](cookies/securecookie/main.go)
 * Sessions
-    * [Overview](sessions/overview/main.go)
-    * [Middleware](sessions/middleware/main.go)
+    * [Overview: Config](sessions/overview/main.go)
+        * [Overview: Routes](sessions/overview/example/example.go)
+    * [Basic](sessions/basic/main.go)
     * [Secure Cookie](sessions/securecookie/main.go)
     * [Flash Messages](sessions/flash-messages/main.go)
     * [Databases](sessions/database)
@@ -182,7 +183,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Singleton](mvc/singleton)
     * [Regexp](mvc/regexp/main.go)
     * [Session Controller](mvc/session-controller/main.go)
-    * [Authenticated Controller](mvc/authenticated-controller)
+    * [Authenticated Controller](mvc/authenticated-controller/main.go)
     * [Websocket Controller](mvc/websocket)
     * [Register Middleware](mvc/middleware)
 * Object-Relational Mapping

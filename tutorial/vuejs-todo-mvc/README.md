@@ -500,8 +500,8 @@ package main
 import (
 	"strings"
 
-	"github.com/kataras/iris/v12/_examples/tutorial/vuejs-todo-mvc/src/todo"
-	"github.com/kataras/iris/v12/_examples/tutorial/vuejs-todo-mvc/src/web/controllers"
+	"github.com/iris-contrib/examples/tutorial/vuejs-todo-mvc/src/todo"
+	"github.com/iris-contrib/examples/tutorial/vuejs-todo-mvc/src/web/controllers"
 
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/mvc"

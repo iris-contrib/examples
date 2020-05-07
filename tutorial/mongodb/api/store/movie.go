@@ -1,8 +1,8 @@
 package storeapi
 
 import (
-	"github.com/kataras/iris/v12/_examples/tutorial/mongodb/httputil"
-	"github.com/kataras/iris/v12/_examples/tutorial/mongodb/store"
+	"github.com/iris-contrib/examples/tutorial/mongodb/httputil"
+	"github.com/iris-contrib/examples/tutorial/mongodb/store"
 
 	"github.com/kataras/iris/v12"
 )
