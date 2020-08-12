@@ -49,6 +49,9 @@ func (dt *doneTODOs) Range() (reflect.Value, reflect.Value, bool) {
 	return reflect.Value{}, reflect.Value{}, true
 }
 
+// Note: jet version 4 requires this.
+func (dt *doneTODOs) ProvidesIndex() bool { return true }
+
 func (dt *doneTODOs) Render(r *view.JetRuntime) {
 	r.Write([]byte(fmt.Sprintf("custom renderer")))
 }
@@ -73,11 +76,6 @@ func main() {
 	// from middlewares as well, by:
 	// view.AddJetRuntimeVars(ctx, vars)
 	// or tmpl.AddRuntimeVars(ctx, vars)
-	//
-	// The Iris Jet fixes the issue when custom jet.Ranger and custom jet.Renderer are not actually work at all,
-	// hope that this is a temp issue on the jet parser itself and authors will fix it soon
-	// so we can remove the "hacks" we've putted for those to work as expected.
-
 	app := iris.New()
 	tmpl := iris.Jet("./views", ".jet") // <--
 	tmpl.Reload(true)                   // remove in production.
@@ -99,8 +97,11 @@ func main() {
 	}
 
 	app.Get("/", func(ctx iris.Context) {
-		ctx.View("todos/index.jet", todos) // <--
+		err := ctx.View("todos/index.jet", todos) // <--
 		// Note that the `ctx.View` already logs the error if logger level is allowing it and returns the error.
+		if err != nil {
+			ctx.StopWithText(iris.StatusInternalServerError, "Templates not rendered!")
+		}
 	})
 
 	app.Get("/todo", func(ctx iris.Context) {

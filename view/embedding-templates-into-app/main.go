@@ -13,10 +13,9 @@ func main() {
 		return "Greetings " + s + "!"
 	})
 
-	// $ go get -u github.com/go-bindata/go-bindata/...
+	// $ go get -u github.com/go-bindata/go-bindata/v3/go-bindata
 	// $ go-bindata ./templates/...
-	// $ go build
-	// $ ./embedding-templates-into-app
+	// $ go run .
 	// html files are not used, you can delete the folder and run the example.
 	tmpl.Binary(Asset, AssetNames) // <-- IMPORTANT
 

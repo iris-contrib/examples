@@ -5,8 +5,8 @@ package routes
 import (
 	"errors"
 
-	"github.com/iris-contrib/examples/dependency-injection/overview/datamodels"
-	"github.com/iris-contrib/examples/dependency-injection/overview/services"
+	"github.com/kataras/iris/v12/_examples/dependency-injection/overview/datamodels"
+	"github.com/kataras/iris/v12/_examples/dependency-injection/overview/services"
 
 	"github.com/kataras/iris/v12"
 )

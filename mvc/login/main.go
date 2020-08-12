@@ -5,11 +5,11 @@ package main
 import (
 	"time"
 
-	"github.com/iris-contrib/examples/mvc/login/datasource"
-	"github.com/iris-contrib/examples/mvc/login/repositories"
-	"github.com/iris-contrib/examples/mvc/login/services"
-	"github.com/iris-contrib/examples/mvc/login/web/controllers"
-	"github.com/iris-contrib/examples/mvc/login/web/middleware"
+	"github.com/kataras/iris/v12/_examples/mvc/login/datasource"
+	"github.com/kataras/iris/v12/_examples/mvc/login/repositories"
+	"github.com/kataras/iris/v12/_examples/mvc/login/services"
+	"github.com/kataras/iris/v12/_examples/mvc/login/web/controllers"
+	"github.com/kataras/iris/v12/_examples/mvc/login/web/middleware"
 
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/mvc"
@@ -28,7 +28,7 @@ func main() {
 		Reload(true)
 	app.RegisterView(tmpl)
 
-	app.HandleDir("/public", "./web/public")
+	app.HandleDir("/public", iris.Dir("./web/public"))
 
 	app.OnAnyErrorCode(func(ctx iris.Context) {
 		ctx.ViewData("Message", ctx.Values().

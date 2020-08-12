@@ -48,17 +48,17 @@ func main() {
 
 	// GET: http://localhost:8080/assets/css/main.css
 	//	    maps to ./public/assets/css/main.css file at system location.
-	app.HandleDir("/assets", "./public/assets")
+	app.HandleDir("/assets", iris.Dir("./public/assets"))
 
 	/* OR
 
 	// GET: http://localhost:8080/css/main.css
 	// 		maps to ./public/assets/css/main.css file at system location.
-	app.HandleDir("/css", "./public/assets/css")
+	app.HandleDir("/css", iris.Dir("./public/assets/css"))
 
 	// GET: http://localhost:8080/css/bootstrap.min.css
 	// 		maps to ./public/assets/css/bootstrap.min.css file at system location.
-	app.HandleDir("/css", "./public/assets/css")
+	app.HandleDir("/css", iris.Dir("./public/assets/css"))
 
 	*/
 
@@ -107,7 +107,7 @@ func main() {
 
 	// Subdomains, depends on the host, you have to edit the hosts or nginx/caddy's configuration if you use them.
 	//
-	// See more subdomains examples at _examples/subdomains folder.
+	// See more subdomains examples at _examples/routing/subdomains folder.
 	adminRoutes := app.Party("admin.")
 
 	// GET: http://admin.localhost:8080

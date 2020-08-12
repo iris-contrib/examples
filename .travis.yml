@@ -1,6 +1,17 @@
+sudo: false
 language: go
 os:
   - linux
   - osx
 go:
-  - 1.14.x
+  - go1.15.x
+env:
+ global:
+   - GO111MODULE=on
+   - GOPROXY=https://goproxy.io
+before_install:
+  - chmod +x .travis.gofmt.sh
+  - chmod +x .travis.gotest.sh
+script:
+  - ./.travis.gofmt.sh
+  - ./.travis.gotest.sh

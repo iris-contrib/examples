@@ -36,9 +36,11 @@ func NewApp(sess *sessions.Sessions) *iris.Application {
 	// set session values.
 	app.Get("/set", func(ctx iris.Context) {
 		session := sessions.Get(ctx)
+		isNew := session.IsNew()
+
 		session.Set("name", "iris")
 
-		ctx.Writef("All ok session set to: %s", session.GetString("name"))
+		ctx.Writef("All ok session set to: %s [isNew=%t]", session.GetString("name"), isNew)
 	})
 
 	app.Get("/get", func(ctx iris.Context) {
@@ -68,18 +70,40 @@ func NewApp(sess *sessions.Sessions) *iris.Application {
 
 		key := ctx.Params().Get("key")
 		value := ctx.Params().Get("value")
+		isNew := session.IsNew()
+
 		session.Set(key, value)
 
-		ctx.Writef("All ok session value of the '%s' is: %s", key, session.GetString(key))
+		ctx.Writef("All ok session value of the '%s' is: %s [isNew=%t]", key, session.GetString(key), isNew)
 	})
 
 	app.Get("/get/{key}", func(ctx iris.Context) {
 		session := sessions.Get(ctx)
 		// get a specific key, as string, if no found returns just an empty string
 		key := ctx.Params().Get("key")
-		name := session.GetString(key)
+		value := session.Get(key)
 
-		ctx.Writef("The name on the /set was: %s", name)
+		ctx.Writef("The [%s:%T] on the /set was: %v", key, value, value)
+	})
+
+	app.Get("/set/{type}/{key}/{value}", func(ctx iris.Context) {
+		session := sessions.Get(ctx)
+
+		key := ctx.Params().Get("key")
+		var value interface{}
+
+		switch ctx.Params().Get("type") {
+		case "int":
+			value = ctx.Params().GetIntDefault("value", 0)
+		case "float64":
+			value = ctx.Params().GetFloat64Default("value", 0.0)
+		default:
+			value = ctx.Params().Get("value")
+		}
+		session.Set(key, value)
+
+		value = session.Get(key)
+		ctx.Writef("Key: %s, Type: %T, Value: %v", key, value, value)
 	})
 
 	app.Get("/delete", func(ctx iris.Context) {

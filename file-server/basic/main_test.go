@@ -6,6 +6,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/httptest"
 )
 
@@ -59,7 +60,7 @@ func (r resource) loadFromBase(dir string, strip string) string {
 func TestFileServerBasic(t *testing.T) {
 	urls := []resource{
 		"/v1/static/css/main.css",
-		"/v1/static/js/jquery-2.1.1.js",
+		"/v1/static/js/main.js",
 		"/v1/static/favicon.ico",
 		"/v1/static/app2",
 		"/v1/static/app2/app2app3",
@@ -98,7 +99,7 @@ func TestHandleDirDot(t *testing.T) {
 		"/v1/assets.system/css/main.css",
 	}
 	app := newApp()
-	app.Subdomain("test").Party("/v1").HandleDir("/assets.system", "./assets.system")
+	app.Subdomain("test").Party("/v1").HandleDir("/assets.system", iris.Dir("./assets.system"))
 
 	e := httptest.New(t, app, httptest.URL("http://test.example.com"))
 	for _, u := range urls {
