@@ -65,6 +65,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
             * [From func(w http.ResponseWriter, r *http.Request, next http.HandlerFunc)](convert-handlers/negroni-like/main.go)
             * [From http.Handler or http.HandlerFunc](convert-handlers/nethttp/main.go)
             * [From func(http.HandlerFunc) http.HandlerFunc](convert-handlers/real-usecase-raven/writing-middleware/main.go)
+    * [Rewrite Middleware](routing/rewrite/main.go)
     * [Route State](routing/route-state/main.go)
     * [Reverse Routing](routing/reverse/main.go)
     * [Router Wrapper](routing/custom-wrapper/main.go)
@@ -74,7 +75,10 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
         * [Multi](routing/subdomains/multi/main.go)
         * [Wildcard](routing/subdomains/wildcard/main.go)
         * [WWW](routing/subdomains/www/main.go)
+            * [WWW Method](routing/subdomains/www/www-method/main.go)
         * [Redirection](routing/subdomains/redirect/main.go)
+            * [Multi Instances](routing/subdomains/redirect/multi-instances/main.go)
+        * [HTTP Errors View](routing/subdomains/http-errors-view/main.go)
     * [HTTP Method Override](https://github.com/kataras/iris/blob/master/middleware/methodoverride/methodoverride_test.go)
     * [API Versioning](routing/versioning/main.go)
     * [Sitemap](routing/sitemap/main.go)
@@ -225,6 +229,10 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Login (Repository and Service layers)](mvc/login)
     * [Login (Single Responsibility)](mvc/login-mvc-single-responsibility)
     * [Vue.js Todo App](mvc/vuejs-todo-mvc)
+    * [Error Handler](mvc/error-handler)
+    * [Handle errors using mvc.Result](mvc/error-handler-custom-result)
+    * [Handle errors using PreflightResult](mvc/error-handler-preflight)
+    * [Handle errors by hijacking the result](mvc/error-handler-hijack)
 * [Bootstrapper](bootstrapper)
 * Desktop Applications
     * [The blink package](desktop/blink)
@@ -234,7 +242,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 
 ## Run
 
-1. Install the Go Programming Language, version 1.5 from [here](https://golang.org/dl).
+1. Install the Go Programming Language, version 1.15 from [here](https://golang.org/dl).
 2. Install Iris: `go get -u github.com/kataras/iris/v12@master`
 3. [Download the examples](https://github.com/iris-contrib/examples/archive/master.zip) and copy-paste them to your `$GOPATH/src/github.com/iris-contrib/examples`
 
