@@ -7,7 +7,7 @@ import (
 )
 
 type MyType struct {
-	Name string `url:"name"`
+	Name string `url:"name,required"`
 	Age  int    `url:"age"`
 }
 
@@ -25,6 +25,12 @@ func main() {
 		ctx.Writef("MyType: %#v", t)
 	})
 
+	app.Get("/simple", func(ctx iris.Context) {
+		names := ctx.URLParamSlice("name")
+		ctx.Writef("names: %v", names)
+	})
+
 	// http://localhost:8080?name=iris&age=3
+	// http://localhost:8080/simple?name=john&name=doe&name=kataras
 	app.Listen(":8080")
 }

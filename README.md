@@ -12,8 +12,9 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 
 > Examples are tested using Windows 10, Ubuntu 20.04 with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and built using the [Go 1.15.0](https://golang.org/dl).
 
-## Table of Contents
+# Table of Contents
 
+* [Serverless](https://github.com/iris-contrib/gateway#netlify)
 * [REST API for Apache Kafka](kafka-api)
 * [URL Shortener](url-shortener)
 * [Dropzone.js](dropzonejs)
@@ -21,6 +22,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 * Database
     * [MySQL, Groupcache & Docker](database/mysql)
     * [MongoDB](database/mongodb)
+    * [Sqlx](database/orm/sqlx/main.go)
     * [Xorm](database/orm/xorm/main.go)
     * [Gorm](database/orm/gorm/main.go)
     * [Reform](database/orm/reform/main.go)
@@ -84,6 +86,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Sitemap](routing/sitemap/main.go)
 * Logging
     * [Request Logger](logging/request-logger/main.go)
+        * [Log requests and responses to access.log](logging/request-logger/request-logger-access-log-file)
         * [Log Requests to a File](logging/request-logger/request-logger-file/main.go)
         * [Log Requests to a JSON File](logging/request-logger/request-logger-file-json/main.go) 
     * [Application File Logger](logging/file-logger/main.go)
@@ -124,15 +127,17 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Write to a custom `io.Writer`](view/write-to)
     * [Blocks](view/template_blocks_0)
     * [Blocks Embedded](view/template_blocks_1_embedded)
-    * [Pug: Greeting](view/template_pug_0)
-    * [Pug: `Actions`](view/template_pug_1)
-    * [Pug: `Includes`](view/template_pug_2)
-    * [Pug: `Extends`](view/template_pug_3)
-    * [Jet Template](view/template_jet_0)
+    * [Pug: `Actions`](view/template_pug_0)
+    * [Pug: `Includes`](view/template_pug_1)
+    * [Pug Embedded`](view/template_pug_2_embedded)
+    * [Jet](view/template_jet_0)
     * [Jet Embedded](view/template_jet_1_embedded)
     * [Jet 'urlpath' tmpl func](view/template_jet_2)
     * [Jet Template Funcs from Struct](view/template_jet_3)
-    - [Ace](view/template_ace_0)
+    * [Ace](view/template_ace_0)
+    * [Amber](view/template_amber_0)
+    * [Amber Embedded](view/template_amber_1_embedded)
+    * [Handlebars](view/template_handlebars_0)
     * Third-Parties
         * [Render `valyala/quicktemplate` templates](view/quicktemplate)
         * [Render `shiyanhui/hero` templates](view/herotemplate)
@@ -147,7 +152,10 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Bind MsgPack](request-body/read-msgpack/main.go)
     * [Bind YAML](request-body/read-yaml/main.go)
     * [Bind Form](request-body/read-form/main.go)
+        * [Checkboxes](request-body/read-form/checkboxes/main.go)
     * [Bind Query](request-body/read-query/main.go)
+    * [Bind Headers](request-body/read-headers/main.go)
+    * [Bind Params](request-body/read-params/main.go)
     * [Bind Body](request-body/read-body/main.go)
     * [Bind Custom per type](request-body/read-custom-per-type/main.go)
     * [Bind Custom via Unmarshaler](request-body/read-custom-via-unmarshaler/main.go)
@@ -229,6 +237,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Login (Repository and Service layers)](mvc/login)
     * [Login (Single Responsibility)](mvc/login-mvc-single-responsibility)
     * [Vue.js Todo App](mvc/vuejs-todo-mvc)
+    * [HTTP Error Handler](mvc/error-handler-http)
     * [Error Handler](mvc/error-handler)
     * [Handle errors using mvc.Result](mvc/error-handler-custom-result)
     * [Handle errors using PreflightResult](mvc/error-handler-preflight)
