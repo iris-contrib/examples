@@ -1,8 +1,6 @@
 package main
 
 import (
-	"encoding/json"
-
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/middleware/requestid"
 
@@ -12,7 +10,12 @@ import (
 func main() {
 	app := iris.New()
 	app.Logger().SetLevel("debug")
-	app.Logger().Handle(jsonOutput)
+	app.Logger().SetFormat("json", "    ")
+	// to register a custom Formatter:
+	// app.Logger().RegisterFormatter(golog.Formatter...)
+
+	// Also, see app.Logger().SetLevelOutput(level string, w io.Writer)
+	// to set a custom writer for a specific level.
 
 	app.Use(requestid.New())
 
@@ -52,13 +55,6 @@ func main() {
 
 	// Navigate to http://localhost:8080/ping.
 	app.Listen(":8080" /*, iris.WithoutBanner*/)
-}
-
-func jsonOutput(l *golog.Log) bool {
-	enc := json.NewEncoder(l.Logger.Printer) // you can change the output to a file as well.
-	enc.SetIndent("", "    ")
-	err := enc.Encode(l)
-	return err == nil
 }
 
 func ping(ctx iris.Context) {

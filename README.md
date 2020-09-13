@@ -86,8 +86,11 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Sitemap](routing/sitemap/main.go)
 * Logging
     * [Request Logger](logging/request-logger/main.go)
-        * [Log requests and responses to access.log](logging/request-logger/request-logger-access-log-file)
-        * [Log Requests to a File](logging/request-logger/request-logger-file/main.go)
+        * [AccessLog: simple example](logging/request-logger/accesslog-simple/main.go)
+        * [AccessLog: log request & response and more](logging/request-logger/accesslog)
+        * [AccessLog: custom fields and template](logging/request-logger/accesslog-template/main.go)
+        * [AccessLog: CSV Format](logging/request-logger/accesslog-csv/main.go)
+        * [AccessLog: listen to logs and render them](logging/request-logger/accesslog-broker/main.go)
         * [Log Requests to a JSON File](logging/request-logger/request-logger-file-json/main.go) 
     * [Application File Logger](logging/file-logger/main.go)
     * [Application JSON Logger](logging/json-logger/main.go)
@@ -125,18 +128,25 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Inject Engine Between Handlers](view/context-view-engine/main.go)
     * [Embedding Templates Into App Executable File](view/embedding-templates-into-app/main.go)
     * [Write to a custom `io.Writer`](view/write-to)
+    * Parse a Template from Text
+        * [HTML, Pug and Ace](view/parse-parse/main.go)
+        * [Django](view/parse-parse/django/main.go)
+        * [Amber](view/parse-parse/amber/main.go)
+        * [Jet](view/parse-parse/jet/main.go)
+        * [Handlebars](view/parse-parse/handlebars/main.go)
     * [Blocks](view/template_blocks_0)
     * [Blocks Embedded](view/template_blocks_1_embedded)
     * [Pug: `Actions`](view/template_pug_0)
     * [Pug: `Includes`](view/template_pug_1)
     * [Pug Embedded`](view/template_pug_2_embedded)
+    * [Ace](view/template_ace_0)
+    * [Django](view/template_django_0)
+    * [Amber](view/template_amber_0)
+    * [Amber Embedded](view/template_amber_1_embedded)
     * [Jet](view/template_jet_0)
     * [Jet Embedded](view/template_jet_1_embedded)
     * [Jet 'urlpath' tmpl func](view/template_jet_2)
     * [Jet Template Funcs from Struct](view/template_jet_3)
-    * [Ace](view/template_ace_0)
-    * [Amber](view/template_amber_0)
-    * [Amber Embedded](view/template_amber_1_embedded)
     * [Handlebars](view/template_handlebars_0)
     * Third-Parties
         * [Render `valyala/quicktemplate` templates](view/quicktemplate)
@@ -177,7 +187,8 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Client-Side](compression/client/main.go)
     * [Client-Side (using Iris)](compress/client-using-iris/main.go)
 * Localization and Internationalization
-    * [i18n](i18n/main.go)
+    * [i18n](i18n)
+    * [i18n templates and functions](i18n/i18n-template)
 * Authentication, Authorization & Bot Detection 
     * [Basic Authentication](auth/basicauth/main.go)
     * [CORS](auth/cors)
@@ -251,8 +262,8 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 
 ## Run
 
-1. Install the Go Programming Language, version 1.15 from [here](https://golang.org/dl).
-2. Install Iris: `go get -u github.com/kataras/iris/v12@master`
+1. Install the Go Programming Language, version 1.15+ from [here](https://golang.org/dl).
+2. Install Iris: `go get -u github.com/kataras/iris/v12@v12.2.0-alpha`
 3. [Download the examples](https://github.com/iris-contrib/examples/archive/master.zip) and copy-paste them to your `$GOPATH/src/github.com/iris-contrib/examples`
 
 And run
