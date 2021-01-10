@@ -297,7 +297,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 
 1. Install the Go Programming Language, version 1.15+ from [here](https://golang.org/dl).
 2. [Download the examples](https://github.com/iris-contrib/examples/archive/master.zip) and copy-paste them to your `$GOPATH/src/github.com/iris-contrib/examples`
-3. Install Iris with `go get -u github.com/kataras/iris/v12@v12.0.0-alpha2` 
+3. Install Iris with `go get -u github.com/kataras/iris/v12@v12.2.0-alpha2` 
 
 To run an example, open a terminal session and execute:
 
