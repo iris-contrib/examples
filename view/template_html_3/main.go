@@ -1,4 +1,5 @@
-// Package main an example on how to naming your routes & use the custom 'url path' HTML Template Engine, same for other template engines.
+// Package main an example on how to naming your routes & use the custom
+// 'url path' HTML Template Engine, same for other template engines.
 package main
 
 import (

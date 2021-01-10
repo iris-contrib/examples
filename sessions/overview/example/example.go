@@ -38,9 +38,9 @@ func NewApp(sess *sessions.Sessions) *iris.Application {
 		session := sessions.Get(ctx)
 		isNew := session.IsNew()
 
-		session.Set("name", "iris")
+		session.Set("username", "iris")
 
-		ctx.Writef("All ok session set to: %s [isNew=%t]", session.GetString("name"), isNew)
+		ctx.Writef("All ok session set to: %s [isNew=%t]", session.GetString("username"), isNew)
 	})
 
 	app.Get("/get", func(ctx iris.Context) {
@@ -48,21 +48,26 @@ func NewApp(sess *sessions.Sessions) *iris.Application {
 
 		// get a specific value, as string,
 		// if not found then it returns just an empty string.
-		name := session.GetString("name")
+		name := session.GetString("username")
 
-		ctx.Writef("The name on the /set was: %s", name)
+		ctx.Writef("The username on the /set was: %s", name)
 	})
 
 	app.Get("/set-struct", func(ctx iris.Context) {
 		session := sessions.Get(ctx)
 		session.Set("struct", BusinessModel{Name: "John Doe"})
 
-		ctx.Writef("All ok session value of the 'struct' is: %v", session.Get("struct"))
+		ctx.WriteString("All ok session value of the 'struct' was set.")
 	})
 
 	app.Get("/get-struct", func(ctx iris.Context) {
 		session := sessions.Get(ctx)
-		ctx.Writef("Session value of the 'struct' is: %v", session.Get("struct"))
+		var v BusinessModel
+		if err := session.Decode("struct", &v); err != nil {
+			ctx.StopWithError(iris.StatusInternalServerError, err)
+			return
+		}
+		ctx.Writef("Session value of the 'struct' is: %#+v", v)
 	})
 
 	app.Get("/set/{key}/{value}", func(ctx iris.Context) {
@@ -109,7 +114,7 @@ func NewApp(sess *sessions.Sessions) *iris.Application {
 	app.Get("/delete", func(ctx iris.Context) {
 		session := sessions.Get(ctx)
 		// delete a specific key
-		session.Delete("name")
+		session.Delete("username")
 	})
 
 	app.Get("/clear", func(ctx iris.Context) {
@@ -158,7 +163,12 @@ func NewApp(sess *sessions.Sessions) *iris.Application {
 
 		business := []BusinessModel{{Name: "Edward"}, {Name: "value 2"}}
 		session.SetImmutable("businessEdit", business)
-		businessGet := session.Get("businessEdit").([]BusinessModel)
+		var businessGet []BusinessModel
+		err := session.Decode("businessEdit", &businessGet)
+		if err != nil {
+			ctx.StopWithError(iris.StatusInternalServerError, err)
+			return
+		}
 
 		// try to change it, if we used `Set` instead of `SetImmutable` this
 		// change will affect the underline array of the session's value "businessEdit", but now it will not.
@@ -166,13 +176,19 @@ func NewApp(sess *sessions.Sessions) *iris.Application {
 	})
 
 	app.Get("/get-immutable", func(ctx iris.Context) {
-		valSlice := sessions.Get(ctx).Get("businessEdit")
-		if valSlice == nil {
+		var models []BusinessModel
+		err := sessions.Get(ctx).Decode("businessEdit", &models)
+		if err != nil {
+			ctx.StopWithError(iris.StatusInternalServerError, err)
+			return
+		}
+
+		if models == nil {
 			ctx.HTML("please navigate to the <a href='/set_immutable'>/set-immutable</a> first")
 			return
 		}
 
-		firstModel := valSlice.([]BusinessModel)[0]
+		firstModel := models[0]
 		// businessGet[0].Name is equal to Edward initially
 		if firstModel.Name != "Edward" {
 			panic("Report this as a bug, immutable data cannot be changed from the caller without re-SetImmutable")

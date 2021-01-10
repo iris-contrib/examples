@@ -14,6 +14,8 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 
 # Table of Contents
 
+# Table of Contents
+
 * [Serverless](https://github.com/iris-contrib/gateway#netlify)
 * [REST API for Apache Kafka](kafka-api)
 * [URL Shortener](url-shortener)
@@ -45,6 +47,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 * Configuration
     * [Functional](configuration/functional/main.go)
     * [Configuration Struct](configuration/from-configuration-structure/main.go)
+    * [Using Viper](configuration/viper)
     * [Import from YAML](configuration/from-yaml-file/main.go)
         * [Share Configuration across instances](configuration/from-yaml-file/shared-configuration/main.go)
     * [Import from TOML](configuration/from-toml-file/main.go)
@@ -61,6 +64,9 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * Middleware
         * [Per Route](routing/writing-a-middleware/per-route/main.go)
         * [Globally](routing/writing-a-middleware/globally/main.go)
+        * Share Values
+            * [Share Services](routing/writing-a-middleware/share-services/main.go)
+            * [Share Functions](routing/writing-a-middleware/share-funcs/main.go)
         * [Handlers Execution Rule](routing/route-handlers-execution-rules/main.go)
         * [Route Register Rule](routing/route-register-rule/main.go)
         * Convert net/http Handlers
@@ -85,16 +91,17 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [API Versioning](routing/versioning/main.go)
     * [Sitemap](routing/sitemap/main.go)
 * Logging
-    * [Request Logger](logging/request-logger/main.go)
-        * [AccessLog: simple example](logging/request-logger/accesslog-simple/main.go)
-        * [AccessLog: log request & response and more](logging/request-logger/accesslog)
-        * [AccessLog: custom fields and template](logging/request-logger/accesslog-template/main.go)
-        * [AccessLog: CSV Format](logging/request-logger/accesslog-csv/main.go)
-        * [AccessLog: listen to logs and render them](logging/request-logger/accesslog-broker/main.go)
-        * [Log Requests to a JSON File](logging/request-logger/request-logger-file-json/main.go) 
     * [Application File Logger](logging/file-logger/main.go)
     * [Application JSON Logger](logging/json-logger/main.go)
     * [Rollbar](logging/rollbar/main.go)
+    * AccessLog
+        * [Log Requests to a JSON File](logging/request-logger/accesslog-simple/main.go)
+        * [Using Log Rotation and more](logging/request-logger/accesslog)
+        * [Custom Fields and Template](logging/request-logger/accesslog-template/main.go)
+        * [Listen and render Logs to a Client](logging/request-logger/accesslog-broker/main.go)
+        * [The CSV Formatter](logging/request-logger/accesslog-csv/main.go)
+        * [Create your own Formatter](logging/request-logger/accesslog-formatter/main.go)
+        * [Root and Proxy AccessLog instances](logging/request-logger/accesslog-proxy/main.go)
 * API Documentation
     * [Yaag](apidoc/yaag/main.go)
     * [Swagger](https://github.com/iris-contrib/swagger/tree/master/example)
@@ -112,18 +119,30 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Embedding Gzipped Files Into App Executable File](file-server/embedding-gzipped-files-into-app/main.go)
     * [Send Files (rate limiter included)](file-server/send-files/main.go)
     * Single Page Applications
+        * [Vue Router](file-server/spa-vue-router)
         * [Basic SPA](file-server/single-page-application/basic/main.go)
-        * [Embedded Single Page Application](file-server/single-page-application/embedded-single-page-application/main.go)
+        * [Embedded Single Page Application and `iris.PrefixDir`](file-server/single-page-application/embedded-single-page-application/main.go)
         * [Embedded Single Page Application with other routes](file-server/single-page-application/embedded-single-page-application-with-other-routes/main.go)
     * [Upload File](file-server/upload-file/main.go)
     * [Upload Multiple Files](file-server/upload-files/main.go)
 * View
     * [Overview](view/overview/main.go)
+    * [Layout](view/layout)
+        * [Ace](view/layout/ace)
+        * [Amber](view/layout/amber)
+        * [Blocks](view/layout/blocks)
+        * [Django](view/layout/django)
+        * [Handlebars](view/layout/handlebars)
+        * [HTML](view/layout/html)
+        * [Jet](view/layout/jet)
+        * [Pug](view/layout/pug)
     * [Basic](view/template_html_0/main.go)
     * [A simple Layout](view/template_html_1/main.go)
     * [Layouts: `yield` and `render` tmpl funcs](view/template_html_2/main.go)
-    * [The `urlpath` tmpl func](view/template_html_3/main.go)
-    * [The `url` tmpl func](view/template_html_4/main.go)
+    * The `urlpath` template func
+        * [HTML](view/template_html_3/main.go)
+        * [Django](view/template_django_1/main.go)
+    * [The `url` template func](view/template_html_4/main.go)
     * [Inject Data Between Handlers](view/context-view-data/main.go)
     * [Inject Engine Between Handlers](view/context-view-engine/main.go)
     * [Embedding Templates Into App Executable File](view/embedding-templates-into-app/main.go)
@@ -164,9 +183,11 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Bind Form](request-body/read-form/main.go)
         * [Checkboxes](request-body/read-form/checkboxes/main.go)
     * [Bind Query](request-body/read-query/main.go)
-    * [Bind Headers](request-body/read-headers/main.go)
     * [Bind Params](request-body/read-params/main.go)
+    * [Bind URL](request-body/read-url/main.go)
+    * [Bind Headers](request-body/read-headers/main.go)
     * [Bind Body](request-body/read-body/main.go)
+    * [Add Converter](request-body/form-query-headers-params-decoder/main.go)
     * [Bind Custom per type](request-body/read-custom-per-type/main.go)
     * [Bind Custom via Unmarshaler](request-body/read-custom-via-unmarshaler/main.go)
     * [Bind Many times](request-body/read-many/main.go)
@@ -187,12 +208,22 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Client-Side](compression/client/main.go)
     * [Client-Side (using Iris)](compress/client-using-iris/main.go)
 * Localization and Internationalization
-    * [i18n](i18n)
-    * [i18n templates and functions](i18n/i18n-template)
+    * [Basic](i18n/basic)
+    * [Ttemplates and Functions](i18n/template)
+    * [Pluralization and Variables](i18n/plurals)
 * Authentication, Authorization & Bot Detection 
-    * [Basic Authentication](auth/basicauth/main.go)
+    * Basic Authentication
+        * [Basic](auth/basicauth/basic)
+        * [Load from a slice of Users](auth/basicauth/users_list)
+        * [Load from a file & encrypted passwords](auth/basicauth/users_file_bcrypt)
+        * [Fetch & validate a User from a Database (MySQL)](auth/basicauth/database)
     * [CORS](auth/cors)
-    * [JWT](auth/jwt/main.go)
+    * JSON Web Tokens
+        * [Basic](auth/jwt/basic/main.go)
+        * [Middleware](auth/jwt/midleware/main.go)
+        * [Blocklist](auth/jwt/blocklist/main.go)
+        * [Refresh Token](auth/jwt/refresh-token/main.go)
+        * [Tutorial](auth/jwt/tutorial)
     * [JWT (community edition)](https://github.com/iris-contrib/middleware/tree/v12/jwt/_example/main.go)
     * [OAUth2](auth/goth/main.go)
     * [Manage Permissions](auth/permissions/main.go)
@@ -212,6 +243,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
         * [Badger](sessions/database/badger/main.go)
         * [BoltDB](sessions/database/boltdb/main.go)
         * [Redis](sessions/database/redis/main.go)
+    * [View Data](sessions/viewdata)
 * Websocket
     * [Gorilla FileWatch (3rd-party)](websocket/gorilla-filewatch/main.go)
     * [Basic](websocket/basic)
@@ -245,6 +277,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Websocket Controller](mvc/websocket)
     * [Register Middleware](mvc/middleware)
     * [gRPC](mvc/grpc-compatible)
+    * [gRPC Bidirectional Stream](mvc/grpc-compatible-bidirectional-stream)
     * [Login (Repository and Service layers)](mvc/login)
     * [Login (Single Responsibility)](mvc/login-mvc-single-responsibility)
     * [Vue.js Todo App](mvc/vuejs-todo-mvc)
@@ -263,13 +296,14 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 ## Run
 
 1. Install the Go Programming Language, version 1.15+ from [here](https://golang.org/dl).
-2. Install Iris: `go get -u github.com/kataras/iris/v12@v12.2.0-alpha`
-3. [Download the examples](https://github.com/iris-contrib/examples/archive/master.zip) and copy-paste them to your `$GOPATH/src/github.com/iris-contrib/examples`
+2. [Download the examples](https://github.com/iris-contrib/examples/archive/master.zip) and copy-paste them to your `$GOPATH/src/github.com/iris-contrib/examples`
+3. Install Iris with `go get -u github.com/kataras/iris/v12@v12.0.0-alpha2` 
 
-And run
+To run an example, open a terminal session and execute:
 
 ```sh
 $ cd $GOPATH/src/github.com/iris-contrib/examples/compression
+$ go mod init
 $ go run main.go
 ```
 
@@ -278,7 +312,3 @@ Do not forget to [star or watch the Iris project](https://github.com/kataras/iri
 ## Any troubles with examples?
 
     https://github.com/iris-contrib/examples/issues
-
-## Su, 04 June 2017
-
-This repository is just a mirror of the https://github.com/kataras/iris/master/_examples folder.

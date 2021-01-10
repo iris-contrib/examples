@@ -5,9 +5,6 @@ import (
 	"github.com/kataras/iris/v12/middleware/accesslog"
 )
 
-// Default line format:
-// Time|Latency|Code|Method|Path|IP|Path Params Query Fields|Bytes Received|Bytes Sent|Request|Response|
-//
 // Read the example and its comments carefully.
 func makeAccessLog() *accesslog.AccessLog {
 	// Initialize a new access log middleware.
@@ -28,8 +25,14 @@ func makeAccessLog() *accesslog.AccessLog {
 	ac.KeepMultiLineError = true
 	ac.PanicLog = accesslog.LogHandler
 
+	// Default line format if formatter is missing:
+	// Time|Latency|Code|Method|Path|IP|Path Params Query Fields|Bytes Received|Bytes Sent|Request|Response|
+	//
 	// Set Custom Formatter:
-	ac.SetFormatter(&accesslog.JSON{})
+	ac.SetFormatter(&accesslog.JSON{
+		Indent:    "  ",
+		HumanTime: true,
+	})
 	// ac.SetFormatter(&accesslog.CSV{})
 	// ac.SetFormatter(&accesslog.Template{Text: "{{.Code}}"})
 

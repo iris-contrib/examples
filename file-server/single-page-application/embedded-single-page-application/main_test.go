@@ -47,15 +47,14 @@ func (r resource) loadFromBase(dir string) string {
 	}
 	result := string(b)
 	if runtime.GOOS != "windows" {
-		result = strings.Replace(result, "\n", "\r\n", -1)
-		result = strings.Replace(result, "\r\r", "", -1)
+		result = strings.ReplaceAll(result, "\n", "\r\n")
+		result = strings.ReplaceAll(result, "\r\r", "")
 	}
 	return result
 }
 
 var urls = []resource{
 	"/",
-	"/index.html",
 	"/app.js",
 	"/css/main.css",
 	"/app2/",
@@ -68,7 +67,11 @@ func TestSPAEmbedded(t *testing.T) {
 
 	for _, u := range urls {
 		url := u.String()
-		contents := u.loadFromBase("./public")
+		base := "./data/public"
+		if u == "/" || u == "/index.html" {
+			base = "./data/views"
+		}
+		contents := u.loadFromBase(base)
 		contents = strings.Replace(contents, "{{ .Page.Title }}", page.Title, 1)
 
 		e.GET(url).Expect().
@@ -76,4 +79,6 @@ func TestSPAEmbedded(t *testing.T) {
 			ContentType(u.contentType(), app.ConfigurationReadOnly().GetCharset()).
 			Body().Equal(contents)
 	}
+
+	e.GET("/index.html").Expect().Status(httptest.StatusNotFound) // only root is served.
 }
