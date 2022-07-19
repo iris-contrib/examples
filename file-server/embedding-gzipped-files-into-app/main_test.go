@@ -2,7 +2,7 @@ package main
 
 import (
 	"bytes"
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -48,7 +48,7 @@ func (r resource) loadFromBase(dir string) string {
 
 	fullpath := filepath.Join(dir, filename)
 
-	b, err := ioutil.ReadFile(fullpath)
+	b, err := os.ReadFile(fullpath)
 	if err != nil {
 		panic(fullpath + " failed with error: " + err.Error())
 	}
@@ -56,13 +56,14 @@ func (r resource) loadFromBase(dir string) string {
 
 	if runtime.GOOS != "windows" {
 		result = strings.ReplaceAll(result, "\n", "\r\n")
+		result = strings.ReplaceAll(result, "\r\r", "")
 	}
 	return result
 }
 
 var urls = []resource{
-	"/static/css/bootstrap.min.css",
-	"/static/js/jquery-2.1.1.js",
+	"/static/css/main.css",
+	"/static/js/main.js",
 	"/static/favicon.ico",
 }
 

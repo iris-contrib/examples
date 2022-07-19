@@ -125,8 +125,36 @@ func main() {
 	// anything, should be the last part, can be more than one path segment,
 	// i.e: "/test/{param:path}" and request: "/test/path1/path2/path3" , ctx.Params().Get("param") == "path1/path2/path3"
 	//
-	// if type is missing then parameter's type is defaulted to string, so
-	// {param} == {param:string}.
+	// +------------------------+
+	// | {param:uuid}           |
+	// +------------------------+
+	// UUIDv4 (and v1) path parameter validation.
+	//
+	// +------------------------+
+	// | {param:mail}           |
+	// +------------------------+
+	// Email without domain validation.
+	//
+	// +------------------------+
+	// | {param:email}           |
+	// +------------------------+
+	// Email with domain validation.
+	//
+	//
+	// +------------------------+
+	// | {param:date}           |
+	// +------------------------+
+	// yyyy/mm/dd format e.g. /blog/{param:date} matches /blog/2022/04/21.
+	//
+	// +------------------------+
+	// | {param:weekday}        |
+	// +------------------------+
+	// positive integer 0 to 6 or
+	// string of time.Weekday longname format ("sunday" to "monday" or "Sunday" to "Monday")
+	// format e.g. /schedule/{param:weekday} matches /schedule/monday.
+	//
+	// If type is missing then parameter's type is defaulted to string, so
+	// {param} is identical to {param:string}.
 	//
 	// If a function not found on that type then the `string` macro type's functions are being used.
 	//
@@ -147,6 +175,58 @@ func main() {
 	// app.Macros().String.RegisterFunc("equal", func(argument string) func(paramValue string) bool {
 	// 	return func(paramValue string) bool { return argument == paramValue }
 	// })
+
+	// Optionally, set custom handler on path parameter type error:
+	app.Macros().Get("uuid").HandleError(func(ctx iris.Context, paramIndex int, err error) {
+		ctx.StatusCode(iris.StatusBadRequest)
+
+		param := ctx.Params().GetEntryAt(paramIndex)
+		ctx.JSON(iris.Map{
+			"error":     err.Error(),
+			"message":   "invalid path parameter",
+			"parameter": param.Key,
+			"value":     param.ValueRaw,
+		})
+	})
+
+	// http://localhost:8080/user/bb4f33e4-dc08-40d8-9f2b-e8b2bb615c0e -> OK
+	// http://localhost:8080/user/dsadsa-invalid-uuid                  -> NOT FOUND
+	app.Get("/user/{id:uuid}", func(ctx iris.Context) {
+		id := ctx.Params().Get("id")
+		ctx.WriteString(id)
+	})
+
+	// +------------------------+
+	// | {param:email}           |
+	// +------------------------+
+	// Email + mx look uppath parameter validation.
+	// Note that, you can also use the simpler ":mail" to accept any domain email.
+
+	// http://localhost:8080/user/email/kataras2006@hotmail.com -> OK
+	// http://localhost:8080/user/email/b-c@                    -> NOT FOUND
+	app.Get("/user/email/{user_email:email}", func(ctx iris.Context) {
+		email := ctx.Params().Get("user_email")
+		ctx.WriteString(email)
+	})
+
+	// http://localhost:8080/blog/2022/04/21
+	app.Get("/blog/{date:date}", func(ctx iris.Context) {
+		// rawTimeValue := ctx.Params().GetEntry("d").ValueRaw.(time.Time)
+		// OR
+		rawTimeValue, _ := ctx.Params().GetTime("date")
+		// yearMonthDay := rawTimeValue.Format("2006/01/02")
+		// OR
+		yearMonthDay := ctx.Params().SimpleDate("date")
+		ctx.Writef("Raw time.Time.String value: %v\nyyyy/mm/dd: %s\n", rawTimeValue, yearMonthDay)
+	})
+
+	// 0 to 7 or "Sunday" to "Monday" or "sunday" to "monday". Leading zeros don't matter.
+	// http://localhost:8080/schedule/monday or http://localhost:8080/schedule/Monday or
+	// http://localhost:8080/schedule/1 or http://localhost:8080/schedule/0001.
+	app.Get("/schedule/{day:weekday}", func(ctx iris.Context) {
+		day, _ := ctx.Params().GetWeekday("day")
+		ctx.Writef("Weekday requested was: %v\n", day)
+	})
 
 	// you can use the "string" type which is valid for a single path parameter that can be anything.
 	app.Get("/username/{name}", func(ctx iris.Context) {

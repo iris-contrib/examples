@@ -2,7 +2,7 @@
 
 <a href="https://iris-go.com"> <img align="right" width="115px" src="https://iris-go.com/images/icon.svg?v=a" title="logo created by @merry.dii" /> </a>
 
-<a href="https://travis-ci.org/kataras/iris"><img src="https://img.shields.io/travis/kataras/iris.svg?style=flat-square" alt="Build Status"></a>
+<a href="https://github.com/kataras/iris/actions"><img src="https://img.shields.io/github/workflow/status/kataras/iris/CI/master?style=flat-square" alt="Build Status"></a>
 <a href="https://github.com/iris-contrib/examples/blob/v12/LICENSE"><img src="https://img.shields.io/badge/%20license-MIT%20%20License%20-E91E63.svg?style=flat-square" alt="License"></a>
 <a href="https://github.com/kataras/iris/blob/master/HISTORY.md"><img src="https://img.shields.io/badge/version-v12.2.x%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
 
@@ -10,7 +10,7 @@ This repository provides easy to understand code snippets on how to get started 
 
 To read the Iris documentation please navigate to [the wiki pages](https://github.com/kataras/iris/wiki) instead.
 
-> Examples are tested using Windows 10, Ubuntu 20.04 with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and built using the [Go 1.15.0](https://golang.org/dl).
+> Examples are tested using Windows 11, Ubuntu 22.04 LTS, macOS 12 Monterey with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and built using the [Go 1.19.rc2](https://go.dev/dl/).
 
 # Table of Contents
 
@@ -19,13 +19,18 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 * [URL Shortener](url-shortener)
 * [Dropzone.js](dropzonejs)
 * [Caddy](caddy)
+* [Bootstrapper](bootstrapper)
+* [Project Structure](project) :fire:
+* Monitor
+    * [Simple Process Monitor (includes UI)](monitor/monitor-middleware/main.go) **NEW**
+    * [Heap, MSpan/MCache, Size Classes, Objects, Goroutines, GC/CPU fraction (includes UI)](monitor/statsviz/main.go) **NEW**
 * Database
     * [MySQL, Groupcache & Docker](database/mysql)
     * [MongoDB](database/mongodb)
     * [Sqlx](database/orm/sqlx/main.go)
-    * [Xorm](database/orm/xorm/main.go)
     * [Gorm](database/orm/gorm/main.go)
     * [Reform](database/orm/reform/main.go)
+    * [x/sqlx](database/sqlx/main.go) **NEW**
 * HTTP Server
     * [HOST:PORT](http-server/listen-addr/main.go)
     * [Public Test Domain](http-server/listen-addr-public/main.go)
@@ -42,6 +47,10 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
         * [Use Iris as a single http.Handler](http-server/custom-httpserver/std-way/main.go)
         * [Multi Instances](http-server/custom-httpserver/multi/main.go)
         * [HTTP/3 Quic](http-server/http3-quic)
+        * [H2C](http-server/h2c/main.go) **NEW**
+    * [Timeout](http-server/timeout/main.go)
+* HTTP Client
+    * [Weather Client](http-client/weatherapi)
 * Configuration
     * [Functional](configuration/functional/main.go)
     * [Configuration Struct](configuration/from-configuration-structure/main.go)
@@ -49,10 +58,14 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Import from YAML](configuration/from-yaml-file/main.go)
         * [Share Configuration across instances](configuration/from-yaml-file/shared-configuration/main.go)
     * [Import from TOML](configuration/from-toml-file/main.go)
+    * [Multi Environment Configuration](configuration/multi-environments) **NEW**
 * Routing
+    * [Party Controller](routing/party-controller) **NEW**
     * [Overview](routing/overview/main.go)
     * [Basic](routing/basic/main.go)
     * [Custom HTTP Errors](routing/http-errors/main.go)
+    * [HTTP Wire Errors](routing/http-wire-errors/main.go) **NEW**
+        * [Custom Validation Errors](routing/http-wire-errors/custom-validation-errors/main.go)
     * [Not Found - Intelligence](routing/intelligence/main.go)
         * [Not Found - Suggest Closest Paths](routing/intelligence/manual/main.go)
     * [Dynamic Path](routing/dynamic-path/main.go)
@@ -62,6 +75,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * Middleware
         * [Per Route](routing/writing-a-middleware/per-route/main.go)
         * [Globally](routing/writing-a-middleware/globally/main.go)
+        * [Remove a Handler](routing/remove-handler/main.go)
         * Share Values
             * [Share Services](routing/writing-a-middleware/share-services/main.go)
             * [Share Functions](routing/writing-a-middleware/share-funcs/main.go)
@@ -70,9 +84,11 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
         * Convert net/http Handlers
             * [From func(w http.ResponseWriter, r *http.Request, next http.HandlerFunc)](convert-handlers/negroni-like/main.go)
             * [From http.Handler or http.HandlerFunc](convert-handlers/nethttp/main.go)
-            * [From func(http.HandlerFunc) http.HandlerFunc](convert-handlers/real-usecase-raven/writing-middleware/main.go)
+            * [From func(http.Handler) http.Handler](convert-handlers/wrapper/main.go)
+            * [Convert by your own: sentry/raven middleware](convert-handlers/real-usecase-raven/writing-middleware/main.go)
     * [Rewrite Middleware](routing/rewrite/main.go)
     * [Route State](routing/route-state/main.go)
+    * [Remove Route](routing/remove-route/main.go)
     * [Reverse Routing](routing/reverse/main.go)
     * [Router Wrapper](routing/custom-wrapper/main.go)
     * [Custom Router](routing/custom-router/main.go)
@@ -100,11 +116,13 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
         * [The CSV Formatter](logging/request-logger/accesslog-csv/main.go)
         * [Create your own Formatter](logging/request-logger/accesslog-formatter/main.go)
         * [Root and Proxy AccessLog instances](logging/request-logger/accesslog-proxy/main.go)
+        * [Slack integration example](logging/request-logger/accesslog-slack/main.go)
 * API Documentation
     * [Yaag](apidoc/yaag/main.go)
-    * [Swagger](https://github.com/iris-contrib/swagger/tree/master/example)
+    * [Swagger](https://github.com/iris-contrib/swagger/tree/master/_examples/basic)
 * [Testing](testing/httptest/main_test.go)
 * [Recovery](recover/main.go)
+    * [Panic and custom Error Handler with Compression](recover/panic-and-custom-error-handler-with-compression/main.go)
 * [Profiling](pprof/main.go)
 * File Server
     * [File Server](file-server/file-server/main.go)
@@ -123,6 +141,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
         * [Embedded Single Page Application with other routes](file-server/single-page-application/embedded-single-page-application-with-other-routes/main.go)
     * [Upload File](file-server/upload-file/main.go)
     * [Upload Multiple Files](file-server/upload-files/main.go)
+    * [WebDAV](file-server/webdav/main.go)
 * View
     * [Overview](view/overview/main.go)
     * [Layout](view/layout)
@@ -174,6 +193,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 * [Webassembly](webassembly/main.go)
 * Request Body
     * [Bind JSON](request-body/read-json/main.go)
+    *   * [JSON Stream and disable unknown fields](request-body/read-json-stream/main.go)
     *   * [Struct Validation](request-body/read-json-struct-validation/main.go)
     * [Bind XML](request-body/read-xml/main.go)
     * [Bind MsgPack](request-body/read-msgpack/main.go)
@@ -195,9 +215,9 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Protocol Buffers](response-writer/protobuf/main.go)
     * [HTTP/2 Server Push](response-writer/http2push/main.go)
     * [Stream Writer](response-writer/stream-writer/main.go)
-    * [Transactions](response-writer/transactions/main.go)
-    * [SSE](response-writer/sse/main.go)
-    * [SSE (third-party package usage for server sent events)](response-writer/sse-third-party/main.go)
+    * [Server-Sent Events](response-writer/sse/main.go)
+        * [SSE 3rd-party (r3labs/sse)](response-writer/sse-third-party/main.go)
+        * [SSE 3rd-party (alexandrevicenzi/go-sse)](response-writer/sse-third-party-2/main.go)
     * Cache
         * [Simple](response-writer/cache/simple/main.go)
         * [Client-Side (304)](response-writer/cache/client-side/main.go)
@@ -209,7 +229,8 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Basic](i18n/basic)
     * [Ttemplates and Functions](i18n/template)
     * [Pluralization and Variables](i18n/plurals)
-* Authentication, Authorization & Bot Detection 
+* Authentication, Authorization & Bot Detection
+    * [Recommended: Auth package and Single-Sign-On](auth/auth) **NEW (GO 1.18 Generics required)**
     * Basic Authentication
         * [Basic](auth/basicauth/basic)
         * [Load from a slice of Users](auth/basicauth/users_list)
@@ -267,12 +288,14 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Hello world](mvc/hello-world/main.go)
     * [Basic](mvc/basic/main.go)
         * [Wildcard](mvc/basic/wildcard/main.go)
+    * [Default request values](mvc/request-default-values/main.go)
     * [Singleton](mvc/singleton)
     * [Regexp](mvc/regexp/main.go)
     * [Session Controller](mvc/session-controller/main.go)
     * [Authenticated Controller](mvc/authenticated-controller/main.go)
     * [Versioned Controller](mvc/versioned-controller/main.go)
     * [Websocket Controller](mvc/websocket)
+        * [Websocket + Authentication (Single-Sign-On)](mvc/websocket-auth) **NEW (GO 1.18 Generics required)**
     * [Register Middleware](mvc/middleware)
     * [gRPC](mvc/grpc-compatible)
     * [gRPC Bidirectional Stream](mvc/grpc-compatible-bidirectional-stream)
@@ -284,7 +307,6 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Handle errors using mvc.Result](mvc/error-handler-custom-result)
     * [Handle errors using PreflightResult](mvc/error-handler-preflight)
     * [Handle errors by hijacking the result](mvc/error-handler-hijack)
-* [Bootstrapper](bootstrapper)
 * Desktop Applications
     * [The blink package](desktop/blink)
     * [The lorca package](desktop/lorca)
@@ -293,9 +315,9 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 
 ## Run
 
-1. Install the Go Programming Language, version 1.15+ from [here](https://golang.org/dl).
+1. Install the Go Programming Language, version 1.18+ from [here](https://go.dev/dl/).
 2. [Download the examples](https://github.com/iris-contrib/examples/archive/master.zip) and copy-paste them to your `$GOPATH/src/github.com/iris-contrib/examples`
-3. Install Iris with `go get -u github.com/kataras/iris/v12@v12.2.0-alpha2` 
+3. Install Iris with `go get -u github.com/kataras/iris/v12@v12.2.0-beta3` 
 
 To run an example, open a terminal session and execute:
 

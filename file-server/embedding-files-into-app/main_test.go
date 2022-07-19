@@ -1,7 +1,7 @@
 package main
 
 import (
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -46,7 +46,7 @@ func (r resource) loadFromBase(dir string) string {
 
 	fullpath := filepath.Join(dir, filename)
 
-	b, err := ioutil.ReadFile(fullpath)
+	b, err := os.ReadFile(fullpath)
 	if err != nil {
 		panic(fullpath + " failed with error: " + err.Error())
 	}
@@ -61,8 +61,8 @@ func (r resource) loadFromBase(dir string) string {
 }
 
 var urls = []resource{
-	"/static/css/bootstrap.min.css",
-	"/static/js/jquery-2.1.1.js",
+	"/static/css/main.css",
+	"/static/js/main.js",
 	"/static/favicon.ico",
 }
 
@@ -90,7 +90,7 @@ func TestEmbeddingFilesIntoApp(t *testing.T) {
 
 		e.GET(url).Expect().
 			Status(httptest.StatusOK).
-			ContentType(u.contentType(), app.ConfigurationReadOnly().GetCharset()).
+			ContentType(u.contentType()).
 			Body().Equal(contents)
 	}
 }

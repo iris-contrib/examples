@@ -47,13 +47,20 @@ func newApp() *iris.Application {
 	// or 202 status code and empty body
 	// or a 409 status code and "my_error" body.
 	app.ConfigureContainer(func(api *iris.APIContainer) {
+		// Enable execution of middlewares without ctx.Next requirement.
+		api.Self.SetExecutionRules(iris.ExecutionRules{
+			Begin: iris.ExecutionOptions{
+				Force: true,
+			},
+		})
 		api.Use(middleware)
 		api.Post("/{id:int}", handler)
 	})
 
 	app.Configure(
-		iris.WithOptimizations, /* optional */
-		iris.WithoutBodyConsumptionOnUnmarshal /* required when more than one handler is consuming request payload(testInput) */)
+		iris.WithOptimizations,                 /* optional */
+		iris.WithoutBodyConsumptionOnUnmarshal, /* required when more than one handler is consuming request payload(testInput) */
+	)
 
 	return app
 }
