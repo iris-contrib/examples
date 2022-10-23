@@ -4,7 +4,7 @@
 //
 // $ go get go.etcd.io/bbolt/...
 // $ go get github.com/google/uuid
-// $ cd $GOPATH/src/github.com/iris-contrib/examples/url-shortener
+// $ cd $GOPATH/src/ggithub.com/iris-contrib/examples/url-shortener
 // $ go build -mod=mod
 // $ ./url-shortener
 package main

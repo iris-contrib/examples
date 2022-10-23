@@ -6,7 +6,7 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/kataras/iris/v12/_examples/dependency-injection/overview/datamodels"
+	"github.com/iris-contrib/examples/dependency-injection/overview/datamodels"
 )
 
 // Query represents the visitor and action queries.

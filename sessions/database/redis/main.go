@@ -9,7 +9,7 @@ import (
 	"github.com/kataras/iris/v12/sessions"
 	"github.com/kataras/iris/v12/sessions/sessiondb/redis"
 
-	"github.com/kataras/iris/v12/_examples/sessions/overview/example"
+	"github.com/iris-contrib/examples/sessions/overview/example"
 )
 
 // 1. Install Redis:
@@ -30,11 +30,16 @@ func main() {
 		Password:  "",
 		Database:  "",
 		Prefix:    "myapp-",
-		Driver:    redis.GoRedis(), // defaults.
+		Driver:    redis.GoRedis(), // defaults to this driver.
+		// To set a custom, existing go-redis client, use the "SetClient" method:
+		// Driver: redis.GoRedis().SetClient(customGoRedisClient)
 	})
 
 	// Optionally configure the underline driver:
 	// driver := redis.GoRedis()
+	// // To set a custom client:
+	// driver.SetClient(customGoRedisClient)
+	// OR:
 	// driver.ClientOptions = redis.Options{...}
 	// driver.ClusterOptions = redis.ClusterOptions{...}
 	// redis.New(redis.Config{Driver: driver, ...})

@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/kataras/iris/v12/_examples/dependency-injection/sessions/routes"
+	"github.com/iris-contrib/examples/dependency-injection/sessions/routes"
 
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/sessions"

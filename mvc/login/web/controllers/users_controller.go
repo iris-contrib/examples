@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"github.com/kataras/iris/v12/_examples/mvc/login/datamodels"
-	"github.com/kataras/iris/v12/_examples/mvc/login/services"
+	"github.com/iris-contrib/examples/mvc/login/datamodels"
+	"github.com/iris-contrib/examples/mvc/login/services"
 
 	"github.com/kataras/iris/v12"
 )

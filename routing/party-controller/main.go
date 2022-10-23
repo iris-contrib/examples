@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/kataras/iris/v12"
 
-	"github.com/iris-contrib/examples/routing/party-controller/pkg/weatherapi"
+	"ggithub.com/iris-contrib/examples/routing/party-controller/pkg/weatherapi"
 )
 
 // Example of usage of Party Controllers.

@@ -5,8 +5,8 @@ package controllers
 import (
 	"errors"
 
-	"github.com/kataras/iris/v12/_examples/mvc/repository/datamodels"
-	"github.com/kataras/iris/v12/_examples/mvc/repository/services"
+	"github.com/iris-contrib/examples/mvc/repository/datamodels"
+	"github.com/iris-contrib/examples/mvc/repository/services"
 
 	"github.com/kataras/iris/v12"
 )

@@ -6,11 +6,11 @@
 <a href="https://github.com/iris-contrib/examples/blob/v12/LICENSE"><img src="https://img.shields.io/badge/%20license-MIT%20%20License%20-E91E63.svg?style=flat-square" alt="License"></a>
 <a href="https://github.com/kataras/iris/blob/master/HISTORY.md"><img src="https://img.shields.io/badge/version-v12.2.x%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
 
-This repository provides easy to understand code snippets on how to get started with web development with the Go programming language using the [Iris](https://github.com/kataras/iris) web framework. This branch contains the latest [iris master examples](github.com/kataras/iris/tree/master). For the stable's version examples navigate through the [v12 branch](https://github.com/iris-contrib/examples/tree/v12).
+This repository provides easy to understand code snippets on how to get started with web development with the Go programming language using the [Iris](https://github.com/kataras/iris) web framework. This branch contains the latest [iris master examples](github.com/kataras/iris/tree/master/examples). For the stable's version examples navigate through the [v12 branch](https://github.com/iris-contrib/examples/tree/v12).
 
 To read the Iris documentation please navigate to [the wiki pages](https://github.com/kataras/iris/wiki) instead.
 
-> Examples are tested using Windows 11, Ubuntu 22.04 LTS, macOS 12 Monterey with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and built using the [Go 1.19.rc2](https://go.dev/dl/).
+> Examples are tested using Windows 11, Ubuntu 22.04 LTS, macOS 12 Monterey with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and built using the [Go 1.19.2](https://go.dev/dl/).
 
 # Table of Contents
 
@@ -69,6 +69,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Not Found - Intelligence](routing/intelligence/main.go)
         * [Not Found - Suggest Closest Paths](routing/intelligence/manual/main.go)
     * [Dynamic Path](routing/dynamic-path/main.go)
+        * [At-username](routing/dynamic-path/at-username/main.go)
         * [Root Wildcard](routing/dynamic-path/root-wildcard/main.go)
         * [Implement a Parameter Type](routing/macros/main.go)
         * [Same Path Pattern but Func](routing/dynamic-path/same-pattern-different-func/main.go)
@@ -120,7 +121,9 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 * API Documentation
     * [Yaag](apidoc/yaag/main.go)
     * [Swagger](https://github.com/iris-contrib/swagger/tree/master/_examples/basic)
-* [Testing](testing/httptest/main_test.go)
+* Testing
+    * [Testing with httptest](testing/httptest/main_test.go)
+    * [Testing with ginkgo](testing/ginkgotest)
 * [Recovery](recover/main.go)
     * [Panic and custom Error Handler with Compression](recover/panic-and-custom-error-handler-with-compression/main.go)
 * [Profiling](pprof/main.go)
@@ -132,7 +135,8 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Favicon](file-server/favicon/main.go)
     * [Basic](file-server/basic/main.go)
     * [Embedding Files Into App Executable File](file-server/embedding-files-into-app/main.go)
-    * [Embedding Gzipped Files Into App Executable File](file-server/embedding-gzipped-files-into-app/main.go)
+    * [Embedding Files Into App Executable File (Bindata)](file-server/embedding-files-into-app-bindata/main.go)
+    * [Embedding Gzipped Files Into App Executable File (Bindata)](file-server/embedding-gzipped-files-into-app-bindata/main.go)
     * [Send Files (rate limiter included)](file-server/send-files/main.go)
     * Single Page Applications
         * [Vue Router](file-server/spa-vue-router)
@@ -163,6 +167,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Inject Data Between Handlers](view/context-view-data/main.go)
     * [Inject Engine Between Handlers](view/context-view-engine/main.go)
     * [Embedding Templates Into App Executable File](view/embedding-templates-into-app/main.go)
+    * [Embedding Templates Into App Executable File (Bindata)](view/embedding-templates-into-app-bindata/main.go)
     * [Write to a custom `io.Writer`](view/write-to)
     * Parse a Template from Text
         * [HTML, Pug and Ace](view/parse-parse/main.go)
@@ -212,6 +217,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 * Response Writer
     * [Content Negotiation](response-writer/content-negotiation)
     * [Text, Markdown, YAML, HTML, JSON, JSONP, Msgpack, XML and Binary](response-writer/write-rest/main.go)
+    * [Third-party JSON Encoder](response-writer/json-third-party/main.go)
     * [Protocol Buffers](response-writer/protobuf/main.go)
     * [HTTP/2 Server Push](response-writer/http2push/main.go)
     * [Stream Writer](response-writer/stream-writer/main.go)
@@ -228,6 +234,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 * Localization and Internationalization
     * [Basic](i18n/basic)
     * [Ttemplates and Functions](i18n/template)
+    * [Ttemplates and Functions (Embedded)](i18n/template-embedded)
     * [Pluralization and Variables](i18n/plurals)
 * Authentication, Authorization & Bot Detection
     * [Recommended: Auth package and Single-Sign-On](auth/auth) **NEW (GO 1.18 Generics required)**
@@ -317,7 +324,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 
 1. Install the Go Programming Language, version 1.18+ from [here](https://go.dev/dl/).
 2. [Download the examples](https://github.com/iris-contrib/examples/archive/master.zip) and copy-paste them to your `$GOPATH/src/github.com/iris-contrib/examples`
-3. Install Iris with `go get -u github.com/kataras/iris/v12@v12.2.0-beta3` 
+3. Install Iris with `go get -u github.com/kataras/iris/v12@v12.2.0-beta6` 
 
 To run an example, open a terminal session and execute:
 

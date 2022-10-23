@@ -1,15 +1,20 @@
 package main
 
-import "github.com/kataras/iris/v12"
+import (
+	"embed"
+
+	"github.com/kataras/iris/v12"
+	"github.com/kataras/iris/v12/x/errors"
+)
+
+//go:embed embedded/*
+var embeddedFS embed.FS
 
 func main() {
 	app := iris.New()
 
-	// $ go install github.com/go-bindata/go-bindata/v3/go-bindata@latest
-	// $ go-bindata -fs -prefix "templates" ./templates/...
-	// $ go run .
-	// html files are not used, you can delete the folder and run the example.
-	tmpl := iris.HTML(AssetFile(), ".html")
+	tmpl := iris.HTML(embeddedFS, ".html").RootDir("embedded/templates")
+
 	tmpl.Layout("layouts/layout.html")
 	tmpl.AddFunc("greet", func(s string) string {
 		return "Greetings " + s + "!"
@@ -19,8 +24,8 @@ func main() {
 
 	app.Get("/", func(ctx iris.Context) {
 		if err := ctx.View("page1.html"); err != nil {
-			ctx.StatusCode(iris.StatusInternalServerError)
-			ctx.Writef(err.Error())
+			errors.InvalidArgument.Err(ctx, err)
+			return
 		}
 	})
 
@@ -28,8 +33,8 @@ func main() {
 	app.Get("/nolayout", func(ctx iris.Context) {
 		ctx.ViewLayout(iris.NoLayout)
 		if err := ctx.View("page1.html"); err != nil {
-			ctx.StatusCode(iris.StatusInternalServerError)
-			ctx.Writef(err.Error())
+			errors.InvalidArgument.Err(ctx, err)
+			return
 		}
 	})
 
