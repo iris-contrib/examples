@@ -3,11 +3,11 @@
 package main
 
 import (
-	"github.com/iris-contrib/examples/dependency-injection/overview/datasource"
-	"github.com/iris-contrib/examples/dependency-injection/overview/repositories"
-	"github.com/iris-contrib/examples/dependency-injection/overview/services"
-	"github.com/iris-contrib/examples/dependency-injection/overview/web/middleware"
-	"github.com/iris-contrib/examples/dependency-injection/overview/web/routes"
+	"github.com/kataras/iris/v12/_examples/dependency-injection/overview/datasource"
+	"github.com/kataras/iris/v12/_examples/dependency-injection/overview/repositories"
+	"github.com/kataras/iris/v12/_examples/dependency-injection/overview/services"
+	"github.com/kataras/iris/v12/_examples/dependency-injection/overview/web/middleware"
+	"github.com/kataras/iris/v12/_examples/dependency-injection/overview/web/routes"
 
 	"github.com/kataras/iris/v12"
 )

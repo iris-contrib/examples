@@ -9,7 +9,7 @@ import (
 	"net/http"
 	"os"
 
-	pb "github.com/iris-contrib/examples/mvc/grpc-compatible/helloworld"
+	pb "github.com/kataras/iris/v12/_examples/mvc/grpc-compatible/helloworld"
 )
 
 func main() {

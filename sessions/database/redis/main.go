@@ -9,7 +9,7 @@ import (
 	"github.com/kataras/iris/v12/sessions"
 	"github.com/kataras/iris/v12/sessions/sessiondb/redis"
 
-	"github.com/iris-contrib/examples/sessions/overview/example"
+	"github.com/kataras/iris/v12/_examples/sessions/overview/example"
 )
 
 // 1. Install Redis:

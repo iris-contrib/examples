@@ -5,11 +5,11 @@ package main
 import (
 	"time"
 
-	"github.com/iris-contrib/examples/mvc/login/datasource"
-	"github.com/iris-contrib/examples/mvc/login/repositories"
-	"github.com/iris-contrib/examples/mvc/login/services"
-	"github.com/iris-contrib/examples/mvc/login/web/controllers"
-	"github.com/iris-contrib/examples/mvc/login/web/middleware"
+	"github.com/kataras/iris/v12/_examples/mvc/login/datasource"
+	"github.com/kataras/iris/v12/_examples/mvc/login/repositories"
+	"github.com/kataras/iris/v12/_examples/mvc/login/services"
+	"github.com/kataras/iris/v12/_examples/mvc/login/web/controllers"
+	"github.com/kataras/iris/v12/_examples/mvc/login/web/middleware"
 
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/mvc"
@@ -33,7 +33,10 @@ func main() {
 	app.OnAnyErrorCode(func(ctx iris.Context) {
 		ctx.ViewData("Message", ctx.Values().
 			GetStringDefault("message", "The page you're looking for doesn't exist"))
-		ctx.View("shared/error.html")
+		if err := ctx.View("shared/error.html"); err != nil {
+			ctx.HTML("<h3>%s</h3>", err.Error())
+			return
+		}
 	})
 
 	// ---- Serve our controllers. ----

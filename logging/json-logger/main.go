@@ -30,7 +30,7 @@ func main() {
 	    "stacktrace": [
 	        {
 	            "function": "main.main",
-	            "source": "C:/mygopath/src/ggithub.com/iris-contrib/examples/logging/json-logger/main.go:16"
+	            "source": "C:/mygopath/src/github.com/kataras/iris/_examples/logging/json-logger/main.go:16"
 	        }
 	    ]
 	}
@@ -69,7 +69,7 @@ func ping(ctx iris.Context) {
 	    "stacktrace": [
 	        {
 	            "function": "main.ping",
-	            "source": "C:/mygopath/src/ggithub.com/iris-contrib/examples/logging/json-logger/main.go:82"
+	            "source": "C:/mygopath/src/github.com/kataras/iris/_examples/logging/json-logger/main.go:82"
 	        },
 	       ...
 	    ]

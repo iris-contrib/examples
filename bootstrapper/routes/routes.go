@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/iris-contrib/examples/bootstrapper/bootstrap"
+	"github.com/kataras/iris/v12/_examples/bootstrapper/bootstrap"
 )
 
 // Configure registers the necessary routes to the app.

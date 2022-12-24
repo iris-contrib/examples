@@ -4,15 +4,15 @@ The `Caddyfile` shows how you can use caddy to listen on ports 80 & 443 and sit 
 
 ## Running our two web servers
 
-1. Go to `$GOPATH/src/ggithub.com/iris-contrib/examples/caddy/server1`
+1. Go to `$GOPATH/src/github.com/kataras/iris/_examples/caddy/server1`
 2. Open a terminal window and execute `go run main.go`
-3. Go to `$GOPATH/src/ggithub.com/iris-contrib/examples/caddy/server2`
+3. Go to `$GOPATH/src/github.com/kataras/iris/_examples/caddy/server2`
 4. Open a new terminal window and execute `go run main.go`
 
 ## Caddy installation
 
 1. Download caddy: https://caddyserver.com/download
-2. Extract its contents where the `Caddyfile` is located, the `$GOPATH/src/ggithub.com/iris-contrib/examples/caddy` in this case
+2. Extract its contents where the `Caddyfile` is located, the `$GOPATH/src/github.com/kataras/iris/_examples/caddy` in this case
 3. Open, read and modify the `Caddyfile` to see by yourself how easy it is to configure the servers
 4. Run `caddy` directly or open a terminal window and execute `caddy`
 5. Go to `https://example.com` and `https://api.example.com/user/42`

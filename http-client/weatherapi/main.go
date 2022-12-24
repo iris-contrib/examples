@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/iris-contrib/examples/http-client/weatherapi/client"
+	"github.com/kataras/iris/v12/_examples/http-client/weatherapi/client"
 )
 
 func main() {

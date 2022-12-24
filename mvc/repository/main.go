@@ -3,11 +3,11 @@
 package main
 
 import (
-	"github.com/iris-contrib/examples/mvc/repository/datasource"
-	"github.com/iris-contrib/examples/mvc/repository/repositories"
-	"github.com/iris-contrib/examples/mvc/repository/services"
-	"github.com/iris-contrib/examples/mvc/repository/web/controllers"
-	"github.com/iris-contrib/examples/mvc/repository/web/middleware"
+	"github.com/kataras/iris/v12/_examples/mvc/repository/datasource"
+	"github.com/kataras/iris/v12/_examples/mvc/repository/repositories"
+	"github.com/kataras/iris/v12/_examples/mvc/repository/services"
+	"github.com/kataras/iris/v12/_examples/mvc/repository/web/controllers"
+	"github.com/kataras/iris/v12/_examples/mvc/repository/web/middleware"
 
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/mvc"

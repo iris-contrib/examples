@@ -4,7 +4,7 @@
 //
 // $ go get go.etcd.io/bbolt/...
 // $ go get github.com/google/uuid
-// $ cd $GOPATH/src/ggithub.com/iris-contrib/examples/url-shortener
+// $ cd $GOPATH/src/github.com/kataras/iris/_examples/url-shortener
 // $ go build -mod=mod
 // $ ./url-shortener
 package main
@@ -50,7 +50,10 @@ func newApp(db *DB) *iris.Application {
 
 	indexHandler := func(ctx iris.Context) {
 		ctx.ViewData("URL_COUNT", db.Len())
-		ctx.View("index.html")
+		if err := ctx.View("index.html"); err != nil {
+			ctx.HTML("<h3>%s</h3>", err.Error())
+			return
+		}
 	}
 	app.Get("/", indexHandler)
 

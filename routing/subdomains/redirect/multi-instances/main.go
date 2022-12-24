@@ -1,8 +1,8 @@
 package main
 
 import (
-	_ "ggithub.com/iris-contrib/examples/routing/subdomains/redirect/multi-instances/other"
-	_ "ggithub.com/iris-contrib/examples/routing/subdomains/redirect/multi-instances/root"
+	_ "github.com/kataras/iris/_examples/routing/subdomains/redirect/multi-instances/other"
+	_ "github.com/kataras/iris/_examples/routing/subdomains/redirect/multi-instances/root"
 
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/apps"

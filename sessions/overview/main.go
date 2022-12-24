@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/iris-contrib/examples/sessions/overview/example"
+	"github.com/kataras/iris/v12/_examples/sessions/overview/example"
 	"github.com/kataras/iris/v12/sessions"
 )
 

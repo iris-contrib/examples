@@ -5,7 +5,7 @@ There should be the domain/business-level models.
 Example:
 
 ```go
-import "github.com/iris-contrib/examples/mvc/repository/datamodels"
+import "github.com/kataras/iris/v12/_examples/mvc/repository/datamodels"
 
 type Movie struct {
     datamodels.Movie
