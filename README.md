@@ -8,9 +8,9 @@
 
 This repository provides easy to understand code snippets on how to get started with web development with the Go programming language using the [Iris](https://github.com/kataras/iris) web framework. This branch contains the latest [iris master examples](github.com/kataras/iris/tree/master/examples). For the stable's version examples navigate through the [v12 branch](https://github.com/iris-contrib/examples/tree/v12).
 
-To read the Iris documentation please navigate to [the wiki pages](https://github.com/kataras/iris/wiki) instead.
+To read the Iris documentation please navigate to [the documentation](https://iris-go.com/docs) instead.
 
-> Examples are tested using Windows 11, Ubuntu 22.04 LTS, macOS 12 Monterey with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and built using the [Go 1.19.3](https://go.dev/dl/).
+> Examples are tested using Windows 11, Ubuntu 23.04 LTS, macOS 13 Ventura with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and built using the [Go 1.21.0](https://go.dev/dl/).
 
 # Table of Contents
 
@@ -31,6 +31,8 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Gorm](database/orm/gorm/main.go)
     * [Reform](database/orm/reform/main.go)
     * [x/sqlx](database/sqlx/main.go) **NEW**
+* GraphQL
+    * [GraphQL: schema-first](graphql/schema-first) **NEW**
 * HTTP Server
     * [HOST:PORT](http-server/listen-addr/main.go)
     * [Public Test Domain](http-server/listen-addr-public/main.go)
@@ -119,7 +121,6 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
         * [Root and Proxy AccessLog instances](logging/request-logger/accesslog-proxy/main.go)
         * [Slack integration example](logging/request-logger/accesslog-slack/main.go)
 * API Documentation
-    * [Yaag](apidoc/yaag/main.go)
     * [Swagger](https://github.com/iris-contrib/swagger/tree/master/_examples/basic)
 * Testing
     * [Testing with httptest](testing/httptest/main_test.go)
@@ -150,7 +151,6 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Overview](view/overview/main.go)
     * [Layout](view/layout)
         * [Ace](view/layout/ace)
-        * [Amber](view/layout/amber)
         * [Blocks](view/layout/blocks)
         * [Django](view/layout/django)
         * [Handlebars](view/layout/handlebars)
@@ -172,7 +172,6 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * Parse a Template from Text
         * [HTML, Pug and Ace](view/parse-parse/main.go)
         * [Django](view/parse-parse/django/main.go)
-        * [Amber](view/parse-parse/amber/main.go)
         * [Jet](view/parse-parse/jet/main.go)
         * [Handlebars](view/parse-parse/handlebars/main.go)
     * [Blocks](view/template_blocks_0)
@@ -182,8 +181,6 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
     * [Pug Embedded`](view/template_pug_2_embedded)
     * [Ace](view/template_ace_0)
     * [Django](view/template_django_0)
-    * [Amber](view/template_amber_0)
-    * [Amber Embedded](view/template_amber_1_embedded)
     * [Jet](view/template_jet_0)
     * [Jet Embedded](view/template_jet_1_embedded)
     * [Jet 'urlpath' tmpl func](view/template_jet_2)
@@ -324,7 +321,7 @@ To read the Iris documentation please navigate to [the wiki pages](https://githu
 
 1. Install the Go Programming Language, version 1.18+ from [here](https://go.dev/dl/).
 2. [Download the examples](https://github.com/iris-contrib/examples/archive/master.zip) and copy-paste them to your `$GOPATH/src/github.com/iris-contrib/examples`
-3. Install Iris with `go get -u github.com/kataras/iris/v12@v12.2.0-beta6` 
+3. Install Iris with `go get -u github.com/kataras/iris/v12@v12.2.4` 
 
 To run an example, open a terminal session and execute:
 
