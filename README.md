@@ -6,7 +6,7 @@
 <a href="https://github.com/iris-contrib/examples/blob/v12/LICENSE"><img src="https://img.shields.io/badge/%20license-MIT%20%20License%20-E91E63.svg?style=flat-square" alt="License"></a>
 <a href="https://github.com/kataras/iris/blob/master/HISTORY.md"><img src="https://img.shields.io/badge/version-v12.2.x%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
 
-This repository provides easy to understand code snippets on how to get started with web development with the Go programming language using the [Iris](https://github.com/kataras/iris) web framework. This branch contains the latest [iris master examples](github.com/kataras/iris/tree/master/examples). For the stable's version examples navigate through the [v12 branch](https://github.com/iris-contrib/examples/tree/v12).
+This repository provides easy to understand code snippets on how to get started with web development with the Go programming language using the [Iris](https://github.com/kataras/iris) web framework. This branch contains the latest [iris master examples](github.com/kataras/iris/tree/master/examples).
 
 To read the Iris documentation please navigate to [the documentation](https://iris-go.com/docs) instead.
 
