@@ -4,9 +4,9 @@
 
 <a href="https://github.com/kataras/iris/actions"><img src="https://img.shields.io/github/actions/workflow/status/iris-contrib/swagger/ci.yml?branch=master&style=flat-square" alt="Build Status"></a>
 <a href="https://github.com/iris-contrib/examples/blob/v12/LICENSE"><img src="https://img.shields.io/badge/%20license-MIT%20%20License%20-E91E63.svg?style=flat-square" alt="License"></a>
-<a href="https://github.com/kataras/iris/blob/master/HISTORY.md"><img src="https://img.shields.io/badge/version-v12.2.x%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
+<a href="https://github.com/kataras/iris/blob/main/HISTORY.md"><img src="https://img.shields.io/badge/version-v12.2.x%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
 
-This repository provides easy to understand code snippets on how to get started with web development with the Go programming language using the [Iris](https://github.com/kataras/iris) web framework. This branch contains the latest [iris master examples](github.com/kataras/iris/tree/master/examples).
+This repository provides easy to understand code snippets on how to get started with web development with the Go programming language using the [Iris](https://github.com/kataras/iris) web framework. This branch contains the latest [iris master examples](github.com/kataras/iris/tree/main/examples).
 
 To read the Iris documentation please navigate to [the documentation](https://iris-go.com/docs) instead.
 
@@ -104,7 +104,7 @@ To read the Iris documentation please navigate to [the documentation](https://ir
         * [Redirection](routing/subdomains/redirect/main.go)
             * [Multi Instances](routing/subdomains/redirect/multi-instances/main.go)
         * [HTTP Errors View](routing/subdomains/http-errors-view/main.go)
-    * [HTTP Method Override](https://github.com/kataras/iris/blob/master/middleware/methodoverride/methodoverride_test.go)
+    * [HTTP Method Override](https://github.com/kataras/iris/blob/main/middleware/methodoverride/methodoverride_test.go)
     * [API Versioning](routing/versioning/main.go)
     * [Sitemap](routing/sitemap/main.go)
 * Logging
@@ -189,7 +189,7 @@ To read the Iris documentation please navigate to [the documentation](https://ir
     * Third-Parties
         * [Render `valyala/quicktemplate` templates](view/quicktemplate)
         * [Render `shiyanhui/hero` templates](view/herotemplate)
-* [Request ID](https://github.com/kataras/iris/blob/master/middleware/requestid/requestid_test.go)
+* [Request ID](https://github.com/kataras/iris/blob/main/middleware/requestid/requestid_test.go)
 * [Request Rate Limit](request-ratelimit/main.go)
 * [Request Referrer](request-referrer/main.go)
 * [Webassembly](webassembly/main.go)
