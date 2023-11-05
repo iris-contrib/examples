@@ -10,7 +10,7 @@ This repository provides easy to understand code snippets on how to get started 
 
 To read the Iris documentation please navigate to [the documentation](https://iris-go.com/docs) instead.
 
-> Examples are tested using Windows 11, Ubuntu 23.04 LTS, macOS 13 Ventura with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and built using the [Go 1.21.0](https://go.dev/dl/).
+> Examples are tested using Windows 11, Ubuntu 23.04 LTS, macOS 14 Sonoma with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and built using the [Go 1.21.3](https://go.dev/dl/).
 
 # Table of Contents
 
@@ -62,6 +62,7 @@ To read the Iris documentation please navigate to [the documentation](https://ir
     * [Import from TOML](configuration/from-toml-file/main.go)
     * [Multi Environment Configuration](configuration/multi-environments) **NEW**
 * Routing
+    * [Custom Context](routing/custom-context/main.go) **HOT/NEW**
     * [Party Controller](routing/party-controller) **NEW**
     * [Overview](routing/overview/main.go)
     * [Basic](routing/basic/main.go)
@@ -317,11 +318,12 @@ To read the Iris documentation please navigate to [the documentation](https://ir
     * [The webview package](desktop/webview)
 * Middlewares [(Community)](https://github.com/iris-contrib/middleware)
 
+
 ## Run
 
-1. Install the Go Programming Language, version 1.18+ from [here](https://go.dev/dl/).
+1. Install the Go Programming Language, version 1.21+ from [here](https://go.dev/dl/).
 2. [Download the examples](https://github.com/iris-contrib/examples/archive/master.zip) and copy-paste them to your `$GOPATH/src/github.com/iris-contrib/examples`
-3. Install Iris with `go get -u github.com/kataras/iris/v12@v12.2.4` 
+3. Install Iris with `go get -u github.com/kataras/iris/v12@v12.2.8` 
 
 To run an example, open a terminal session and execute:
 
