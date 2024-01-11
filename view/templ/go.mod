@@ -1,11 +1,10 @@
-module app
+module github.com/kataras/iris/v12/_examples/view/templ
 
 go 1.21
 
 require (
-	github.com/golang/protobuf v1.5.0
+	github.com/a-h/templ v0.2.513
 	github.com/kataras/iris/v12 v12.2.9
-	google.golang.org/protobuf v1.32.0
 )
 
 require (
@@ -48,6 +47,7 @@ require (
 	golang.org/x/sys v0.16.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	golang.org/x/time v0.5.0 // indirect
+	google.golang.org/protobuf v1.32.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

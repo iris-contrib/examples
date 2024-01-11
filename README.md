@@ -10,7 +10,7 @@ This repository provides easy to understand code snippets on how to get started 
 
 To read the Iris documentation please navigate to [the documentation](https://iris-go.com/docs) instead.
 
-> Examples are tested using Windows 11, Ubuntu 23.04 LTS, macOS 14 Sonoma with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and built using the [Go 1.21.3](https://go.dev/dl/).
+> Examples are tested using Windows 11, Ubuntu 23.04 LTS, macOS 14 Sonoma with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and built using the [Go 1.21.6](https://go.dev/dl/).
 
 # Table of Contents
 
@@ -68,7 +68,7 @@ To read the Iris documentation please navigate to [the documentation](https://ir
     * [Basic](routing/basic/main.go)
     * [Custom HTTP Errors](routing/http-errors/main.go)
     * [HTTP Wire Errors](routing/http-wire-errors/main.go) **NEW**
-        * [Custom Validation Errors](routing/http-wire-errors/custom-validation-errors/main.go)
+        * [Service and Validation](routing/http-wire-errors/service/main.go) **NEW**
     * [Not Found - Intelligence](routing/intelligence/main.go)
         * [Not Found - Suggest Closest Paths](routing/intelligence/manual/main.go)
     * [Dynamic Path](routing/dynamic-path/main.go)
@@ -190,6 +190,7 @@ To read the Iris documentation please navigate to [the documentation](https://ir
     * Third-Parties
         * [Render `valyala/quicktemplate` templates](view/quicktemplate)
         * [Render `shiyanhui/hero` templates](view/herotemplate)
+        * [Render `a-h/templ` templates](view/templ) **NEW**
 * [Request ID](https://github.com/kataras/iris/blob/main/middleware/requestid/requestid_test.go)
 * [Request Rate Limit](request-ratelimit/main.go)
 * [Request Referrer](request-referrer/main.go)
@@ -317,7 +318,6 @@ To read the Iris documentation please navigate to [the documentation](https://ir
     * [The lorca package](desktop/lorca)
     * [The webview package](desktop/webview)
 * Middlewares [(Community)](https://github.com/iris-contrib/middleware)
-
 
 ## Run
 
