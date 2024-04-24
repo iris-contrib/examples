@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"strings"
 
 	"github.com/kataras/iris/v12"
@@ -16,10 +17,10 @@ func main() {
 	// Create a new service and pass it to the handlers.
 	service := new(myService)
 
-	app.Post("/", createHandler(service))              // OR: errors.CreateHandler(service.Create)
-	app.Get("/", listAllHandler(service))              // OR errors.Handler(service.ListAll, errors.Value(ListRequest{}))
-	app.Post("/page", listHandler(service))            // OR: errors.ListHandler(service.ListPaginated)
-	app.Delete("/{id:string}", deleteHandler(service)) // OR: errors.NoContentOrNotModifiedHandler(service.DeleteWithFeedback, errors.PathParam[string]("id"))
+	app.Post("/", errors.Intercept(afterServiceCallButBeforeDataSent), createHandler(service)) // OR: errors.CreateHandler(service.Create)
+	app.Get("/", listAllHandler(service))                                                      // OR errors.Handler(service.ListAll, errors.Value(ListRequest{}))
+	app.Post("/page", listHandler(service))                                                    // OR: errors.ListHandler(service.ListPaginated)
+	app.Delete("/{id:string}", deleteHandler(service))                                         // OR: errors.NoContentOrNotModifiedHandler(service.DeleteWithFeedback, errors.PathParam[string]("id"))
 
 	app.Listen(":8080")
 }
@@ -95,7 +96,7 @@ type (
 	}
 )
 
-// ValidateContext implements the errors.ContextValidator interface.
+// HandleRequest implements the errors.RequestHandler interface.
 // It validates the request body and returns an error if the request body is invalid.
 // You can also alter the "r" CreateRequest before calling the service method,
 // e.g. give a default value to a field if it's empty or set an ID based on a path parameter.
@@ -104,6 +105,7 @@ type (
 //
 //	r.Post("/", errors.Validation(validateCreateRequest), createHandler(service))
 //	[more code here...]
+//
 //	func validateCreateRequest(ctx iris.Context, r *CreateRequest) error {
 //		return validation.Join(
 //			validation.String("fullname", r.Fullname).NotEmpty().Fullname().Length(3, 50),
@@ -111,7 +113,7 @@ type (
 //			validation.Slice("hobbies", r.Hobbies).Length(1, 10),
 //		)
 //	}
-func (r *CreateRequest) ValidateContext(ctx iris.Context) error {
+func (r *CreateRequest) HandleRequest(ctx iris.Context) error {
 	// To pass custom validation functions:
 	// return validation.Join(
 	// 	validation.String("fullname", r.Fullname).Func(customStringFuncHere),
@@ -150,6 +152,20 @@ func (r *CreateRequest) ValidateContext(ctx iris.Context) error {
 	    ]
 	}
 	*/
+}
+
+/*
+// HandleResponse implements the errors.ResponseHandler interface.
+func (r *CreateRequest) HandleResponse(ctx iris.Context, resp *CreateResponse) error {
+	fmt.Printf("request got: %+v\nresponse sent: %#+v\n", r, resp)
+
+	return nil // fmt.Errorf("let's fire an internal server error just for the shake of the example") // return nil to continue.
+}
+*/
+
+func afterServiceCallButBeforeDataSent(ctx iris.Context, req CreateRequest, resp *CreateResponse) error {
+	fmt.Printf("intercept: request got: %+v\nresponse sent: %#+v\n", req, resp)
+	return nil
 }
 
 func (s *myService) Create(ctx context.Context, in CreateRequest) (CreateResponse, error) {
@@ -216,8 +232,16 @@ func (s *myService) ListPaginated(ctx context.Context, opts pagination.ListOptio
 	return filteredResp, len(all), nil // errors.New("list paginated: test error")
 }
 
+func (s *myService) GetByID(ctx context.Context, id string) (CreateResponse, error) {
+	return CreateResponse{Firstname: "Gerasimos"}, nil // errors.New("get by id: test error")
+}
+
 func (s *myService) Delete(ctx context.Context, id string) error {
 	return nil // errors.New("delete: test error")
+}
+
+func (s *myService) Update(ctx context.Context, req CreateRequest) (bool, error) {
+	return true, nil // false, errors.New("update: test error")
 }
 
 func (s *myService) DeleteWithFeedback(ctx context.Context, id string) (bool, error) {

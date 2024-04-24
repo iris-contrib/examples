@@ -4,13 +4,13 @@
 
 <a href="https://github.com/kataras/iris/actions"><img src="https://img.shields.io/github/actions/workflow/status/iris-contrib/swagger/ci.yml?branch=master&style=flat-square" alt="Build Status"></a>
 <a href="https://github.com/iris-contrib/examples/blob/v12/LICENSE"><img src="https://img.shields.io/badge/%20license-MIT%20%20License%20-E91E63.svg?style=flat-square" alt="License"></a>
-<a href="https://github.com/kataras/iris/blob/main/HISTORY.md"><img src="https://img.shields.io/badge/version-v12.2.x%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
+<a href="https://github.com/kataras/iris/blob/v12/HISTORY.md"><img src="https://img.shields.io/badge/version-v12.2.x%20-blue.svg?style=flat-square" alt="CHANGELOG/HISTORY"></a>
 
-This repository provides easy to understand code snippets on how to get started with web development with the Go programming language using the [Iris](https://github.com/kataras/iris) web framework. This branch contains the latest [iris master examples](github.com/kataras/iris/tree/main/examples).
+This repository provides easy to understand code snippets on how to get started with web development with the Go programming language using the [Iris](https://github.com/kataras/iris) web framework. This branch contains the latest [iris main examples](github.com/kataras/iris/tree/v12/examples).
 
 To read the Iris documentation please navigate to [the documentation](https://iris-go.com/docs) instead.
 
-> Examples are tested using Windows 11, Ubuntu 23.04 LTS, macOS 14 Sonoma with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and built using the [Go 1.21.6](https://go.dev/dl/).
+> Examples are tested using Windows 11, Ubuntu 23.04 LTS, macOS 14 Sonoma with [Microsoft's Visual Studio Code](https://code.visualstudio.com/) and built using the [Go 1.22.2](https://go.dev/dl/).
 
 # Table of Contents
 
@@ -318,23 +318,3 @@ To read the Iris documentation please navigate to [the documentation](https://ir
     * [The lorca package](desktop/lorca)
     * [The webview package](desktop/webview)
 * Middlewares [(Community)](https://github.com/iris-contrib/middleware)
-
-## Run
-
-1. Install the Go Programming Language, version 1.21+ from [here](https://go.dev/dl/).
-2. [Download the examples](https://github.com/iris-contrib/examples/archive/master.zip) and copy-paste them to your `$GOPATH/src/github.com/iris-contrib/examples`
-3. Install Iris with `go get -u github.com/kataras/iris/v12@v12.2.8` 
-
-To run an example, open a terminal session and execute:
-
-```sh
-$ cd $GOPATH/src/github.com/iris-contrib/examples/compression
-$ go mod init
-$ go run main.go
-```
-
-Do not forget to [star or watch the Iris project](https://github.com/kataras/iris/stargazers).
-
-## Any troubles with examples?
-
-    https://github.com/iris-contrib/examples/issues
